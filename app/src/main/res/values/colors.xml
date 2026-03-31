@@ -2,4 +2,27 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="md_theme_primary">#7AB3FA</color>
+    <color name="md_theme_background">#FBFBFB</color>
+
+    <color name="text_primary">#2D2D2D</color>
+    <color name="text_secondary">#8E8E8E</color>
+
+    <color name="card_community_bg">#64B9F6</color>
+    <color name="card_community_text">#276998</color>
+    <color name="card_community_icon">#8BCBF9</color>
+
+    <color name="card_achievements_bg">#FFCE48</color>
+    <color name="card_achievements_text">#D29614</color>
+    <color name="card_achievements_icon">#DDAC44</color>
+    <color name="card_achievements_icon_bg">#FFDF99</color>
+
+
+    <color name="card_checkin_bg">#FF9DF8</color>
+
+    <color name="card_session_bg">#A6D7A0</color>
+
+    <color name="event_list_item_bg">#F4F9FF</color>
+
 </resources>
