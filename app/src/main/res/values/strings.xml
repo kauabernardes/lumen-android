@@ -1,5 +1,17 @@
 <resources>
-    <string name="app_name">Lumen</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="desc_avatar_usuario">Foto de perfil do usuário</string>
+    <string name="desc_ilustracao_comunidade">Ilustração de um grupo de pessoas da comunidade</string>
+
+    <string name="ola_usuario">Olá João</string>
+    <string name="pergunta_dia_estudos">Como foi seu dia de estudos hoje?</string>
+
+    <string name="community">Comunidades</string>
+    <string name="achievements">Conquistas</string>
+    <string name="check_in">Check-in</string>
+    <string name="sessao">Sessão</string>
+
+    <string name="recommendation">Recomendação</string>
+
+    <string name="exemplo_recomendacao_titulo">História - Revolução Francesa</string>
+    <string name="exemplo_recomendacao_subtitulo">Sua prova é em 3 dias. Dedique 2 horas hoje.</string>
 </resources>
