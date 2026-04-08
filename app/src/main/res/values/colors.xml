@@ -7,6 +7,10 @@
     <color name="md_theme_background">#FBFBFB</color>
     <color name="md_theme_foreground">#F1F1F1</color>
 
+    <color name="session_theme_background">#D2EBCF</color>
+    <color name="session_theme_foreground">#A6D7A0</color>
+    <color name="session_high">#63885F</color>
+
     <color name="text_primary">#2D2D2D</color>
     <color name="text_secondary">#8E8E8E</color>
 
@@ -29,7 +33,7 @@
 
 
     <color name="card_session_bg">#A6D7A0</color>
-    <color name="card_session_text">#81997E</color>
+    <color name="card_session_text">#758C72</color>
     <color name="card_session_icon">#98B495</color>
     <color name="card_session_icon_bg">#D2EBCF</color>
 
