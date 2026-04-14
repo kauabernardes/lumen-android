@@ -199,7 +199,7 @@
         app:shapeAppearance="@style/circleImageView"
         android:background="@color/card_session_icon_bg"
         app:contentPadding="6dp"
-        android:src="@drawable/clock"/>
+        android:src="@drawable/ic_clock"/>
 
     <TextView
         app:layout_constraintBottom_toBottomOf="@id/card_session"

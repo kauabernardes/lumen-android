@@ -22,4 +22,6 @@
     <string name="tarefa">Tarefa</string>
     <string name="session_title">Sessão de Tempo</string>
     <string name="btn_session_study">Estudos</string>
+    <string name="btn_session_short_break">Pausa Curta</string>
+    <string name="btn_session_long_break">Pausa Longa</string>
 </resources>

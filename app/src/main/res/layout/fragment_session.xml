@@ -9,19 +9,12 @@
     android:background="@color/session_theme_background"
     tools:context=".ui.SessionFragment">
 
-    <ImageView
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:src="@drawable/ic_chevron_left"/>
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/avatar"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:src="@drawable/dog"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/desc_avatar_usuario"
-        app:shapeAppearance="@style/circleImageView"
+    <include
+        android:id="@+id/header_component"
+        layout="@layout/layout_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +26,7 @@
         android:textStyle="bold"
         android:text="@string/tarefa"
         android:textColor="@color/text_primary"
-        app:layout_constraintTop_toBottomOf="@+id/avatar"
+        app:layout_constraintTop_toBottomOf="@+id/header_component"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -55,7 +48,7 @@
 
         app:layout_constraintTop_toBottomOf="@id/linear_task"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/clock"
+        android:src="@drawable/ic_clock"
 
         />
 
@@ -76,6 +69,8 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_timer"
+
         android:layout_width="0dp"
         android:layout_height="100dp"
 
@@ -90,16 +85,49 @@
         app:layout_constraintTop_toBottomOf="@id/icon_session_title"
 
         android:layout_marginTop="16dp"/>
-    
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_study"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_session_study"
+        android:textSize="16sp"
+        app:icon="@drawable/ic_book"
+        android:backgroundTint="@color/session_high"
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:textSize="18sp"
-            android:text="@string/btn_session_study"
-            app:layout_constraintHorizontal_weight="8"
-            android:backgroundTint="@color/session_high"
-            />
+        app:layout_constraintStart_toStartOf="@id/card_timer"
+        app:layout_constraintEnd_toStartOf="@+id/btn_short_break"
+        app:layout_constraintTop_toTopOf="@id/card_timer"
 
+        android:layout_marginEnd="4dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_short_break"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_session_short_break"
+        android:textSize="16sp"
+        app:icon="@drawable/ic_coffee"
+        android:backgroundTint="@color/session_high"
+
+        app:layout_constraintStart_toEndOf="@+id/btn_study"
+        app:layout_constraintEnd_toStartOf="@+id/btn_long_break"
+        app:layout_constraintTop_toTopOf="@id/card_timer"
+
+        android:layout_marginHorizontal="4dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_long_break"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_session_long_break"
+        android:textSize="16sp"
+        app:icon="@drawable/ic_coffee"
+        android:backgroundTint="@color/session_high"
+
+        app:layout_constraintStart_toEndOf="@+id/btn_short_break"
+        app:layout_constraintEnd_toEndOf="@id/card_timer"
+        app:layout_constraintTop_toTopOf="@id/card_timer"
+
+        android:layout_marginStart="4dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

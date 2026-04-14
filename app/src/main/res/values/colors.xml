@@ -3,6 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="main_lumen">#0052be</color>
+
     <color name="md_theme_primary">#58A6FF</color>
     <color name="md_theme_background">#FBFBFB</color>
     <color name="md_theme_foreground">#F1F1F1</color>
