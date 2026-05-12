@@ -9,16 +9,6 @@
     android:background="@color/md_theme_background"
     tools:context=".ui.HomeFragment">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/avatar"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:src="@drawable/dog"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/desc_avatar_usuario"
-        app:shapeAppearance="@style/circleImageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/hello_title"
@@ -28,7 +18,7 @@
         android:textStyle="bold"
         android:text="@string/ola_usuario"
         android:textColor="@color/text_primary"
-        app:layout_constraintTop_toBottomOf="@+id/avatar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

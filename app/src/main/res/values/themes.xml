@@ -5,16 +5,19 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.Lumen" parent="Base.Theme.Lumen" />
 
     <style name="circleImageView" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
 
-    <style name="Theme.App.Splash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/main_lumen</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_lumen</item>
-        <item name="postSplashScreenTheme">@style/Base.Theme.Lumen</item>
+    <style name="bottomSheetDialogWrapper" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
     </style>
+
+    <style name="BottomSheetDialog" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/bottomSheetDialogWrapper</item>
+    </style>
+
+
 </resources>

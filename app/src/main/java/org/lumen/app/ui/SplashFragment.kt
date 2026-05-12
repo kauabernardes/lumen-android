@@ -30,11 +30,11 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       // Handler(Looper.getMainLooper()).postDelayed({ready()}, 3000)
+        Handler(Looper.getMainLooper()).postDelayed({ready()}, 3000)
     }
 
     private fun ready () {
-        //findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+        findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
     }
 
     override fun onDestroyView() {
