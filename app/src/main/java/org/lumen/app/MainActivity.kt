@@ -3,28 +3,25 @@ package org.lumen.app
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.ActionBarDrawerToggle
-
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-
-import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.core.view.isVisible
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.navigation.NavigationView
 import org.lumen.app.databinding.ActivityMainBinding
-import org.lumen.app.ui.HomeFragment
 
 class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var fragmentManager: FragmentManager
     private lateinit var binding: ActivityMainBinding
+    private var noToolbar = intArrayOf(R.id.splashFragment, R.id.loginFragment)
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -33,34 +30,66 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         WindowCompat.setDecorFitsSystemWindows(window, false)
         WindowInsetsControllerCompat(window, window.decorView).hide(WindowInsetsCompat.Type.statusBars())
 
-        setSupportActionBar(binding.toolbar)
+        initNav()
+        initToolbar()
+
+
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
+
+        when(item.itemId){
+            R.id.nav_profile -> {
+                findNavController(R.id.action_homeFragment_to_loginFragment)
+            }
+
+        }
+
+        binding.drawerLayout.closeDrawer(GravityCompat.END)
+
+
+        return true
+    }
+
+    private fun initToolbar() {
+        val toolbar = binding.toolbar
+        setSupportActionBar(toolbar)
+
+        toolbar.setNavigationOnClickListener {
+            this.onBackPressedDispatcher.onBackPressed()
+        }
 
         binding.avatar.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.END)
         }
 
         binding.navigationDrawer.setNavigationItemSelectedListener(this)
-
-        fragmentManager = supportFragmentManager
-        openFragment(HomeFragment())
-
-
-
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+    private fun initNav() {
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
 
-        Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+
+            binding.appBarLayout.isVisible = destination.id !in noToolbar
+
+            when (destination.id) {
+                R.id.homeFragment -> {
+
+                    binding.toolbar.navigationIcon = null
+                }
+                else -> {
+
+                    binding.toolbar.setNavigationIcon(R.drawable.ic_chevron_left)
+                }
+            }
 
 
-        binding.drawerLayout.closeDrawer(GravityCompat.END)
-        return true
+
+            binding.toolbar.title = ""
+        }
     }
-
-    fun openFragment( fragment: Fragment) {
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragment_container, fragment)
-        fragmentTransaction.commit()
-    }
-
 }

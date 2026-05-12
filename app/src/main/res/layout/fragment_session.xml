@@ -9,15 +9,6 @@
     android:background="@color/session_theme_background"
     tools:context=".ui.SessionFragment">
 
-    <include
-        android:id="@+id/header_component"
-        layout="@layout/layout_header"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/task_title"
         style="@style/TextAppearance.MaterialComponents.Headline4"
@@ -26,7 +17,7 @@
         android:textStyle="bold"
         android:text="@string/tarefa"
         android:textColor="@color/text_primary"
-        app:layout_constraintTop_toBottomOf="@+id/header_component"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

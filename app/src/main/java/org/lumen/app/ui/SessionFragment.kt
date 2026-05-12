@@ -31,9 +31,7 @@ class SessionFragment : Fragment() {
     }
 
     private fun initListener(){
-        binding.headerComponent.btnBack.setOnClickListener {
-            findNavController().navigateUp()
-        }
+
     }
 
     override fun onDestroyView() {
