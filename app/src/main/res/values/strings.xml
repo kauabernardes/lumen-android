@@ -32,4 +32,9 @@
     <string name="nav_close">Fechar menu</string>
     <string name="nav_item_profile">Meu Perfil</string>
     <string name="nav_item_logout">Sair</string>
+
+    <!-- Recuperarconta -->
+    <string name="naotemconta">Não tem uma conta?</string>
+    <string name="ircriarconta"> Criar conta</string>
+    <string name="insiraemail">E-mail:</string>
 </resources>
