@@ -1,6 +1,7 @@
 package org.lumen.app
 
 import TokenManager
+import android.R.color.transparent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
@@ -14,6 +15,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.navigation.NavigationView
 import org.lumen.app.databinding.ActivityMainBinding
+import org.lumen.app.ui.SessionFragment
 
 class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener {
 
@@ -41,14 +43,11 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
-
         when(item.itemId){
             R.id.nav_logout -> {
                 tokenManager.clear()
                 findNavController(R.id.nav_host_fragment).navigate(R.id.loginFragment)
             }
-
         }
 
         binding.drawerLayout.closeDrawer(GravityCompat.END)
@@ -82,19 +81,25 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             val toolbar = binding.toolbar
             val appBar = binding.appBarLayout
 
-            appBar.isVisible = destination.id !in noToolbar
+            toolbar.setNavigationIcon(R.drawable.ic_chevron_left)
+            appBar.setBackgroundResource(R.color.md_theme_background)
+            appBar.isVisible = true
 
             when (destination.id) {
+                R.id.splashFragment -> {
+                    appBar.isVisible = false
+                }
                 R.id.homeFragment -> {
-                    binding.toolbar.navigationIcon = null
+                   toolbar.navigationIcon = null
+
                 }
                 R.id.loginFragment -> {
-                    binding.toolbar.navigationIcon = null
+                    appBar.isVisible = false
                 }
-                else -> {
+                R.id.sessionFragment -> {
+                    appBar.setBackgroundResource(R.color.session_theme_background)
+                }
 
-                    binding.toolbar.setNavigationIcon(R.drawable.ic_chevron_left)
-                }
             }
 
 

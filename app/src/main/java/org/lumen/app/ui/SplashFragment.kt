@@ -51,7 +51,6 @@ class SplashFragment : Fragment() {
                         tokenManager.clear()
                         findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
                     } else {
-                        delay(3000)
                         findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
                     }
                 } catch (e: Exception) {
