@@ -1,5 +1,6 @@
 package org.lumen.app
 
+import TokenManager
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
@@ -19,11 +20,14 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     private lateinit var binding: ActivityMainBinding
     private var noToolbar = intArrayOf(R.id.splashFragment, R.id.loginFragment)
 
+    private lateinit var tokenManager : TokenManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
         super.onCreate(savedInstanceState)
 
+        tokenManager = TokenManager(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -40,8 +44,9 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
 
         when(item.itemId){
-            R.id.nav_profile -> {
-                findNavController(R.id.action_homeFragment_to_loginFragment)
+            R.id.nav_logout -> {
+                tokenManager.clear()
+                findNavController(R.id.nav_host_fragment).navigate(R.id.loginFragment)
             }
 
         }
@@ -74,11 +79,16 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
 
-            binding.appBarLayout.isVisible = destination.id !in noToolbar
+            val toolbar = binding.toolbar
+            val appBar = binding.appBarLayout
+
+            appBar.isVisible = destination.id !in noToolbar
 
             when (destination.id) {
                 R.id.homeFragment -> {
-
+                    binding.toolbar.navigationIcon = null
+                }
+                R.id.loginFragment -> {
                     binding.toolbar.navigationIcon = null
                 }
                 else -> {

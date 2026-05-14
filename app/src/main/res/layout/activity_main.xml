@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -16,7 +16,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="false"
-            android:paddingHorizontal="18dp">
+            android:paddingHorizontal="18dp"
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
@@ -25,10 +29,7 @@
                 android:background="@color/md_theme_background"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:title=""
-                app:navigationIcon="@drawable/ic_chevron_left"
-
-
-                >
+                app:navigationIcon="@drawable/ic_chevron_left">
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/avatar"
@@ -38,26 +39,26 @@
                     android:scaleType="centerCrop"
                     android:layout_gravity="end"
                     android:contentDescription="@string/desc_avatar_usuario"
-                    app:shapeAppearance="@style/circleImageView"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:shapeAppearance="@style/circleImageView" />
 
             </com.google.android.material.appbar.MaterialToolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
 
-
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:defaultNavHost="true"
             app:navGraph="@navigation/main_graph"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_drawer"
@@ -70,6 +71,5 @@
         app:itemTextColor="@color/text_secondary"
         android:fitsSystemWindows="true"
         app:menu="@menu/nav_menu"/>
-
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -37,10 +37,16 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val token = tokenManager.getToken()
-        val decodedJWT = JWT.decode(token)
-
-        username = decodedJWT.getClaim("username").asString()
-
+        try {
+            if (!token.isNullOrEmpty()) {
+                val decodedJWT = JWT.decode(token)
+                username = decodedJWT.getClaim("username").asString() ?: "Usuário"
+            } else {
+                username = "Usuário"
+            }
+        } catch (e: Exception) {
+            username = "Usuário"
+        }
         initListener()
         loadUser()
     }
