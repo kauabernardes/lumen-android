@@ -25,6 +25,19 @@ class TokenManager(context: Context) {
         return sharedPreferences.getString("JWT_TOKEN", null)
     }
 
+    fun getBearer() : String? {
+        val token = getToken()
+
+        var result : String? = null
+
+        if (token != null) {
+            result = "Bearer $token"
+        }
+
+        return result
+    }
+
+
     fun clear() {
         sharedPreferences.edit { remove("JWT_TOKEN") }
     }

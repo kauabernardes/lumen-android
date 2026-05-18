@@ -108,6 +108,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
+            <com.google.android.material.button.MaterialButton
+                android:layout_marginTop="16dp"
+                android:id="@+id/btn_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_session_toggle_resume"
+                android:textSize="16sp"
+                android:backgroundTint="@color/session_high"
+                app:layout_constraintTop_toBottomOf="@id/timer_minutes"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:icon="@drawable/ic_play"
+                app:iconTint="@color/white"
+
+                app:iconSize="24sp"
+                android:enabled="false"
+           />
+
             <TextView
                 android:id="@+id/session_id"
                 android:layout_width="0dp"
@@ -117,7 +135,7 @@
                 android:textAlignment="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/timer_minutes"
+                app:layout_constraintTop_toBottomOf="@id/btn_toggle"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
 
@@ -140,10 +158,11 @@
 
                 >
                 <TextView
+                   android:id="@+id/minutes"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textAlignment="center"
-                    android:text="12"
+                    android:text="@string/timer_default_value"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:layout_margin="16dp"
@@ -179,10 +198,11 @@
                 app:cardBackgroundColor="@color/session_high_variant_1"
                 >
                 <TextView
+                    android:id="@+id/seconds"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textAlignment="center"
-                    android:text="12"
+                    android:text="@string/timer_default_value"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:layout_margin="16dp"

@@ -32,4 +32,8 @@
     <string name="nav_close">Fechar menu</string>
     <string name="nav_item_profile">Meu Perfil</string>
     <string name="nav_item_logout">Sair</string>
+
+    <string name="btn_session_toggle_pause">Pausar</string>
+    <string name="btn_session_toggle_resume">Play</string>
+    <string name="timer_default_value">00</string>
 </resources>
