@@ -29,7 +29,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        // Lógica para ir para a tela de Cadastro
         btnCriarConta.setOnClickListener {
             val intent = Intent(this, CadastroActivity::class.java)
             startActivity(intent)
