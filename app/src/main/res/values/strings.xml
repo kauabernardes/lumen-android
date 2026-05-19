@@ -20,8 +20,8 @@
     <string name="tarefa">Tarefa</string>
     <string name="session_title">Sessão de Tempo</string>
     <string name="btn_session_study">Estudos</string>
-    <string name="btn_session_short_break">Pausa Curta</string>
-    <string name="btn_session_long_break">Pausa Longa</string>
+    <string name="btn_session_short_break">Curta</string>
+    <string name="btn_session_long_break">Longa</string>
 
     <string name="title_bottom_sheet">Atenção!</string>
     <string name="text_title_warning">Atenção!</string>
@@ -36,4 +36,5 @@
     <string name="btn_session_toggle_pause">Pausar</string>
     <string name="btn_session_toggle_resume">Play</string>
     <string name="timer_default_value">00</string>
+    <string name="user_item_default">Usuario</string>
 </resources>

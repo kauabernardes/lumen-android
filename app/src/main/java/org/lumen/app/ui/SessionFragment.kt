@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import io.socket.client.Ack
 import io.socket.client.IO
@@ -17,8 +18,12 @@ import io.socket.client.Socket
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import org.lumen.app.R
+import org.lumen.app.adapter.UserAdapter
+import org.lumen.app.data.model.User
 import org.lumen.app.data.remote.Constants
 import org.lumen.app.data.remote.RetrofitClient
+import org.lumen.app.data.remote.model.ForceBreakRequest
+import org.lumen.app.data.remote.model.PomodoroBreak
 import org.lumen.app.data.remote.model.PomodoroPhase
 import org.lumen.app.data.remote.model.PomodoroState
 import org.lumen.app.data.remote.model.PomodoroStatus
@@ -37,7 +42,7 @@ class SessionFragment : Fragment() {
     private lateinit var token: String
     private lateinit var bearer: String
 
-    private lateinit var status: PomodoroStatus
+    private lateinit var userAdapter: UserAdapter
     private var mSocket: Socket? = null
     private var currentSessionId: String? = null
 
@@ -68,6 +73,17 @@ class SessionFragment : Fragment() {
         binding.btnToggle.setOnClickListener {
             alternarCronometro()
         }
+        binding.btnLongBreak.setOnClickListener {
+            forceBreak(PomodoroBreak.LONG)
+        }
+        binding.btnShortBreak.setOnClickListener {
+            forceBreak(PomodoroBreak.SHORT)
+        }
+        binding.btnStudy.setOnClickListener {
+            forceStudy()
+        }
+
+
     }
 
     private fun alternarCronometro() {
@@ -98,6 +114,59 @@ class SessionFragment : Fragment() {
             }
         }
     }
+
+    private fun forceBreak(type: PomodoroBreak) {
+
+        val sessionId = currentSessionId
+
+        if (sessionId == null) {
+            showBottomSheet(message = "Você ainda não entrou em uma sessão.")
+            return
+        }
+
+        val payload = ForceBreakRequest(type)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+
+            try {
+                val response = RetrofitClient.sessionApi.forceBreak(sessionId, payload, bearer)
+
+                if (response.isSuccessful) {
+                    showBottomSheet(message = "Tempo de descanso!")
+                } else {
+                    showBottomSheet(message = "Erro: Apenas o anfitrião pode forçar uma pausa.")
+                }
+            } catch (e: Exception) {
+                showBottomSheet(message = "Erro de conexão ao tentar forçar uma pausa.")
+                Log.e("SESSION_REST", "Erro na força de descanso", e)
+            }
+        }
+    }
+
+    private fun forceStudy(){
+        val sessionId = currentSessionId
+
+        if (sessionId == null) {
+            showBottomSheet(message = "Você ainda não entrou em uma sessão.")
+            return
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val response = RetrofitClient.sessionApi.forceStudy(sessionId, bearer)
+
+                if (response.isSuccessful) {
+                    showBottomSheet(message = "Temdo de estudo!")
+                } else {
+                    showBottomSheet(message = "Erro: Apenas o anfitrião pode determinar tempo de estudo.")
+                }
+            } catch (e: Exception) {
+                showBottomSheet(message = "Erro de conexão ao tentar determinar tempo de estudo.")
+                Log.e("SESSION_REST", "Erro na força de estudo", e)
+            }
+        }
+    }
+
 
     private fun conectarSocket() {
         try{
@@ -144,8 +213,15 @@ class SessionFragment : Fragment() {
                             Log.e("SESSION_DEBUG", "Erro ao converter o Gson", e)
                         }
                     }
+
+
+                    currentSessionId?.let { id ->
+                        initialUserList(id)
+                    }
                 }
             }
+
+
         })
     }
 
@@ -163,6 +239,20 @@ class SessionFragment : Fragment() {
 
                 activity?.runOnUiThread {
                     timerState(pomodoro.timeLeft, pomodoro.phase, pomodoro.status)
+                }
+            }
+        }
+
+        mSocket?.on("participants_updated") { args ->
+            if (args.isNotEmpty()) {
+                val jsonString = args[0].toString()
+
+                Log.i("SESSION_DEBUG", "JSON: $jsonString")
+
+                val participants = Gson().fromJson(jsonString, Array<User>::class.java)
+
+                activity?.runOnUiThread {
+                    setUserList(participants.toList())
                 }
             }
         }
@@ -190,8 +280,8 @@ class SessionFragment : Fragment() {
             binding.btnLongBreak.isEnabled = true
         } else {
             binding.btnStudy.isEnabled = true
-            binding.btnShortBreak.isEnabled = false
-            binding.btnLongBreak.isEnabled = false
+            binding.btnShortBreak.isEnabled = true
+            binding.btnLongBreak.isEnabled = true
         }
 
 
@@ -203,6 +293,30 @@ class SessionFragment : Fragment() {
             binding.btnToggle.icon = getDrawable(requireContext(),R.drawable.ic_play)
             }
         }
+
+    private fun initialUserList(sessionId: String) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val response = RetrofitClient.sessionApi.getParticipants(sessionId, bearer)
+                if (response.isSuccessful && response.body() != null) {
+                    val participants = response.body()!!
+                    setUserList(participants)
+                } else {
+                    Log.e("SESSION_REST", "Erro ao buscar participantes iniciais")
+                }
+            } catch (e: Exception) {
+                Log.e("SESSION_REST", "Falha na conexão ao buscar participantes", e)
+            }
+        }
+    }
+
+
+    private fun setUserList(userList: List<User>) {
+        userAdapter = UserAdapter(userList)
+        binding.userList.layoutManager = LinearLayoutManager(requireContext())
+        binding.userList.setHasFixedSize(false)
+        binding.userList.adapter = userAdapter
+    }
 
 
     override fun onDestroyView() {
