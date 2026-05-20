@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -60,4 +61,6 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     implementation("com.auth0:java-jwt:3.10.3")
+
+    implementation ("io.socket:socket.io-client:2.1.0") {exclude(  group = "org.json", module = "json") }
 }

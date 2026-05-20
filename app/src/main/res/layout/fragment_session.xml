@@ -20,6 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+
     <LinearLayout
         android:id="@+id/linear_task"
         android:layout_width="0dp"
@@ -29,12 +30,14 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/task_title"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@id/task_title" />
 
     <ImageView
         android:id="@+id/icon_session_title"
         android:layout_width="45dp"
         android:layout_height="45dp"
+
+        android:contentDescription="@string/ic_clock"
 
         app:layout_constraintTop_toBottomOf="@id/linear_task"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,64 +63,315 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_timer"
-
         android:layout_width="0dp"
-        android:layout_height="100dp"
-
-
+        android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/session_theme_foreground"
         app:cardCornerRadius="25dp"
-
         app:cardElevation="0dp"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/icon_session_title"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        >
 
-        android:layout_marginTop="16dp"/>
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_study"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <LinearLayout
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+
+                android:id="@+id/linearBtns">
+
+                <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_study"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_session_study"
+                android:textSize="16sp"
+                    android:paddingHorizontal="12dp"
+                    app:cornerRadius="16dp"
+                android:backgroundTint="@color/session_high"
+              />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_short_break"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_session_short_break"
+                    android:textSize="16sp"
+                    android:layout_marginHorizontal="8dp"
+                    android:paddingHorizontal="12dp"
+                    app:cornerRadius="16dp"
+                    android:backgroundTint="@color/session_high"
+                    app:icon="@drawable/ic_pause"
+                    />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_long_break"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_session_long_break"
+                    android:textSize="16sp"
+                    app:cornerRadius="16dp"
+                    android:paddingHorizontal="16dp"
+                    android:backgroundTint="@color/session_high"
+                    app:icon="@drawable/ic_pause"
+       /></LinearLayout>
+
+
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_marginTop="16dp"
+                android:id="@+id/btn_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_session_toggle_resume"
+                android:textSize="16sp"
+                android:backgroundTint="@color/session_high"
+                app:layout_constraintTop_toBottomOf="@id/timer_minutes"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:icon="@drawable/ic_play"
+                app:iconTint="@color/white"
+                app:cornerRadius="16dp"
+                app:iconSize="24sp"
+                android:enabled="false"
+           />
+
+            <TextView
+                android:id="@+id/session_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/sessio_id_default"
+                android:padding="16dp"
+                android:textAlignment="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_toggle"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/timer_minutes"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/timer_seconds"
+                app:layout_constraintTop_toBottomOf="@id/linearBtns"
+
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:cardCornerRadius="22dp"
+             app:cardElevation="0dp"
+                android:layout_margin="24dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="@color/session_high_variant_1"
+
+                >
+
+                <TextView
+                    android:id="@+id/minutes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="@string/timer_default_value"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="72sp"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="72sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:text="@string/timer_session_divisor"
+
+                app:layout_constraintStart_toEndOf="@id/timer_minutes"
+                app:layout_constraintEnd_toStartOf="@id/timer_seconds"
+                app:layout_constraintTop_toTopOf="@id/timer_seconds"
+                app:layout_constraintBottom_toBottomOf="@id/timer_seconds"/>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/timer_seconds"
+
+                app:layout_constraintStart_toEndOf="@id/timer_minutes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearBtns"
+
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:cardCornerRadius="22dp"
+                app:cardElevation="0dp"
+                android:layout_margin="24dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="@color/session_high_variant_1"
+                >
+
+                <TextView
+                    android:id="@+id/seconds"
+                    android:layout_width="92dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="@string/timer_default_value"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="72sp"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_init"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/btn_session_study"
-        android:textSize="16sp"
-        app:icon="@drawable/ic_book"
-        android:backgroundTint="@color/session_high"
+        app:cardBackgroundColor="@color/session_theme_foreground"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/session_title"
+        android:layout_marginTop="16dp"
 
-        app:layout_constraintStart_toStartOf="@id/card_timer"
-        app:layout_constraintEnd_toStartOf="@+id/btn_short_break"
-        app:layout_constraintTop_toTopOf="@id/card_timer"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
 
-        android:layout_marginEnd="4dp" />
+          <TextView
+              android:id="@+id/label_edittext"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:textSize="16sp"
+              android:textColor="@color/text_primary"
+              android:text="@string/label_inserir_codigo_sessao"
+              app:layout_constraintTop_toTopOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              android:layout_marginStart="8dp"
+              />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_short_break"
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+
+            android:id="@+id/input_session_id"
+
+            android:autofillHints=""
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/label_edittext"
+            app:layout_constraintEnd_toStartOf="@id/btn_join"
+
+            android:layout_marginTop="6dp"
+
+            android:hint="@string/placeholder_inserir_codigo_sessao"
+
+            android:background="@drawable/bg_left_rounded"
+            android:padding="12dp"
+            />
+
+           <com.google.android.material.button.MaterialButton
+               android:id="@+id/btn_join"
+               android:layout_width="wrap_content"
+               android:layout_height="0dp"
+
+
+               app:layout_constraintTop_toTopOf="@id/input_session_id"
+               app:layout_constraintStart_toEndOf="@id/input_session_id"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintBottom_toBottomOf="@id/input_session_id"
+                android:background="@drawable/bg_right_rounded"
+
+               app:backgroundTint="@null"
+               android:text="@string/join"
+               android:textSize="16sp"
+                android:padding="0dp"
+
+               android:paddingHorizontal="6dp"
+
+
+               android:enabled="false"
+               />
+
+            <TextView
+
+                android:id="@+id/or"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:paddingVertical="16dp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_session_id"
+
+                android:text="@string/or"
+                android:textSize="18sp"
+                android:textColor="@color/session_high"
+                android:textAlignment="center"
+                />
+
+            <com.google.android.material.button.MaterialButton
+
+                android:id="@+id/btn_create_session"
+
+                app:layout_constraintTop_toBottomOf="@id/or"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                app:cornerRadius="16dp"
+                android:textSize="18sp"
+                android:backgroundTint="@color/session_high"
+                android:text="@string/text_criar_sua_sessao"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/userList"
+
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@id/card_timer"
+
+        android:layout_marginTop="16dp"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/btn_session_short_break"
-        android:textSize="16sp"
-        app:icon="@drawable/ic_coffee"
-        android:backgroundTint="@color/session_high"
 
-        app:layout_constraintStart_toEndOf="@+id/btn_study"
-        app:layout_constraintEnd_toStartOf="@+id/btn_long_break"
-        app:layout_constraintTop_toTopOf="@id/card_timer"
+        tools:listitem="@layout/user_item"
 
-        android:layout_marginHorizontal="4dp" />
+        tools:itemCount="3"
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_long_break"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_session_long_break"
-        android:textSize="16sp"
-        app:icon="@drawable/ic_coffee"
-        android:backgroundTint="@color/session_high"
-
-        app:layout_constraintStart_toEndOf="@+id/btn_short_break"
-        app:layout_constraintEnd_toEndOf="@id/card_timer"
-        app:layout_constraintTop_toTopOf="@id/card_timer"
-
-        android:layout_marginStart="4dp" />
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
