@@ -45,4 +45,8 @@
     <string name="ic_clock">Icone de Relógio</string>
     <string name="sessio_id_default">Id da sessão</string>
     <string name="timer_session_divisor">:</string>
+    <!-- Recuperarconta -->
+    <string name="naotemconta">Não tem uma conta?</string>
+    <string name="ircriarconta"> Criar conta</string>
+    <string name="insiraemail">E-mail:</string>
 </resources>
