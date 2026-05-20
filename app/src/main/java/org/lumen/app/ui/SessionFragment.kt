@@ -8,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import io.socket.client.Ack
@@ -29,7 +31,6 @@ import org.lumen.app.data.remote.model.PomodoroState
 import org.lumen.app.data.remote.model.PomodoroStatus
 import org.lumen.app.databinding.FragmentSessionBinding
 import org.lumen.app.util.showBottomSheet
-import kotlin.math.min
 
 
 class SessionFragment : Fragment() {
@@ -63,9 +64,10 @@ class SessionFragment : Fragment() {
         token = tokenManager.getToken() ?: ""
         bearer = tokenManager.getBearer() ?: ""
 
-        conectarSocket()
 
         initListener()
+
+        initBtns()
 
     }
 
@@ -84,6 +86,27 @@ class SessionFragment : Fragment() {
         }
 
 
+    }
+
+    private fun initBtns() {
+        val btnJoin = binding.btnJoin
+        val btnCreate = binding.btnCreateSession
+        val input = binding.inputSessionId
+
+        input.addTextChangedListener { text ->
+            btnJoin.isEnabled = text.toString().isNotEmpty()
+        }
+
+        btnJoin.setOnClickListener {
+            val sessionId = input.text.toString()
+
+            conectarSocket(sessionId)
+        }
+
+        btnCreate.setOnClickListener {
+
+            conectarSocket(null)
+        }
     }
 
     private fun alternarCronometro() {
@@ -168,12 +191,12 @@ class SessionFragment : Fragment() {
     }
 
 
-    private fun conectarSocket() {
+    private fun conectarSocket(sessionId: String? = null) {
         try{
             val options = IO.Options()
             mSocket = IO.socket(Constants.BASE_URL + "session", options)
 
-            initSocketListener()
+            initSocketListener(sessionId)
 
             mSocket?.connect()
 
@@ -182,10 +205,14 @@ class SessionFragment : Fragment() {
         }
     }
 
-    private fun entrarNaSessao() {
+    private fun entrarNaSessao(sessionId: String? = null) {
         if (token == "") return
 
         val payload = JSONObject().apply { put("token", token) }
+
+        if (sessionId != null) {
+            payload.put("sessionId", sessionId)
+        }
 
         mSocket?.emit("join_session", payload, Ack { args ->
             val response = args[0] as JSONObject
@@ -194,6 +221,9 @@ class SessionFragment : Fragment() {
 
             activity?.runOnUiThread {
                 if (response.has("success") && response.getBoolean("success")) {
+                    binding.cardTimer.isVisible = true
+                    binding.cardInit.isGone = true
+
                     binding.btnToggle.isEnabled = true
 
                     currentSessionId = response.getString("sessionId")
@@ -218,6 +248,10 @@ class SessionFragment : Fragment() {
                     currentSessionId?.let { id ->
                         initialUserList(id)
                     }
+                } else {
+                    binding.cardTimer.isVisible = true
+                    binding.cardInit.isGone = true
+                    showBottomSheet(message = "Erro ao entrar na sessão.")
                 }
             }
 
@@ -225,7 +259,12 @@ class SessionFragment : Fragment() {
         })
     }
 
-    private fun initSocketListener() {
+    private fun initSocketListener(sessionId: String? = null) {
+
+        mSocket?.off(Socket.EVENT_CONNECT)
+        mSocket?.off("timer_state")
+        mSocket?.off("participants_updated")
+
 
         mSocket?.on(Socket.EVENT_CONNECT) {
             Log.i("SESSION_SOCKET", "Conectado ao servidor Socket!")
@@ -238,6 +277,7 @@ class SessionFragment : Fragment() {
                 val pomodoro = Gson().fromJson(jsonString, PomodoroState::class.java)
 
                 activity?.runOnUiThread {
+
                     timerState(pomodoro.timeLeft, pomodoro.phase, pomodoro.status)
                 }
             }

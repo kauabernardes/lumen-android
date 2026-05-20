@@ -37,4 +37,12 @@
     <string name="btn_session_toggle_resume">Play</string>
     <string name="timer_default_value">00</string>
     <string name="user_item_default">Usuario</string>
+    <string name="placeholder_inserir_codigo_sessao">Insira o código</string>
+    <string name="label_inserir_codigo_sessao">Entrar em uma sessão</string>
+    <string name="join">Entrar</string>
+    <string name="text_criar_sua_sessao">Criar Sessão</string>
+    <string name="or">ou</string>
+    <string name="ic_clock">Icone de Relógio</string>
+    <string name="sessio_id_default">Id da sessão</string>
+    <string name="timer_session_divisor">:</string>
 </resources>
