@@ -36,17 +36,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val token = tokenManager.getToken()
-        try {
-            if (!token.isNullOrEmpty()) {
-                val decodedJWT = JWT.decode(token)
-                username = decodedJWT.getClaim("username").asString() ?: "Usuário"
-            } else {
-                username = "Usuário"
-            }
-        } catch (e: Exception) {
-            username = "Usuário"
-        }
+
+        username = tokenManager.getUsername()
+
         initListener()
         loadUser()
     }
