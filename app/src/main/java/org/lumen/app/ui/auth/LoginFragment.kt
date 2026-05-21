@@ -17,6 +17,7 @@ import org.lumen.app.R
 import org.lumen.app.data.remote.RetrofitClient
 import org.lumen.app.data.remote.model.LoginRequest
 import org.lumen.app.databinding.FragmentLoginBinding
+import org.lumen.app.util.errorMessage
 import org.lumen.app.util.showBottomSheet
 
 class LoginFragment : Fragment() {
@@ -52,21 +53,25 @@ class LoginFragment : Fragment() {
                 processarLogin(identificador, senha)
             }
         }
+
+        binding.btnCriarConta.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
     }
 
     private fun validarDados(identificador: String, senha: String): Boolean {
         if (identificador.isEmpty()) {
-            Toast.makeText(requireContext(), "Insira seu email ou nome de usuário", Toast.LENGTH_SHORT).show()
+           showBottomSheet(message = getString(R.string.alert_inserir_identificador))
             return false
         }
 
         if (senha.isEmpty()) {
-            Toast.makeText(requireContext(), "Insira a sua senha", Toast.LENGTH_SHORT).show()
+           showBottomSheet(message= getString(R.string.alert_inserir_senha))
             return false
         }
 
         if (senha.length < 8 ) {
-            Toast.makeText(requireContext(), "Senha muito curta. Minímo 8 caracteres.", Toast.LENGTH_SHORT).show()
+            showBottomSheet(message= getString(R.string.alert_senha_curta))
             return false
         }
         return true
@@ -89,10 +94,18 @@ class LoginFragment : Fragment() {
                     tokenManager.saveToken(token)
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                 } else {
-                    showBottomSheet(message = "Acesso não autorizado.")
+                    binding.btnEntrar.isEnabled = true
+                    binding.progressBar.isGone = true
+
+                    val eMsg = response.errorMessage()
+
+                    showBottomSheet(message = eMsg)
                 }
             } catch ( e : Exception) {
                 Log.i("LOGIN", e.message.toString())
+
+                showBottomSheet(message = getString(R.string.error_default))
+
                 binding.btnEntrar.isEnabled = true
                 binding.progressBar.isGone = true
             }

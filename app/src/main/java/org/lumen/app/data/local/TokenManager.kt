@@ -2,6 +2,7 @@ import android.content.Context
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import androidx.core.content.edit
+import com.auth0.jwt.JWT
 
 class TokenManager(context: Context) {
 
@@ -36,6 +37,25 @@ class TokenManager(context: Context) {
 
         return result
     }
+
+    fun getUsername() : String {
+
+        val token = getToken()
+        var username = ""
+
+        try {
+            if (!token.isNullOrEmpty()) {
+                val decodedJWT = JWT.decode(token)
+                username = decodedJWT.getClaim("username").asString() ?: "Usuário"
+            } else {
+                username = "Usuário"
+            }
+        } catch (e: Exception) {
+            username = "Usuário"
+        }
+        return username
+    }
+
 
 
     fun clear() {

@@ -96,6 +96,9 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 R.id.loginFragment -> {
                     appBar.isVisible = false
                 }
+                R.id.registerFragment -> {
+                    appBar.isVisible = false
+                }
                 R.id.sessionFragment -> {
                     appBar.setBackgroundResource(R.color.session_theme_background)
                 }

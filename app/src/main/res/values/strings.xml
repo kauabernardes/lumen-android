@@ -33,6 +33,8 @@
     <string name="nav_item_profile">Meu Perfil</string>
     <string name="nav_item_logout">Sair</string>
 
+
+    <!-- sessao de estudos -->
     <string name="btn_session_toggle_pause">Pausar</string>
     <string name="btn_session_toggle_resume">Play</string>
     <string name="timer_default_value">00</string>
@@ -45,8 +47,21 @@
     <string name="ic_clock">Icone de Relógio</string>
     <string name="sessio_id_default">Id da sessão</string>
     <string name="timer_session_divisor">:</string>
+
     <!-- Recuperarconta -->
     <string name="naotemconta">Não tem uma conta?</string>
     <string name="ircriarconta"> Criar conta</string>
     <string name="insiraemail">E-mail:</string>
+
+    <string name="placeholder_email">maria@gmail.com</string>
+    <string name="placeholder_username"> </string>
+    <string name="placeholder_senha">************</string>
+    <string name="alert_preencher_todos_campos">Preencha todos os campos!</string>
+    <string name="alert_senhas_diferente">As senhas não conferem!</string>
+    <string name="error_default">Erro inesperado aconteceu</string>
+    <string name="alert_inserir_senha">Insira a sua senha</string>
+    <string name="alert_inserir_identificador">Insira o seu e-mail ou nome de usuário</string>
+    <string name="alert_senha_curta">Senha muito curta. Minímo 8 caracteres.</string>
+
+
 </resources>
