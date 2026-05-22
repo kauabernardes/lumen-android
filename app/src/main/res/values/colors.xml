@@ -7,7 +7,7 @@
 
     <color name="md_theme_primary">#58A6FF</color>
     <color name="md_theme_background">#FBFBFB</color>
-    <color name="md_theme_foreground">#F1F1F1</color>
+    <color name="md_theme_foreground">#D3D3D3</color>
 
     <color name="session_theme_background">#D2EBCF</color>
     <color name="session_theme_foreground">#A6D7A0</color>
@@ -15,7 +15,7 @@
     <color name="session_high_variant_1">#89bc82</color>
 
     <color name="text_primary">#2D2D2D</color>
-    <color name="text_secondary">#8E8E8E</color>
+    <color name="text_secondary">#717171</color>
 
     <color name="text_light">#F0F0F0</color>
 
