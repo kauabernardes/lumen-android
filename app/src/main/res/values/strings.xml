@@ -69,6 +69,10 @@
     <string name="default_empty"> </string>
 
     <string name="label_date_posted">Postada em</string>
+    <string name="default_zero">0</string>
+    <string name="ic_comments">Icone de comentários</string>
+    <string name="ic_like">Icone de curtir</string>
+    <string name="title_comments">Comentários</string>
 
 
 </resources>

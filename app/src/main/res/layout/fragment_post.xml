@@ -15,7 +15,10 @@
         app:layout_constraintEnd_toEndOf="parent"
 
         android:layout_width="0dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+
+        android:id="@+id/post"
+        >
 
         <com.google.android.material.imageview.ShapeableImageView
 
@@ -120,14 +123,116 @@
             app:layout_constraintTop_toBottomOf="@id/avatar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="16sp"
 
             android:paddingHorizontal="10dp"
 
             android:textColor="@color/text_primary"
             android:text="@string/default_empty"
             />
+        
+        <ImageView
+            android:id="@+id/icon_like"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/ic_heart"
+            app:tint="@color/text_secondary"
+
+            app:layout_constraintTop_toBottomOf="@id/content"
+            app:layout_constraintEnd_toStartOf="@id/value_like"
+            android:layout_marginTop="12dp"
+            android:contentDescription="@string/ic_like"
+            />
+        <TextView
+            android:id="@+id/value_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintStart_toEndOf="@id/icon_like"
+            app:layout_constraintTop_toTopOf="@id/icon_like"
+            app:layout_constraintBottom_toBottomOf="@id/icon_like"
+            android:layout_marginStart="6dp"
+
+            android:text="@string/default_zero"
+            android:textColor="@color/text_secondary"
+            android:textSize="16sp"
+
+
+            />
+
+        <ImageView
+            android:id="@+id/icon_comments"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/ic_message"
+            app:tint="@color/text_secondary"
+
+            app:layout_constraintTop_toBottomOf="@id/content"
+            app:layout_constraintStart_toEndOf="@id/value_like"
+            android:layout_marginStart="18dp"
+            android:contentDescription="@string/ic_comments"
+            android:layout_marginTop="12dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintStart_toEndOf="@id/icon_comments"
+            app:layout_constraintTop_toTopOf="@id/icon_comments"
+            app:layout_constraintBottom_toBottomOf="@id/icon_comments"
+
+            app:layout_constraintEnd_toEndOf="parent"
+
+            android:layout_marginStart="6dp"
+
+            android:text="@string/default_zero"
+            android:textColor="@color/text_secondary"
+            android:textSize="16sp"
+
+            />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+    android:id="@+id/title_comments"
+
+        app:layout_constraintTop_toBottomOf="@id/post"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+
+        android:textSize="18sp"
+        android:textColor="@color/text_primary"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+
+
+        android:text="@string/title_comments"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/recyclerComments"
+
+        app:layout_constraintTop_toBottomOf="@id/title_comments"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:listitem="@layout/post_item"
+
+        />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
