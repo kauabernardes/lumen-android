@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F0F0">
+
+    <!-- Conteúdo principal com scroll -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- ===== HEADER: Imagem de capa + botão voltar ===== -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <!-- Imagem de capa da comunidade -->
+                <ImageView
+                    android:id="@+id/imgCapaComunidade"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/capafeedcomunidade"
+                    android:contentDescription="Capa da comunidade" />
+
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    />
+
+                <ImageButton
+                    android:id="@+id/btnVoltarFedd"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:src="@drawable/ic_chevron_left"
+                    android:contentDescription="Voltar"
+                    android:padding="8dp" />
+
+            </FrameLayout>
+
+            <!-- ===== SEÇÃO DE INFORMAÇÕES DA COMUNIDADE ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp">
+
+                <!-- Nome da comunidade -->
+                <TextView
+                    android:id="@+id/tvNomeComunidade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Loucos do ENEM"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:textColor="#1A1A1A"
+                    android:fontFamily="sans-serif-medium" />
+
+                <!-- Descrição da comunidade -->
+                <TextView
+                    android:id="@+id/tvDescricaoComunidade"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Para quem quer enlouquecer de estudar para a prova do enemmm. Vamos juntoso ocupas as universidades"
+                    android:textSize="14sp"
+                    android:textColor="#555555"
+                    android:lineSpacingExtra="2dp" />
+
+                <!-- Criado por + data -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tvCriadoPor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Criado por: @mulienemm"
+                        android:textSize="12sp"
+                        android:textColor="#888888"
+                        android:gravity="end" />
+
+                    <TextView
+                        android:id="@+id/tvDataCriacao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Em 12 de março de 2025"
+                        android:textSize="12sp"
+                        android:textColor="#888888"
+                        android:gravity="end" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Divisor -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="#F0F0F0" />
+
+            <!-- ===== FEED DE POSTS ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="80dp">
+
+                <!-- ===== POST 1 - Vinicius Lima ===== -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="#FFFFFF">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+
+                        <!-- Cabeçalho do post -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <!-- Avatar do usuário -->
+                            <ImageView
+                                android:id="@+id/imgAvatarPost1"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:scaleType="centerCrop"
+                                android:contentDescription="Avatar Vinicius"
+                                tools:src="@drawable/fotoPerfil"
+                                />
+
+                            <!-- Nome, @usuario, hora e comunidade -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_marginStart="10dp">
+
+                                <TextView
+                                    android:id="@+id/tvNomePost1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Vinicius Lima"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#1A1A1A" />
+
+                                <TextView
+                                    android:id="@+id/tvUsernamePost1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@vinilimaswt"
+                                    android:textSize="12sp"
+                                    android:textColor="#888888" />
+
+                            </LinearLayout>
+
+                            <!-- Hora e comunidade (alinhado à direita) -->
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="end">
+
+                                <TextView
+                                    android:id="@+id/tvHoraPost1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Postado às 11h48m"
+                                    android:textSize="11sp"
+                                    android:textColor="#AAAAAA"
+                                    android:gravity="end" />
+
+                                <TextView
+                                    android:id="@+id/tvComunidadePost1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="em Loucos do ENEM"
+                                    android:textSize="11sp"
+                                    android:textColor="#4A90D9"
+                                    android:gravity="end" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <!-- Conteúdo do post -->
+                        <TextView
+                            android:id="@+id/tvConteudoPost1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Pessoal, como ficou aquela questão de log desse enem? Deu ambiguidade? Vi uns gabaritos bem diferentes."
+                            android:textSize="14sp"
+                            android:textColor="#333333"
+                            android:lineSpacingExtra="2dp" />
+
+                        <!-- Divisor interno -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="#F0F0F0" />
+
+                        <!-- Ações: Like e Comentário -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <!-- Botão Like -->
+                            <ImageButton
+                                android:id="@+id/btnLikePost1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:src="@drawable/ic_curtir"
+                                android:contentDescription="Curtir" />
+
+                            <TextView
+                                android:id="@+id/tvLikesPost1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="210"
+                                android:textSize="13sp"
+                                android:textColor="#666666" />
+
+                            <!-- Botão Comentário -->
+                            <ImageButton
+                                android:id="@+id/btnComentarioPost1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:background="@null"
+                                android:src="@drawable/ic_comentar"
+                                android:contentDescription="Comentar" />
+
+                            <TextView
+                                android:id="@+id/tvComentariosPost1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="32"
+                                android:textSize="13sp"
+                                android:textColor="#666666" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- ===== POST 2 - Alexandre Kaue ===== -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="#FFFFFF">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+
+                        <!-- Cabeçalho do post -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <!-- Avatar do usuário -->
+                            <ImageView
+                                android:id="@+id/imgAvatarPost2"
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:scaleType="centerCrop"
+                                android:contentDescription="Avatar Alexandre"
+                                tools:src="@drawable/fotoPerfil2"
+                                />
+
+                            <!-- Nome e @usuario -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_marginStart="10dp">
+
+                                <TextView
+                                    android:id="@+id/tvNomePost2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Alexandre Kaue"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#1A1A1A" />
+
+                                <TextView
+                                    android:id="@+id/tvUsernamePost2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@alexk"
+                                    android:textSize="12sp"
+                                    android:textColor="#888888" />
+
+                            </LinearLayout>
+
+                            <!-- Hora e comunidade -->
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="end">
+
+                                <TextView
+                                    android:id="@+id/tvHoraPost2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Postado às 10h32m"
+                                    android:textSize="11sp"
+                                    android:textColor="#AAAAAA"
+                                    android:gravity="end" />
+
+                                <TextView
+                                    android:id="@+id/tvComunidadePost2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="em Loucos do ENEM"
+                                    android:textSize="11sp"
+                                    android:textColor="#4A90D9"
+                                    android:gravity="end" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <!-- Conteúdo do post -->
+                        <TextView
+                            android:id="@+id/tvConteudoPost2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Gente, que questão maneira do azulejo da prova de linguagens. Masterpiece dos vestibulares!!!!!!!!"
+                            android:textSize="14sp"
+                            android:textColor="#333333"
+                            android:lineSpacingExtra="2dp" />
+
+                        <!-- Divisor interno -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="#F0F0F0" />
+
+                        <!-- Ações: Like e Comentário -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <ImageButton
+                                android:id="@+id/btnLikePost2"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:background="@null"
+                                android:src="@drawable/ic_curtir"
+                                android:contentDescription="Curtir" />
+
+                            <TextView
+                                android:id="@+id/tvLikesPost2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="0"
+                                android:textSize="13sp"
+                                android:textColor="#666666" />
+
+                            <ImageButton
+                                android:id="@+id/btnComentarioPost2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:background="@null"
+                                android:src="@drawable/ic_comentar"
+                                android:contentDescription="Comentar" />
+
+                            <TextView
+                                android:id="@+id/tvComentariosPost2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="0"
+                                android:textSize="13sp"
+                                android:textColor="#666666" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabNovoPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_add"
+        android:contentDescription="Novo post"
+        app:backgroundTint="#4A90D9"
+        app:tint="@android:color/white"
+        app:elevation="6dp" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

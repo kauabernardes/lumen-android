@@ -62,6 +62,8 @@
     <string name="alert_inserir_senha">Insira a sua senha</string>
     <string name="alert_inserir_identificador">Insira o seu e-mail ou nome de usuário</string>
     <string name="alert_senha_curta">Senha muito curta. Minímo 8 caracteres.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
