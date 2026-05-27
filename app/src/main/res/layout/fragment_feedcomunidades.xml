@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="#F0F0F0">
 
-    <!-- Conteúdo principal com scroll -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,12 +17,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- ===== HEADER: Imagem de capa + botão voltar ===== -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp">
 
-                <!-- Imagem de capa da comunidade -->
                 <ImageView
                     android:id="@+id/imgCapaComunidade"
                     android:layout_width="match_parent"
@@ -32,36 +29,28 @@
                     android:src="@drawable/capafeedcomunidade"
                     android:contentDescription="Capa da comunidade" />
 
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    />
-
                 <ImageButton
                     android:id="@+id/btnVoltarFedd"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:layout_margin="12dp"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/ic_chevron_left"
-                    android:contentDescription="Voltar"
-                    android:padding="8dp" />
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:elevation="4dp"
+                    app:tint="@android:color/white"
+                    android:contentDescription="Voltar" />
 
             </FrameLayout>
 
-            <!-- ===== SEÇÃO DE INFORMAÇÕES DA COMUNIDADE ===== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="#FFFFFF"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp">
+                android:background="@color/white"
+                android:padding="16dp">
 
-                <!-- Nome da comunidade -->
                 <TextView
                     android:id="@+id/tvNomeComunidade"
                     android:layout_width="wrap_content"
@@ -72,18 +61,16 @@
                     android:textColor="#1A1A1A"
                     android:fontFamily="sans-serif-medium" />
 
-                <!-- Descrição da comunidade -->
                 <TextView
                     android:id="@+id/tvDescricaoComunidade"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:text="Para quem quer enlouquecer de estudar para a prova do enemmm. Vamos juntoso ocupas as universidades"
+                    android:text="Para quem quer enlouquecer de estudar para a prova do enemmm. Vamos juntoso ocupar as universidades"
                     android:textSize="14sp"
                     android:textColor="#555555"
                     android:lineSpacingExtra="2dp" />
 
-                <!-- Criado por + data -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -113,13 +100,11 @@
 
             </LinearLayout>
 
-            <!-- Divisor -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:background="#F0F0F0" />
+                android:background="@color/text_light" />
 
-            <!-- ===== FEED DE POSTS ===== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -129,7 +114,6 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="80dp">
 
-                <!-- ===== POST 1 - Vinicius Lima ===== -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -144,24 +128,20 @@
                         android:orientation="vertical"
                         android:padding="14dp">
 
-                        <!-- Cabeçalho do post -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:gravity="center_vertical">
 
-                            <!-- Avatar do usuário -->
                             <ImageView
                                 android:id="@+id/imgAvatarPost1"
                                 android:layout_width="42dp"
                                 android:layout_height="42dp"
                                 android:scaleType="centerCrop"
                                 android:contentDescription="Avatar Vinicius"
-                                tools:src="@drawable/fotoPerfil"
-                                />
+                                tools:src="@drawable/fotoPerfil" />
 
-                            <!-- Nome, @usuario, hora e comunidade -->
                             <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -182,13 +162,12 @@
                                     android:id="@+id/tvUsernamePost1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@vinilimaswt"
+                                    android:text="\@vinilimaswt"
                                     android:textSize="12sp"
                                     android:textColor="#888888" />
 
                             </LinearLayout>
 
-                            <!-- Hora e comunidade (alinhado à direita) -->
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -217,7 +196,6 @@
 
                         </LinearLayout>
 
-                        <!-- Conteúdo do post -->
                         <TextView
                             android:id="@+id/tvConteudoPost1"
                             android:layout_width="match_parent"
@@ -228,7 +206,6 @@
                             android:textColor="#333333"
                             android:lineSpacingExtra="2dp" />
 
-                        <!-- Divisor interno -->
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
@@ -236,19 +213,19 @@
                             android:layout_marginBottom="8dp"
                             android:background="#F0F0F0" />
 
-                        <!-- Ações: Like e Comentário -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:gravity="center_vertical">
 
-                            <!-- Botão Like -->
                             <ImageButton
                                 android:id="@+id/btnLikePost1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@null"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:padding="12dp"
+                                android:scaleType="fitCenter"
+                                android:background="?attr/selectableItemBackgroundBorderless"
                                 android:src="@drawable/ic_curtir"
                                 android:contentDescription="Curtir" />
 
@@ -256,18 +233,19 @@
                                 android:id="@+id/tvLikesPost1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
+                                android:layout_marginStart="0dp"
                                 android:text="210"
                                 android:textSize="13sp"
                                 android:textColor="#666666" />
 
-                            <!-- Botão Comentário -->
                             <ImageButton
                                 android:id="@+id/btnComentarioPost1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:background="@null"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:layout_marginStart="8dp"
+                                android:padding="12dp"
+                                android:scaleType="fitCenter"
+                                android:background="?attr/selectableItemBackgroundBorderless"
                                 android:src="@drawable/ic_comentar"
                                 android:contentDescription="Comentar" />
 
@@ -275,7 +253,7 @@
                                 android:id="@+id/tvComentariosPost1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
+                                android:layout_marginStart="0dp"
                                 android:text="32"
                                 android:textSize="13sp"
                                 android:textColor="#666666" />
@@ -286,7 +264,6 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <!-- ===== POST 2 - Alexandre Kaue ===== -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -301,24 +278,20 @@
                         android:orientation="vertical"
                         android:padding="14dp">
 
-                        <!-- Cabeçalho do post -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:gravity="center_vertical">
 
-                            <!-- Avatar do usuário -->
                             <ImageView
                                 android:id="@+id/imgAvatarPost2"
                                 android:layout_width="42dp"
                                 android:layout_height="42dp"
                                 android:scaleType="centerCrop"
                                 android:contentDescription="Avatar Alexandre"
-                                tools:src="@drawable/fotoPerfil2"
-                                />
+                                tools:src="@drawable/fotoPerfil2" />
 
-                            <!-- Nome e @usuario -->
                             <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -339,13 +312,12 @@
                                     android:id="@+id/tvUsernamePost2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@alexk"
+                                    android:text="\@alexk"
                                     android:textSize="12sp"
                                     android:textColor="#888888" />
 
                             </LinearLayout>
 
-                            <!-- Hora e comunidade -->
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -374,7 +346,6 @@
 
                         </LinearLayout>
 
-                        <!-- Conteúdo do post -->
                         <TextView
                             android:id="@+id/tvConteudoPost2"
                             android:layout_width="match_parent"
@@ -385,7 +356,6 @@
                             android:textColor="#333333"
                             android:lineSpacingExtra="2dp" />
 
-                        <!-- Divisor interno -->
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
@@ -393,7 +363,6 @@
                             android:layout_marginBottom="8dp"
                             android:background="#F0F0F0" />
 
-                        <!-- Ações: Like e Comentário -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -402,9 +371,11 @@
 
                             <ImageButton
                                 android:id="@+id/btnLikePost2"
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:background="@null"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:padding="12dp"
+                                android:scaleType="fitCenter"
+                                android:background="?attr/selectableItemBackgroundBorderless"
                                 android:src="@drawable/ic_curtir"
                                 android:contentDescription="Curtir" />
 
@@ -412,17 +383,19 @@
                                 android:id="@+id/tvLikesPost2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
+                                android:layout_marginStart="0dp"
                                 android:text="0"
                                 android:textSize="13sp"
                                 android:textColor="#666666" />
 
                             <ImageButton
                                 android:id="@+id/btnComentarioPost2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:background="@null"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:layout_marginStart="8dp"
+                                android:padding="12dp"
+                                android:scaleType="fitCenter"
+                                android:background="?attr/selectableItemBackgroundBorderless"
                                 android:src="@drawable/ic_comentar"
                                 android:contentDescription="Comentar" />
 
@@ -430,7 +403,7 @@
                                 android:id="@+id/tvComentariosPost2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
+                                android:layout_marginStart="0dp"
                                 android:text="0"
                                 android:textSize="13sp"
                                 android:textColor="#666666" />
@@ -443,11 +416,9 @@
 
             </LinearLayout>
 
-
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabNovoPost"
@@ -457,8 +428,8 @@
         android:layout_margin="20dp"
         android:src="@drawable/ic_add"
         android:contentDescription="Novo post"
-        app:backgroundTint="#4A90D9"
-        app:tint="@android:color/white"
+        app:backgroundTint="@color/md_theme_primary"
+        app:tint="@color/card_achievements_bg"
         app:elevation="6dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
