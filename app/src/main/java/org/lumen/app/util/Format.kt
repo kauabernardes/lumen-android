@@ -1,29 +1,21 @@
 package org.lumen.app.util
 
-import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.Locale
-import java.util.TimeZone
 
-fun formatDate(dataDoBanco: String): String {
+private val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale("pt", "BR"))
+    .withZone(ZoneId.systemDefault())
+
+fun formatDate(dataDoBanco: String?): String {
+    if (dataDoBanco.isNullOrBlank()) return "Data inválida"
+
     return try {
 
-        val formatoEntrada = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
-        formatoEntrada.timeZone = TimeZone.getTimeZone("UTC")
-
-        val dataObjeto = formatoEntrada.parse(dataDoBanco)
-
-
-        val formatoSaida = SimpleDateFormat("dd/MM/yyyy", Locale("pt", "BR"))
-        formatoSaida.timeZone = TimeZone.getDefault()
-
-
-        if (dataObjeto != null) {
-            formatoSaida.format(dataObjeto)
-        } else {
-            dataDoBanco
-        }
+        val instant = Instant.parse(dataDoBanco)
+        formatter.format(instant)
     } catch (e: Exception) {
-
         "Data inválida"
     }
 }

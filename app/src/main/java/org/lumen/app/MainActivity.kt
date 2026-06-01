@@ -48,6 +48,9 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 tokenManager.clear()
                 findNavController(R.id.nav_host_fragment).navigate(R.id.loginFragment)
             }
+            R.id.nav_profile -> {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.profileFragment)
+            }
         }
 
         binding.drawerLayout.closeDrawer(GravityCompat.END)

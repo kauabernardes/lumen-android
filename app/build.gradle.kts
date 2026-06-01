@@ -29,6 +29,8 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
+
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -63,4 +65,7 @@ dependencies {
     implementation("com.auth0:java-jwt:3.10.3")
 
     implementation ("io.socket:socket.io-client:2.1.0") {exclude(  group = "org.json", module = "json") }
+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+
 }
