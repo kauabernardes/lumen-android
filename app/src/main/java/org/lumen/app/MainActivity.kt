@@ -10,6 +10,7 @@ import androidx.core.view.GravityCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -83,10 +84,16 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
             val toolbar = binding.toolbar
             val appBar = binding.appBarLayout
+            val cardNav = binding.cardNav
+            val avatar = binding.avatar
+
 
             toolbar.setNavigationIcon(R.drawable.ic_chevron_left)
             appBar.setBackgroundResource(R.color.md_theme_background)
             appBar.isVisible = true
+            avatar.isVisible = true
+            cardNav.isVisible = false
+
 
             when (destination.id) {
                 R.id.splashFragment -> {
@@ -94,6 +101,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 }
                 R.id.homeFragment -> {
                    toolbar.navigationIcon = null
+                    cardNav.isVisible = true
 
                 }
                 R.id.loginFragment -> {
@@ -105,6 +113,11 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 R.id.sessionFragment -> {
                     appBar.setBackgroundResource(R.color.session_theme_background)
                 }
+                R.id.profileFragment -> {
+                    avatar.isVisible = false
+
+                }
+
 
             }
 

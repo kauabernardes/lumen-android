@@ -22,7 +22,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
 
-        android:layout_marginTop="-50dp"
+        android:layout_marginTop="-40dp"
+
+
         />
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -103,6 +105,8 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_communities"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
@@ -114,7 +118,7 @@
 
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal"
-        tools:listitem="@layout/comunidade_vertical_item"
+        tools:listitem="@layout/community_vertical_item"
 
         />
 
