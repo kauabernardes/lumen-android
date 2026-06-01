@@ -7,26 +7,6 @@
     android:fitsSystemWindows="true"
     android:background="#EFF3FA">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        app:liftOnScroll="true">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#FFFFFF"
-            app:navigationIcon="@drawable/ic_logout"
-            app:navigationIconTint="#4A7BF7"
-            app:title="Nova Publicação"
-            app:titleTextColor="#1A1A2E"
-            app:titleTextAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -65,7 +45,7 @@
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="48dp"
                             android:layout_height="48dp"
-                            app:cardBackgroundColor="#4A7BF7"
+                            app:cardBackgroundColor="@color/md_theme_primary"
                             app:cardCornerRadius="12dp"
                             app:cardElevation="0dp">
 
@@ -134,7 +114,7 @@
                         app:boxCornerRadiusTopStart="12dp"
                         app:boxStrokeColor="#E2E8F5"
                         app:boxStrokeWidthFocused="2dp"
-                        app:hintTextColor="#4A7BF7">
+                        app:hintTextColor="@color/md_theme_primary">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etDescricao"
@@ -167,14 +147,14 @@
                             android:layout_height="36dp"
                             android:layout_marginEnd="10dp"
                             android:text="Conquista"
-                            android:textColor="#4A7BF7"
+                            android:textColor="@color/card_community_text"
                             android:textSize="13sp"
                             app:chipBackgroundColor="#FFFFFF"
                             app:chipStrokeColor="#D0D9F0"
                             app:chipStrokeWidth="1.5dp"
                             app:chipCornerRadius="18dp"
-                            app:chipIcon="@drawable/ic_emoji_smile"
-                            app:chipIconTint="#4A7BF7"
+                            app:chipIcon="@drawable/ic_conquistapublicacao"
+                            app:chipIconTint="@color/card_community_text"
                             app:chipIconSize="18dp"
                             app:chipStartPadding="8dp"
                             app:chipEndPadding="12dp" />
@@ -184,15 +164,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="36dp"
                             android:text="Marcar pessoas"
-                            android:textColor="#4A7BF7"
+                            android:textColor="@color/card_community_text"
                             android:textSize="13sp"
                             app:chipBackgroundColor="#FFFFFF"
                             app:chipStrokeColor="#D0D9F0"
                             app:chipStrokeWidth="1.5dp"
                             app:chipCornerRadius="18dp"
-                            app:chipIcon="@drawable/ic_tag"
-                            app:chipIconTint="#4A7BF7"
-                            app:chipIconSize="18dp"
                             app:chipStartPadding="8dp"
                             app:chipEndPadding="12dp" />
 
@@ -207,15 +184,15 @@
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:letterSpacing="0.02"
-                        app:backgroundTint="#4A7BF7"
+                        app:backgroundTint="@color/md_theme_primary"
                         app:cornerRadius="12dp"
-                        app:icon="@drawable/ic_send"
+                        app:icon="@drawable/ic_send1"
                         app:iconTint="#FFFFFF"
                         app:iconSize="18dp"
                         app:iconPadding="8dp"
                         app:iconGravity="textStart"
                         app:elevation="4dp"
-                        app:rippleColor="#3A6BE7" />
+                        app:rippleColor="@color/md_theme_primary" />
 
                 </LinearLayout>
 
@@ -246,16 +223,16 @@
                         <ImageView
                             android:layout_width="18dp"
                             android:layout_height="18dp"
-                            app:srcCompat="@drawable/ic_communities"
+                            app:srcCompat="@drawable/ic_comunidades"
                             android:contentDescription="Comunidades"
-                            app:tint="#4A7BF7"
+                            app:tint="@color/md_theme_primary"
                             android:layout_marginEnd="8dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
-                            运行                          android:layout_height="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="SUAS COMUNIDADES"
-                            android:textColor="#4A7BF7"
+                            android:textColor="@color/md_theme_primary"
                             android:textSize="11sp"
                             android:textStyle="bold"
                             android:letterSpacing="0.08" />
@@ -272,8 +249,7 @@
                         app:boxCornerRadiusTopEnd="10dp"
                         app:boxCornerRadiusTopStart="10dp"
                         app:boxStrokeColor="#E2E8F5"
-                        app:startIconDrawable="@drawable/ic_search"
-                        app:startIconTint="#8A94A6">
+                        >
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etBuscarComunidade"
@@ -297,7 +273,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                app:cardBackgroundColor="#4A7BF7"
+                app:cardBackgroundColor="@color/md_theme_primary"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="3dp">
 
@@ -311,7 +287,7 @@
                     <ImageView
                         android:layout_width="28dp"
                         android:layout_height="28dp"
-                        app:srcCompat="@drawable/ic_lightbulb"
+                        app:srcCompat="@drawable/ic_lampada"
                         android:contentDescription="Dica"
                         app:tint="#FFFFFF"
                         android:layout_marginEnd="12dp" />
@@ -335,7 +311,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Faz algum tipo de cursinho? Compartilhe sua experiência com a comunidade!"
-                            android:textColor="#D6E4FF"
+                            android:textColor="#E6F2FF"
                             android:textSize="13sp"
                             android:lineSpacingMultiplier="1.3" />
 
