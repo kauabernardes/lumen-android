@@ -1,21 +1,10 @@
 package org.lumen.app.util
 
-import java.time.Instant
-import java.time.ZoneId
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.Locale
 
-private val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale("pt", "BR"))
-    .withZone(ZoneId.systemDefault())
 
-fun formatDate(dataDoBanco: String?): String {
-    if (dataDoBanco.isNullOrBlank()) return "Data inválida"
-
-    return try {
-
-        val instant = Instant.parse(dataDoBanco)
-        formatter.format(instant)
-    } catch (e: Exception) {
-        "Data inválida"
-    }
+fun formatDate(dataDoBanco: String): String {
+    val data = LocalDateTime.parse(dataDoBanco, DateTimeFormatter.ISO_DATE_TIME)
+    return data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy 'às' HH:mm"))
 }
