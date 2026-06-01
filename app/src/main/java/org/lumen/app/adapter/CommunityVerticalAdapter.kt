@@ -8,7 +8,8 @@ import org.lumen.app.data.model.Community
 import org.lumen.app.databinding.CommunityVerticalItemBinding
 
 class CommunityVerticalAdapter (
-    var communities: List<Community>
+    var communities: List<Community>,
+    private val onItemClick: (Community) -> Unit
 ): RecyclerView.Adapter<CommunityVerticalAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -22,6 +23,10 @@ class CommunityVerticalAdapter (
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val community = communities[position]
         holder.binding.name.text = community.name
+
+      holder.binding.btnAccess.setOnClickListener {
+          onItemClick(community)
+      }
 
     }
 

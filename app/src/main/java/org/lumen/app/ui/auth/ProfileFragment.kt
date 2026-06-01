@@ -7,7 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
 import org.lumen.app.R
@@ -57,7 +59,12 @@ class ProfileFragment : Fragment() {
                     val communities = response.body()!!
                     Log.d("TESTE12345", communities.toString())
 
-                    val communityAdapter = CommunityVerticalAdapter(communities)
+                    val communityAdapter = CommunityVerticalAdapter(communities) {
+                        communityClicked ->
+                       val bundle = Bundle()
+                        bundle.putString("communityId", communityClicked.id)
+                        findNavController().navigate(R.id.action_profileFragment_to_feedComunidadeFragment, bundle)
+                    }
                     binding.recyclerCommunities.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                     binding.recyclerCommunities.setHasFixedSize(true)
                     binding.recyclerCommunities.adapter = communityAdapter

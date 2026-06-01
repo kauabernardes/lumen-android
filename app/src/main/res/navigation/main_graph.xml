@@ -76,10 +76,25 @@
         <action
             android:id="@+id/action_global_profileFragment"
             app:destination="@id/profileFragment" />
+        <fragment
+            android:id="@+id/feedComunidadeFragment"
+            android:name="org.lumen.app.ui.FeedComunidadeFragment"
+            android:label="FeedComunidadeFragment">
+
+            <argument
+                android:name="communityId"
+                app:argType="string"
+                />
+
+        </fragment>
     </navigation>
     <fragment
         android:id="@+id/profileFragment"
         android:name="org.lumen.app.ui.auth.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_feedComunidadeFragment"
+            app:destination="@id/feedComunidadeFragment" />
+    </fragment>
 </navigation>
