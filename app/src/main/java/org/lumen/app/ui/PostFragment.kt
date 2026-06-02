@@ -1,28 +1,43 @@
 package org.lumen.app.ui
 
+import TokenManager
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.launch
 import org.lumen.app.R
 import org.lumen.app.adapter.PostAdapter
+import org.lumen.app.data.model.post.ClickElement
 import org.lumen.app.data.model.post.Post
 import org.lumen.app.data.model.post.PostUser
+import org.lumen.app.data.remote.RetrofitClient
 import org.lumen.app.databinding.FragmentPostBinding
+import org.lumen.app.util.formatDate
+import org.lumen.app.util.setupPostLikeInteraction
 
 class PostFragment : Fragment() {
 
     private var _binding: FragmentPostBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var tokenManager : TokenManager
+
+    private val args : PostFragmentArgs by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        tokenManager = TokenManager(requireContext())
         _binding = FragmentPostBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -30,79 +45,64 @@ class PostFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        genPosts()
+        loadPost()
+
     }
 
-    private fun genPosts() {
-        val recycler = binding.recyclerComments
-        val postList = listOf(
-            Post(
-                id = "1001",
-                content = "Alguém tem recomendações de livros sobre arquitetura de software? Terminei o Clean Code e estou querendo me aprofundar mais.",
-                createdAt = "2024-05-25T10:15:00.000Z",
-                user = PostUser("u1", "Ana Silva"),
-                isLiked = false,
-                likesCount = 42,
-                commentsCount = 12
-            ),
-            Post(
-                id = "1002",
-                content = "O segredo para não surtar programando é fazer pausas constantes. O método Pomodoro mudou minha vida! 🍅💻",
-                createdAt = "2024-05-25T14:30:21.000Z",
-                user = PostUser("u2", "DevCansado"),
-                isLiked = true,
-                likesCount = 156,
-                commentsCount = 34
-            ),
-            Post(
-                id = "1003",
-                content = "Hoje finalmente consegui resolver aquele bug que me assombrava há 3 dias. A sensação é indescritível.",
-                createdAt = "2024-05-26T09:05:11.000Z",
-                user = PostUser("1234", "Kauã"),
-                isLiked = true,
-                likesCount = 89,
-                commentsCount = 5
-            ),
-            Post(
-                id = "1004",
-                content = "Kotlin > Java. Pronto, falei.",
-                createdAt = "2024-05-26T18:45:00.000Z",
-                user = PostUser("u4", "Pedro_Android"),
-                isLiked = false,
-                likesCount = 205,
-                commentsCount = 98
-            ),
-            Post(
-                id = "1005",
-                content = "Testando o layout com um texto um pouco maior para ver como o RecyclerView se comporta. É muito importante garantir que textos longos não quebrem a interface e que o wrap_content do card esteja funcionando perfeitamente no XML. Se você está lendo isso, seu layout está ótimo!",
-                createdAt = "2024-05-27T11:20:33.000Z",
-                user = PostUser("u5", "QA_Tester"),
-                isLiked = false,
-                likesCount = 12,
-                commentsCount = 0
-            ),
-            Post(
-                id = "1006",
-                content = "Alguém mais vai participar do evento do Google I/O este ano?",
-                createdAt = "2024-05-28T08:00:00.000Z",
-                user = PostUser("12345", "Kauã Berdadeds"),
-                isLiked = true,
-                likesCount = 33,
-                commentsCount = 7
-            )
-        )
+    private fun loadPost() {
 
-        val postAdapter = PostAdapter(postList)
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
 
-        val dividerItemDecoration = DividerItemDecoration(
-            recycler.context,
-            recycler.resources.configuration.orientation
-        )
-        recycler.addItemDecoration(dividerItemDecoration)
+                val response = RetrofitClient.postApi.post(tokenManager.getBearer(), args.postId)
 
-        recycler.layoutManager = LinearLayoutManager(requireContext())
-        recycler.setHasFixedSize(true)
-        recycler.adapter = postAdapter
+                if (response.isSuccessful && response.body() != null) {
+
+                    val data = response.body()!!
+                    renderParent(data)
+                    renderComments(data.comments!!)
+
+                    Log.d("POSTAGEM", data.toString())
+                }
+
+
+            }
+            catch (e: Exception) {
+
+            }
+        }
+
+    }
+
+    private fun renderParent (post: Post) {
+        binding.content.text = post.content
+        binding.username.text = post.user.username
+        binding.subUsername.text = "@${post.user.username}"
+        binding.valueLike.text = post.likesCount.toString()
+        binding.valueComments.text = post.commentsCount.toString()
+        binding.date.text = formatDate(post.createdAt.toString())
+
+    }
+
+    private fun renderComments(posts: List<Post>) {
+        lateinit var postsAdapter: PostAdapter
+        postsAdapter = PostAdapter(posts) {
+            postClicked, position, element ->
+
+            if (element == ClickElement.LIKE) {
+                setupPostLikeInteraction(postClicked, position, postsAdapter, tokenManager.getBearer())
+            }
+            if (element == ClickElement.CONTENT) {
+                val action = PostFragmentDirections.actionPostFragmentSelf(postClicked.id)
+                findNavController().navigate(action)
+            }
+
+
+        }
+
+        binding.recyclerComments.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerComments.adapter = postsAdapter
+
     }
 
     override fun onDestroyView() {

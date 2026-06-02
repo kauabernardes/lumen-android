@@ -2,12 +2,68 @@ package org.lumen.app.util
 
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.coroutines.launch
 import org.json.JSONObject
 import org.lumen.app.MainActivity
 import org.lumen.app.R
+import org.lumen.app.data.model.post.Post
+import org.lumen.app.data.remote.RetrofitClient
 import org.lumen.app.databinding.BottomSheetBinding
 import retrofit2.Response
+
+
+fun Fragment.setupPostLikeInteraction(
+    post: Post,
+    position: Int,
+    adapter: RecyclerView.Adapter<*>,
+    bearer: String
+) {
+
+
+    post.isLiked = post.isLiked != true
+
+    if (post.isLiked == true) {
+        post.likesCount = post.likesCount?.plus(1)
+    }else {
+        post.likesCount = post.likesCount?.minus(1)
+    }
+    adapter.notifyItemChanged(position)
+
+    viewLifecycleOwner.lifecycleScope.launch {
+        try {
+            val response = RetrofitClient.postApi.like(bearer, post.id)
+
+            if (response.isSuccessful && response.body() != null) {
+                val body = response.body()!!
+
+                post.isLiked = body.liked
+                post.likesCount = body.totalLikes
+                adapter.notifyItemChanged(position)
+            } else {
+
+                reverterEstadoDeLike(post, position, adapter)
+                showBottomSheet(message = response.errorMessage())
+            }
+        } catch (e: Exception) {
+
+            reverterEstadoDeLike(post, position, adapter)
+            showBottomSheet(message = "Sem conexão com o servidor.")
+        }
+    }
+}
+
+private fun reverterEstadoDeLike(post: Post, position: Int, adapter: RecyclerView.Adapter<*>) {
+    post.isLiked = post.isLiked != true
+    if (post.isLiked == true) {
+        post.likesCount = post.likesCount?.plus(1)
+    }else {
+        post.likesCount = post.likesCount?.minus(1)
+    }
+    adapter.notifyItemChanged(position)
+}
 
 
 fun Fragment.showBottomSheet(

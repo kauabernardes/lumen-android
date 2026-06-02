@@ -26,7 +26,7 @@ class TokenManager(context: Context) {
         return sharedPreferences.getString("JWT_TOKEN", null)
     }
 
-    fun getBearer() : String? {
+    fun getBearer() : String {
         val token = getToken()
 
         var result : String? = null
@@ -35,7 +35,7 @@ class TokenManager(context: Context) {
             result = "Bearer $token"
         }
 
-        return result
+        return result.toString()
     }
 
     fun getUsername() : String {

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
 
 }
 

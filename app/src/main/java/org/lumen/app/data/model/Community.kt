@@ -11,13 +11,16 @@ data class Community (
     @SerializedName("name")
     val name: String,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("authorId")
-    val authorId: String,
+    val authorId: String?,
     @SerializedName("createdAt")
-    val createdAt: String,
+    val createdAt: String?,
     @SerializedName("membersCount")
-    val membersCount: String,
+    val membersCount: Int?,
     @SerializedName("isMember")
-    val isMember: Boolean
+    val isMember: Boolean?,
+
+    @SerializedName("author")
+    val author : User,
 ) : Parcelable

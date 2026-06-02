@@ -93,6 +93,12 @@
                 android:layout_height="8dp"
                 android:background="@color/text_light" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_posts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/post_item"
+                android:layout_marginHorizontal="10dp"/>
 
 
         </LinearLayout>

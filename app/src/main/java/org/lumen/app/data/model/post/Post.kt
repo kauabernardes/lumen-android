@@ -1,6 +1,7 @@
 package org.lumen.app.data.model.post
 
 import com.google.gson.annotations.SerializedName
+import org.lumen.app.data.model.Community
 
 data class Post(
     @SerializedName("id")
@@ -10,18 +11,29 @@ data class Post(
     val content: String,
 
     @SerializedName("createdAt")
-    val createdAt: String,
+    val createdAt: String?,
 
     @SerializedName("user")
     val user: PostUser,
 
     @SerializedName("isLiked")
-    val isLiked: Boolean,
+    var isLiked: Boolean?,
 
     @SerializedName("likesCount")
-    val likesCount: Int,
+    var likesCount: Int?,
 
     @SerializedName("commentsCount")
-    val commentsCount: Int
+    val commentsCount: Int?,
 
+    @SerializedName("parent")
+    val parent : Post?,
+
+    @SerializedName("parentId")
+    val parentId: String?,
+
+    @SerializedName("community")
+    val community: Community?,
+
+    @SerializedName("comments")
+    val comments: List<Post>?
 )

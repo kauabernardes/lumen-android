@@ -7,17 +7,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
+
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
 import org.lumen.app.R
 import org.lumen.app.adapter.CommunityVerticalAdapter
+import org.lumen.app.data.model.Community
 import org.lumen.app.data.remote.RetrofitClient
 import org.lumen.app.databinding.FragmentProfileBinding
 import org.lumen.app.util.errorMessage
-import kotlin.math.log
+
 
 class ProfileFragment : Fragment() {
 
@@ -58,16 +59,7 @@ class ProfileFragment : Fragment() {
                 if (response.isSuccessful && response.body() != null) {
                     val communities = response.body()!!
                     Log.d("TESTE12345", communities.toString())
-
-                    val communityAdapter = CommunityVerticalAdapter(communities) {
-                        communityClicked ->
-                       val bundle = Bundle()
-                        bundle.putString("communityId", communityClicked.id)
-                        findNavController().navigate(R.id.action_profileFragment_to_feedComunidadeFragment, bundle)
-                    }
-                    binding.recyclerCommunities.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                    binding.recyclerCommunities.setHasFixedSize(true)
-                    binding.recyclerCommunities.adapter = communityAdapter
+                    renderComunidade(communities)
                 } else {
                     val eMsg = response.errorMessage()
                     Log.d("TESTE12345", eMsg)
@@ -78,6 +70,18 @@ class ProfileFragment : Fragment() {
 
             }
         }
+    }
+
+    private fun renderComunidade(communities: List<Community>) {
+        val communityAdapter = CommunityVerticalAdapter(communities) {
+                communityClicked ->
+            Log.d("COMUNIDADE", communityClicked.description.toString())
+            val action = ProfileFragmentDirections.actionProfileFragmentToFeedComunidadeFragment(communityClicked.id)
+            findNavController().navigate(action)
+        }
+        binding.recyclerCommunities.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerCommunities.setHasFixedSize(true)
+        binding.recyclerCommunities.adapter = communityAdapter
     }
 
 
