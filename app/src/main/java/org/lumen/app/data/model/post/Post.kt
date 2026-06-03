@@ -35,5 +35,5 @@ data class Post(
     val community: Community?,
 
     @SerializedName("comments")
-    val comments: List<Post>?
+    val comments: MutableList<Post>?
 )

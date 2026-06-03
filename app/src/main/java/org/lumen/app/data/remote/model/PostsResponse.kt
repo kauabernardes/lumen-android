@@ -5,7 +5,7 @@ import org.lumen.app.data.model.post.Post
 
 data class PostsResponse(
     @SerializedName("data")
-    val data: List<Post>,
+    val data: MutableList<Post>,
 
     @SerializedName("meta")
     val meta: Meta

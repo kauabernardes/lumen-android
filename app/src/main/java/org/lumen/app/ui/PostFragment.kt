@@ -84,7 +84,7 @@ class PostFragment : Fragment() {
 
     }
 
-    private fun renderComments(posts: List<Post>) {
+    private fun renderComments(posts: MutableList<Post>) {
         lateinit var postsAdapter: PostAdapter
         postsAdapter = PostAdapter(posts) {
             postClicked, position, element ->
