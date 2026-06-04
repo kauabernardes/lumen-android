@@ -33,6 +33,14 @@
     <color name="card_checkin_text">#EB6EC6</color>
     <color name="card_checkin_icon">#CD7AC7</color>
     <color name="card_checkin_icon_bg">#FEBFFF</color>
+    <color name="card_checkin_background">#f9c0d8</color>
+    <color name="screen_background">#F6F8FA</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="inner_box_background">#F1F3F5</color>
+    <color name="text_on_button">#FFFFFF</color>
+    <color name="accent_primary">#4F46E5</color>
+    <color name="accent_streak">#FF9F43</color> </resources>
+
 
 
     <color name="card_session_bg">#A6D7A0</color>

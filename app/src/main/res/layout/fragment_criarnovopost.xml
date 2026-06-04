@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#EFF3FA">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardNovaPublicacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="16dp">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            app:cardBackgroundColor="@color/md_theme_primary"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="0dp">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center"
+                                app:srcCompat="@drawable/ic_editar"
+                                android:contentDescription="Editar"
+                                app:tint="#FFFFFF" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="14dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nova Publicação"
+                                android:textColor="#1A1A2E"
+                                android:textSize="17sp"
+                                android:textStyle="bold"
+                                android:letterSpacing="0.01" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Compartilhe algo com a sua comunidade"
+                                android:textColor="#8A94A6"
+                                android:textSize="13sp"
+                                android:layout_marginTop="2dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#F0F2F8"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Descrição"
+                        android:textColor="#1A1A2E"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="10dp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilDescricao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxStrokeColor="#E2E8F5"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:hintTextColor="@color/md_theme_primary">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etDescricao"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:background="@null"
+                            android:gravity="top|start"
+                            android:hint="No que você está pensando? Compartilhe ideias, dúvidas ou conquistas!"
+                            android:inputType="textMultiLine|textCapSentences"
+                            android:maxLines="6"
+                            android:paddingStart="14dp"
+                            android:paddingEnd="14dp"
+                            android:paddingTop="12dp"
+                            android:paddingBottom="12dp"
+                            android:textColor="#1A1A2E"
+                            android:textColorHint="#B0B8CC"
+                            android:textSize="14sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="20dp">
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipConquista"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_marginEnd="10dp"
+                            android:text="Conquista"
+                            android:textColor="@color/card_community_text"
+                            android:textSize="13sp"
+                            app:chipBackgroundColor="#FFFFFF"
+                            app:chipStrokeColor="#D0D9F0"
+                            app:chipStrokeWidth="1.5dp"
+                            app:chipCornerRadius="18dp"
+                            app:chipIcon="@drawable/ic_conquistapublicacao"
+                            app:chipIconTint="@color/card_community_text"
+                            app:chipIconSize="18dp"
+                            app:chipStartPadding="8dp"
+                            app:chipEndPadding="12dp" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipMarcarPessoas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:text="Marcar pessoas"
+                            android:textColor="@color/card_community_text"
+                            android:textSize="13sp"
+                            app:chipBackgroundColor="#FFFFFF"
+                            app:chipStrokeColor="#D0D9F0"
+                            app:chipStrokeWidth="1.5dp"
+                            app:chipCornerRadius="18dp"
+                            app:chipStartPadding="8dp"
+                            app:chipEndPadding="12dp" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnPublicar"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:text="Publicar agora"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.02"
+                        app:backgroundTint="@color/md_theme_primary"
+                        app:cornerRadius="12dp"
+                        app:icon="@drawable/ic_send1"
+                        app:iconTint="#FFFFFF"
+                        app:iconSize="18dp"
+                        app:iconPadding="8dp"
+                        app:iconGravity="textStart"
+                        app:elevation="4dp"
+                        app:rippleColor="@color/md_theme_primary" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardComunidades"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            app:srcCompat="@drawable/ic_comunidades"
+                            android:contentDescription="Comunidades"
+                            app:tint="@color/md_theme_primary"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SUAS COMUNIDADES"
+                            android:textColor="@color/md_theme_primary"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.08" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilBuscarComunidade"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:boxCornerRadiusBottomEnd="10dp"
+                        app:boxCornerRadiusBottomStart="10dp"
+                        app:boxCornerRadiusTopEnd="10dp"
+                        app:boxCornerRadiusTopStart="10dp"
+                        app:boxStrokeColor="#E2E8F5"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etBuscarComunidade"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:background="@null"
+                            android:hint="Buscar comunidade..."
+                            android:inputType="text"
+                            android:textColorHint="#B0B8CC"
+                            android:textColor="#1A1A2E"
+                            android:textSize="14sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardDica"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:cardBackgroundColor="@color/md_theme_primary"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        app:srcCompat="@drawable/ic_lampada"
+                        android:contentDescription="Dica"
+                        app:tint="#FFFFFF"
+                        android:layout_marginEnd="12dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dica de publicação"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Faz algum tipo de cursinho? Compartilhe sua experiência com a comunidade!"
+                            android:textColor="#E6F2FF"
+                            android:textSize="13sp"
+                            android:lineSpacingMultiplier="1.3" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
