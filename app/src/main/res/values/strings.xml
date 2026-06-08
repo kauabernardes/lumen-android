@@ -62,8 +62,19 @@
     <string name="alert_inserir_senha">Insira a sua senha</string>
     <string name="alert_inserir_identificador">Insira o seu e-mail ou nome de usuário</string>
     <string name="alert_senha_curta">Senha muito curta. Minímo 8 caracteres.</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="default_sub_username">@dog</string>
+    <string name="default_username">dog</string>
+    <string name="default_empty"> </string>
+    <string name="default_created_by">Criado por: </string>
+    <string name="default_at">Em </string>
+
+    <string name="label_date_posted">Postada em</string>
+    <string name="default_zero">0</string>
+    <string name="ic_comments">Icone de comentários</string>
+    <string name="ic_like">Icone de curtir</string>
+    <string name="title_comments">Comentários</string>
+    <string name="title_minhas_comunidades">Minhas Comunidades</string>
 
 
 </resources>

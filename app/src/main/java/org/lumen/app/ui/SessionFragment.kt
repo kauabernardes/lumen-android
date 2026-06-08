@@ -1,6 +1,8 @@
 package org.lumen.app.ui
 
-import TokenManager
+import org.lumen.app.data.local.TokenManager
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
@@ -47,6 +50,8 @@ class SessionFragment : Fragment() {
     private var mSocket: Socket? = null
     private var currentSessionId: String? = null
 
+    private lateinit var clipboardManager : ClipboardManager
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,6 +59,7 @@ class SessionFragment : Fragment() {
     ): View {
         _binding = FragmentSessionBinding.inflate(inflater, container, false)
         tokenManager = TokenManager(requireContext())
+        clipboardManager = getSystemService(requireContext(), ClipboardManager::class.java)!!
         return binding.root
     }
 
@@ -92,6 +98,7 @@ class SessionFragment : Fragment() {
         val btnJoin = binding.btnJoin
         val btnCreate = binding.btnCreateSession
         val input = binding.inputSessionId
+        val btnCopyId = binding.btnCopyId
 
         input.addTextChangedListener { text ->
             btnJoin.isEnabled = text.toString().isNotEmpty()
@@ -106,6 +113,17 @@ class SessionFragment : Fragment() {
         btnCreate.setOnClickListener {
 
             conectarSocket(null)
+        }
+
+        btnCopyId.setOnClickListener {
+            val sessionId = currentSessionId
+
+            if (sessionId != null) {
+                val clipData = ClipData.newPlainText("text", sessionId)
+                clipboardManager.setPrimaryClip(clipData)
+                showBottomSheet(message = "ID da sessão copiado!")
+            }
+
         }
     }
 
@@ -268,7 +286,7 @@ class SessionFragment : Fragment() {
 
         mSocket?.on(Socket.EVENT_CONNECT) {
             Log.i("SESSION_SOCKET", "Conectado ao servidor Socket!")
-            entrarNaSessao()
+            entrarNaSessao(sessionId)
         }
 
         mSocket?.on("timer_state") { args ->

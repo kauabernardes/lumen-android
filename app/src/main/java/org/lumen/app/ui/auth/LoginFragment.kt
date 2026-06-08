@@ -1,12 +1,11 @@
 package org.lumen.app.ui.auth
 
-import TokenManager
+import org.lumen.app.data.local.TokenManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment

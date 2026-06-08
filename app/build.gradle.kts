@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
+
 }
 
 android {
@@ -17,6 +19,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -29,8 +32,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+
+        isCoreLibraryDesugaringEnabled = true
+
+
     }
 
     viewBinding{
@@ -67,4 +74,8 @@ dependencies {
     implementation("com.auth0:java-jwt:3.10.3")
 
     implementation ("io.socket:socket.io-client:2.1.0") {exclude(  group = "org.json", module = "json") }
+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 }

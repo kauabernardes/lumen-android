@@ -1,13 +1,12 @@
 package org.lumen.app.ui
 
-import TokenManager
+import org.lumen.app.data.local.TokenManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.auth0.jwt.JWT
 import org.lumen.app.R
 import org.lumen.app.databinding.FragmentHomeBinding
 
@@ -51,6 +50,7 @@ class HomeFragment : Fragment() {
         binding.cardSession.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_sessionFragment)
         }
+
     }
 
     override fun onDestroyView() {

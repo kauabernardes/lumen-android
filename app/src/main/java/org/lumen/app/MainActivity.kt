@@ -1,10 +1,8 @@
 package org.lumen.app
 
-import TokenManager
-import android.R.color.transparent
+import org.lumen.app.data.local.TokenManager
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.WindowCompat
@@ -13,9 +11,9 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import org.lumen.app.databinding.ActivityMainBinding
-import org.lumen.app.ui.SessionFragment
 
 class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener {
 
@@ -47,6 +45,9 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             R.id.nav_logout -> {
                 tokenManager.clear()
                 findNavController(R.id.nav_host_fragment).navigate(R.id.loginFragment)
+            }
+            R.id.nav_profile -> {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.profileFragment)
             }
         }
 
@@ -80,10 +81,21 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
             val toolbar = binding.toolbar
             val appBar = binding.appBarLayout
+            val cardNav = binding.cardNav
+            val avatar = binding.avatar
+
 
             toolbar.setNavigationIcon(R.drawable.ic_chevron_left)
             appBar.setBackgroundResource(R.color.md_theme_background)
             appBar.isVisible = true
+            avatar.isVisible = true
+            cardNav.isVisible = false
+
+            Glide.with(this)
+                .load(tokenManager.getProfileImage())
+                .into(avatar)
+
+
 
             when (destination.id) {
                 R.id.splashFragment -> {
@@ -91,6 +103,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 }
                 R.id.homeFragment -> {
                    toolbar.navigationIcon = null
+                    cardNav.isVisible = true
 
                 }
                 R.id.loginFragment -> {
@@ -102,6 +115,11 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 R.id.sessionFragment -> {
                     appBar.setBackgroundResource(R.color.session_theme_background)
                 }
+                R.id.profileFragment -> {
+                    avatar.isVisible = false
+
+                }
+
 
             }
 
