@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
 import org.lumen.app.adapter.CommunityVerticalAdapter
 import org.lumen.app.data.model.Community
@@ -48,6 +49,9 @@ class ProfileFragment : Fragment() {
 
         binding.name.text = tokenManager.getUsername()
         binding.username.text = "@${tokenManager.getUsername()}"
+        Glide.with(this)
+            .load(tokenManager.getProfileImage())
+            .into(binding.userIcon)
 
 
         if (comunidadesSalvas.isNotEmpty()) {
@@ -55,7 +59,7 @@ class ProfileFragment : Fragment() {
             configurarRecyclerViewInicial(comunidadesSalvas)
             setupScrollListener()
         } else {
-            // Primeira vez abrindo a tela de verdade
+
             carregarComunidades()
         }
     }
@@ -75,22 +79,15 @@ class ProfileFragment : Fragment() {
 
                 if (response.isSuccessful && response.body() != null) {
                     val communitiesList = response.body()!!.data
-
                     hasMorePages = communitiesList.isNotEmpty()
 
                     if (currentPage == 1) {
-                        // 1. Salva os dados na nossa lista persistente
                         comunidadesSalvas.clear()
                         comunidadesSalvas.addAll(communitiesList)
-
-                        // 2. Desenha a tela
                         configurarRecyclerViewInicial(comunidadesSalvas)
                         setupScrollListener()
                     } else {
-                        // Próximas páginas: adiciona na lista persistente...
                         comunidadesSalvas.addAll(communitiesList)
-
-                        // ...e avisa o adapter atual da RecyclerView para se atualizar
                         (binding.recyclerCommunities.adapter as? CommunityVerticalAdapter)?.addCommunities(communitiesList)
                     }
 

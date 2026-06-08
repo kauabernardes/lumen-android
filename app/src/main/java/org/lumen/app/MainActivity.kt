@@ -11,6 +11,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import org.lumen.app.databinding.ActivityMainBinding
 
@@ -89,6 +90,11 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             appBar.isVisible = true
             avatar.isVisible = true
             cardNav.isVisible = false
+
+            Glide.with(this)
+                .load(tokenManager.getProfileImage())
+                .into(avatar)
+
 
 
             when (destination.id) {

@@ -1,10 +1,12 @@
 package org.lumen.app.data.local
 
 import android.content.Context
+import android.util.Log
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import androidx.core.content.edit
 import com.auth0.jwt.JWT
+import org.lumen.app.data.remote.Constants.BASE_URL
 
 class TokenManager(context: Context) {
 
@@ -60,19 +62,20 @@ class TokenManager(context: Context) {
 
     fun getProfileImage() : String? {
         val token = getToken()
-        var profileImage: String? = null
+        var profileImg: String? = null
 
         try {
             if (!token.isNullOrEmpty()) {
                 val decodedJWT = JWT.decode(token)
-                profileImage = decodedJWT.getClaim("profileImage").asString()
+                profileImg = "${BASE_URL}${decodedJWT.getClaim("profileImage").asString()}" ?: null
             } else {
-                profileImage = null
+                profileImg = null
             }
+            Log.e("profile", profileImg.toString(), )
         } catch (e: Exception) {
-            profileImage = "Usuário"
+            profileImg = null
         }
-        return profileImage
+        return profileImg
     }
 
 
