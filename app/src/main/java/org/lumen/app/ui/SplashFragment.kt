@@ -1,6 +1,6 @@
 package org.lumen.app.ui
 
-import TokenManager
+import org.lumen.app.data.local.TokenManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

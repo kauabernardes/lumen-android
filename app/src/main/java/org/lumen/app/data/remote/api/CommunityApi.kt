@@ -2,6 +2,7 @@ package org.lumen.app.data.remote.api
 
 import org.lumen.app.data.model.Community
 import org.lumen.app.data.model.post.Post
+import org.lumen.app.data.remote.model.CommunityInResponse
 import org.lumen.app.data.remote.model.PostsResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -13,7 +14,10 @@ import retrofit2.http.Query
 interface CommunityApi {
 
     @GET("community/in")
-    suspend fun imIn (@Header("Authorization") token: String) : Response<List<Community>>
+    suspend fun imIn (@Header("Authorization") token: String,
+                      @Query("page") page: Int = 0,
+                      @Query("limit") limit: Int = 5,
+                      ) : Response<CommunityInResponse>
 
 
     @GET("community/{communityId}")

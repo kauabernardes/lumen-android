@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/feedComunidadeFragment"
-        android:name="org.lumen.app.ui.FeedComunidadeFragment"
+        android:name="org.lumen.app.ui.comunidade.FeedFragment"
         android:label="FeedComunidadeFragment">
 
         <argument

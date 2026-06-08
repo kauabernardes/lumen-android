@@ -7,5 +7,8 @@ data class PostUser(
     val id: String,
 
     @SerializedName("username")
-    val username: String
+    val username: String,
+
+    @SerializedName("profileImage")
+    val profileImage: String
 )

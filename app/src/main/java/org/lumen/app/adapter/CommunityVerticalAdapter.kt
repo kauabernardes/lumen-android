@@ -8,7 +8,7 @@ import org.lumen.app.data.model.Community
 import org.lumen.app.databinding.CommunityVerticalItemBinding
 
 class CommunityVerticalAdapter (
-    var communities: List<Community>,
+    var communities: MutableList<Community>,
     private val onItemClick: (Community) -> Unit
 ): RecyclerView.Adapter<CommunityVerticalAdapter.MyViewHolder>() {
 
@@ -32,6 +32,13 @@ class CommunityVerticalAdapter (
 
     override fun getItemCount(): Int {
         return communities.size
+    }
+
+    fun addCommunities (newCommunities: List<Community>){
+        val startPosition = communities.size
+        communities.addAll(newCommunities)
+        notifyItemRangeInserted(startPosition, newCommunities.size)
+
     }
 
 

@@ -1,6 +1,6 @@
 package org.lumen.app.ui
 
-import TokenManager
+import org.lumen.app.data.local.TokenManager
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.os.Bundle

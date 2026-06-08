@@ -1,6 +1,6 @@
 package org.lumen.app.ui.auth
 
-import TokenManager
+import org.lumen.app.data.local.TokenManager
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,13 +11,12 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
-import org.lumen.app.R
 import org.lumen.app.adapter.CommunityVerticalAdapter
 import org.lumen.app.data.model.Community
 import org.lumen.app.data.remote.RetrofitClient
 import org.lumen.app.databinding.FragmentProfileBinding
-import org.lumen.app.util.errorMessage
 
 
 class ProfileFragment : Fragment() {
@@ -27,11 +26,18 @@ class ProfileFragment : Fragment() {
 
     private lateinit var tokenManager: TokenManager
 
+    private var currentPage = 1
+    private var isLoading = false
+    private var hasMorePages = true
+
+    private val comunidadesSalvas = mutableListOf<Community>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         tokenManager = TokenManager(requireContext())
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
@@ -42,7 +48,16 @@ class ProfileFragment : Fragment() {
 
         binding.name.text = tokenManager.getUsername()
         binding.username.text = "@${tokenManager.getUsername()}"
-        carregarComunidades()
+
+
+        if (comunidadesSalvas.isNotEmpty()) {
+
+            configurarRecyclerViewInicial(comunidadesSalvas)
+            setupScrollListener()
+        } else {
+            // Primeira vez abrindo a tela de verdade
+            carregarComunidades()
+        }
     }
 
     override fun onDestroyView() {
@@ -50,38 +65,78 @@ class ProfileFragment : Fragment() {
         _binding = null
     }
 
-    private fun carregarComunidades(){
+    private fun carregarComunidades() {
+        if (isLoading || !hasMorePages) return
+        isLoading = true
+
         viewLifecycleOwner.lifecycleScope.launch {
             try {
-                Log.d("TESTE12345", "laslaosa")
-                val response = RetrofitClient.communityApi.imIn(tokenManager.getBearer().toString())
+                val response = RetrofitClient.communityApi.imIn(tokenManager.getBearer(), page = currentPage)
 
                 if (response.isSuccessful && response.body() != null) {
-                    val communities = response.body()!!
-                    Log.d("TESTE12345", communities.toString())
-                    renderComunidade(communities)
-                } else {
-                    val eMsg = response.errorMessage()
-                    Log.d("TESTE12345", eMsg)
+                    val communitiesList = response.body()!!.data
+
+                    hasMorePages = communitiesList.isNotEmpty()
+
+                    if (currentPage == 1) {
+                        // 1. Salva os dados na nossa lista persistente
+                        comunidadesSalvas.clear()
+                        comunidadesSalvas.addAll(communitiesList)
+
+                        // 2. Desenha a tela
+                        configurarRecyclerViewInicial(comunidadesSalvas)
+                        setupScrollListener()
+                    } else {
+                        // Próximas páginas: adiciona na lista persistente...
+                        comunidadesSalvas.addAll(communitiesList)
+
+                        // ...e avisa o adapter atual da RecyclerView para se atualizar
+                        (binding.recyclerCommunities.adapter as? CommunityVerticalAdapter)?.addCommunities(communitiesList)
+                    }
+
+                    if (hasMorePages) currentPage++
                 }
-
-
             } catch (e: Exception) {
-
+                Log.e("ERRO", "Falha", e)
+            } finally {
+                isLoading = false
             }
         }
     }
 
-    private fun renderComunidade(communities: List<Community>) {
-        val communityAdapter = CommunityVerticalAdapter(communities) {
-                communityClicked ->
-            Log.d("COMUNIDADE", communityClicked.description.toString())
-            val action = ProfileFragmentDirections.actionProfileFragmentToFeedComunidadeFragment(communityClicked.id)
-            findNavController().navigate(action)
+    private fun configurarRecyclerViewInicial(lista: List<Community>) {
+        val mutableCommunities = lista.toMutableList()
+
+        val communityAdapter = CommunityVerticalAdapter(mutableCommunities) {
+            communityClicked ->
+                val action = ProfileFragmentDirections.actionProfileFragmentToFeedComunidadeFragment(communityClicked.id)
+                findNavController().navigate(action)
         }
+
         binding.recyclerCommunities.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.recyclerCommunities.setHasFixedSize(true)
         binding.recyclerCommunities.adapter = communityAdapter
+    }
+
+    private fun setupScrollListener() {
+        binding.recyclerCommunities.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                if (dx > 0) {
+                    val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                    val visibleItemCount = layoutManager.childCount
+                    val totalItemCount = layoutManager.itemCount
+                    val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+
+                    if (!isLoading && hasMorePages) {
+
+                        if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount - 2) {
+                            carregarComunidades()
+                        }
+                    }
+                }
+            }
+        })
     }
 
 

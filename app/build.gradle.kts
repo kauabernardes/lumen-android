@@ -76,4 +76,6 @@ dependencies {
     implementation ("io.socket:socket.io-client:2.1.0") {exclude(  group = "org.json", module = "json") }
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 }

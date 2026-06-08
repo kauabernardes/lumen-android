@@ -66,6 +66,8 @@
     <string name="default_sub_username">@dog</string>
     <string name="default_username">dog</string>
     <string name="default_empty"> </string>
+    <string name="default_created_by">Criado por: </string>
+    <string name="default_at">Em </string>
 
     <string name="label_date_posted">Postada em</string>
     <string name="default_zero">0</string>

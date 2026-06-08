@@ -1,8 +1,7 @@
 package org.lumen.app.ui
 
-import TokenManager
+import org.lumen.app.data.local.TokenManager
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,18 +9,20 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import kotlinx.coroutines.launch
 import org.lumen.app.R
 import org.lumen.app.adapter.PostAdapter
 import org.lumen.app.data.model.post.ClickElement
 import org.lumen.app.data.model.post.Post
-import org.lumen.app.data.model.post.PostUser
+
 import org.lumen.app.data.remote.RetrofitClient
 import org.lumen.app.databinding.FragmentPostBinding
+import org.lumen.app.util.errorMessage
 import org.lumen.app.util.formatDate
 import org.lumen.app.util.setupPostLikeInteraction
+import org.lumen.app.util.showBottomSheet
 
 class PostFragment : Fragment() {
 
@@ -32,6 +33,7 @@ class PostFragment : Fragment() {
 
     private val args : PostFragmentArgs by navArgs()
 
+    private lateinit var post : Post
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,11 +60,11 @@ class PostFragment : Fragment() {
 
                 if (response.isSuccessful && response.body() != null) {
 
-                    val data = response.body()!!
-                    renderParent(data)
-                    renderComments(data.comments!!)
+                    post = response.body()!!
 
-                    Log.d("POSTAGEM", data.toString())
+                    renderParent(post)
+                    renderComments(post.comments!!)
+
                 }
 
 
@@ -78,10 +80,17 @@ class PostFragment : Fragment() {
         binding.content.text = post.content
         binding.username.text = post.user.username
         binding.subUsername.text = "@${post.user.username}"
+        binding.communityName.text = post.community?.name
         binding.valueLike.text = post.likesCount.toString()
         binding.valueComments.text = post.commentsCount.toString()
         binding.date.text = formatDate(post.createdAt.toString())
 
+        if(post.isLiked == true) {
+            binding.iconLike.setImageResource(R.drawable.ic_heart_filled)
+        } else {
+            binding.iconLike.setImageResource(R.drawable.ic_heart)
+        }
+        binding.iconLike.setOnClickListener { handleLike() }
     }
 
     private fun renderComments(posts: MutableList<Post>) {
@@ -92,7 +101,7 @@ class PostFragment : Fragment() {
             if (element == ClickElement.LIKE) {
                 setupPostLikeInteraction(postClicked, position, postsAdapter, tokenManager.getBearer())
             }
-            if (element == ClickElement.CONTENT) {
+            if (element == ClickElement.CONTENT || element == ClickElement.COMMENT) {
                 val action = PostFragmentDirections.actionPostFragmentSelf(postClicked.id)
                 findNavController().navigate(action)
             }
@@ -100,9 +109,59 @@ class PostFragment : Fragment() {
 
         }
 
-        binding.recyclerComments.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerComments.adapter = postsAdapter
+        val recycler = binding.recyclerComments
 
+        recycler.layoutManager = LinearLayoutManager(requireContext())
+        val dividirItemDecoration = MaterialDividerItemDecoration(recycler.context,
+            LinearLayoutManager.VERTICAL)
+        recycler.addItemDecoration(dividirItemDecoration)
+        recycler.adapter = postsAdapter
+
+    }
+
+    private fun handleLike(){
+        previewLike()
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val response = RetrofitClient.postApi.like(tokenManager.getBearer(), post.id)
+
+                if (response.isSuccessful && response.body() != null) {
+                    val body = response.body()!!
+
+                    post.isLiked = body.liked
+                    post.likesCount = body.totalLikes
+
+                    if (post.isLiked == true) {
+                        post.likesCount = post.likesCount
+                        binding.iconLike.setImageResource(R.drawable.ic_heart_filled)
+                    } else {
+                        post.likesCount = post.likesCount
+                        binding.iconLike.setImageResource(R.drawable.ic_heart)
+                    }
+
+                } else {
+
+
+                    showBottomSheet(message = response.errorMessage())
+                }
+            } catch (e: Exception) {
+
+               previewLike()
+                showBottomSheet(message = "Sem conexão com o servidor.")
+            }
+        }
+    }
+
+    fun previewLike() {
+        post.isLiked = post.isLiked != true
+        if (post.isLiked == true) {
+            post.likesCount = post.likesCount?.plus(1)
+            binding.iconLike.setImageResource(R.drawable.ic_heart_filled)
+        } else {
+            post.likesCount = post.likesCount?.minus(1)
+            binding.iconLike.setImageResource(R.drawable.ic_heart)
+        }
+        binding.valueLike.text = post.likesCount.toString()
     }
 
     override fun onDestroyView() {

@@ -1,3 +1,5 @@
+package org.lumen.app.data.local
+
 import android.content.Context
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
@@ -54,6 +56,23 @@ class TokenManager(context: Context) {
             username = "Usuário"
         }
         return username
+    }
+
+    fun getProfileImage() : String? {
+        val token = getToken()
+        var profileImage: String? = null
+
+        try {
+            if (!token.isNullOrEmpty()) {
+                val decodedJWT = JWT.decode(token)
+                profileImage = decodedJWT.getClaim("profileImage").asString()
+            } else {
+                profileImage = null
+            }
+        } catch (e: Exception) {
+            profileImage = "Usuário"
+        }
+        return profileImage
     }
 
 

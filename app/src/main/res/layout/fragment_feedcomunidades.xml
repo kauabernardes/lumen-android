@@ -8,6 +8,7 @@
     android:background="#F0F0F0">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -15,22 +16,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="52dp">
+
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
-
-                <ImageView
-                    android:id="@+id/imgCapaComunidade"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/capafeedcomunidade"
-                    android:contentDescription="Capa da comunidade" />
-
-
-            </FrameLayout>
+                android:layout_height="200dp"
+                android:background="@color/md_theme_foreground"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,7 +37,7 @@
                     android:id="@+id/tvNomeComunidade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Loucos do ENEM"
+                    android:text="@string/default_empty"
                     android:textSize="26sp"
                     android:textStyle="bold"
                     android:textColor="#1A1A1A"
@@ -54,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:text="Para quem quer enlouquecer de estudar para a prova do enemmm. Vamos juntoso ocupar as universidades"
+                    android:text="@string/default_empty"
                     android:textSize="14sp"
                     android:textColor="#555555"
                     android:lineSpacingExtra="2dp" />
@@ -69,7 +63,7 @@
                         android:id="@+id/tvCriadoPor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Criado por: @mulienemm"
+                        android:text="@string/default_empty"
                         android:textSize="12sp"
                         android:textColor="#888888"
                         android:gravity="end" />
@@ -79,7 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="Em 12 de março de 2025"
+                        android:text="@string/default_empty"
                         android:textSize="12sp"
                         android:textColor="#888888"
                         android:gravity="end" />
@@ -98,9 +92,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/post_item"
-                android:layout_marginHorizontal="10dp"/>
+                android:layout_marginHorizontal="10dp"
+                tools:itemCount="2"/>
 
+            <ProgressBar
+                android:id="@+id/spinner"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_gravity="center"
+                android:progressTint="@color/main_lumen"
+                android:indeterminateTint="@color/main_lumen"
+                android:visibility="gone"
 
+                />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
