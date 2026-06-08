@@ -75,6 +75,8 @@
     <string name="ic_like">Icone de curtir</string>
     <string name="title_comments">Comentários</string>
     <string name="title_minhas_comunidades">Minhas Comunidades</string>
+    <string name="btn_comu_access">Acessar</string>
+    <string name="btn_comu_join">Solicitar</string>
 
 
 </resources>

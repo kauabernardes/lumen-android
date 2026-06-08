@@ -51,6 +51,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_sessionFragment)
         }
 
+        binding.cardCommunity.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_explorarFragment)
+        }
+
     }
 
     override fun onDestroyView() {

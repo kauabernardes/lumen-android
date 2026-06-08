@@ -19,6 +19,13 @@ interface CommunityApi {
                       @Query("limit") limit: Int = 5,
                       ) : Response<CommunityInResponse>
 
+    @GET("community/not-in")
+    suspend fun imNotIn (@Header("Authorization") token: String,
+                      @Query("page") page: Int = 0,
+                      @Query("limit") limit: Int = 5,
+    ) : Response<CommunityInResponse>
+
+
 
     @GET("community/{communityId}")
     suspend fun community (@Header("Authorization") token: String, @Path("communityId") communityId: String) : Response<Community>

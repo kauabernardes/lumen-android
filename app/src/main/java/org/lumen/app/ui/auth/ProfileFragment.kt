@@ -1,5 +1,6 @@
 package org.lumen.app.ui.auth
 
+
 import org.lumen.app.data.local.TokenManager
 import android.os.Bundle
 import android.util.Log
@@ -9,11 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 
 import androidx.lifecycle.lifecycleScope
+
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
+import org.lumen.app.R
 import org.lumen.app.adapter.CommunityVerticalAdapter
 import org.lumen.app.data.model.Community
 import org.lumen.app.data.remote.RetrofitClient
@@ -51,6 +54,7 @@ class ProfileFragment : Fragment() {
         binding.username.text = "@${tokenManager.getUsername()}"
         Glide.with(this)
             .load(tokenManager.getProfileImage())
+            .placeholder(R.drawable.ic_user_circle)
             .into(binding.userIcon)
 
 
@@ -62,11 +66,19 @@ class ProfileFragment : Fragment() {
 
             carregarComunidades()
         }
+
+        initListener()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun initListener() {
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun carregarComunidades() {

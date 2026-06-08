@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
     }
 
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.nav_logout -> {
@@ -65,9 +66,13 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             this.onBackPressedDispatcher.onBackPressed()
         }
 
+
+
         binding.avatar.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.END)
         }
+
+
 
         binding.navigationDrawer.setNavigationItemSelectedListener(this)
     }
@@ -93,6 +98,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
             Glide.with(this)
                 .load(tokenManager.getProfileImage())
+                .placeholder(R.drawable.ic_user_circle)
                 .into(avatar)
 
 
@@ -116,7 +122,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                     appBar.setBackgroundResource(R.color.session_theme_background)
                 }
                 R.id.profileFragment -> {
-                    avatar.isVisible = false
+                    appBar.isVisible = false
 
                 }
 
