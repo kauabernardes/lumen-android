@@ -2,8 +2,10 @@ package org.lumen.app.data.remote.api
 
 
 import org.lumen.app.data.model.post.Post
+import org.lumen.app.data.remote.model.CreatePostRequest
 import org.lumen.app.data.remote.model.LikeResponse
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
 
 import retrofit2.http.Header
@@ -24,4 +26,9 @@ interface PostApi {
         @Path("postId") postId: String,
     ) : Response<Post>
 
+    @POST("posts")
+    suspend fun createPost (
+        @Header("Authorization") token: String,
+        @Body createPostRequest: CreatePostRequest,
+    ) : Response<Post>
 }

@@ -45,6 +45,9 @@
             android:id="@+id/action_feedComunidadeFragment_to_postFragment"
             app:destination="@id/postFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_feedComunidadeFragment_to_criarNovoPost"
+            app:destination="@id/criarNovoPost" />
     </fragment>
 
     <fragment
@@ -110,9 +113,20 @@
         <action
             android:id="@+id/action_postFragment_self"
             app:destination="@id/postFragment" />
+        <action
+            android:id="@+id/action_postFragment_to_feedComunidadeFragment"
+            app:destination="@id/feedComunidadeFragment" />
     </fragment>
     <fragment
         android:id="@+id/explorarFragment"
         android:name="org.lumen.app.ui.comunidade.ExplorarFragment"
         android:label="ExplorarFragment" />
+    <fragment
+        android:id="@+id/criarNovoPost"
+        android:name="org.lumen.app.CriarNovoPost"
+        android:label="CriarNovoPost" >
+        <argument
+            android:name="communityId"
+            app:argType="string" />
+    </fragment>
 </navigation>

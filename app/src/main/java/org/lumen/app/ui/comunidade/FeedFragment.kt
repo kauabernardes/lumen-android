@@ -60,6 +60,15 @@ class FeedFragment : Fragment() {
         } else {
             loadPosts()
         }
+
+        initListener()
+    }
+
+    private fun initListener() {
+        binding.fabNovoPost.setOnClickListener {
+            val action = FeedFragmentDirections.actionFeedComunidadeFragmentToCriarNovoPost(args.communityId)
+            findNavController().navigate(action)
+        }
     }
 
     private fun loadCommunityDetails() {

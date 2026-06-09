@@ -1,15 +1,18 @@
 package org.lumen.app.ui
 
+import android.content.res.ColorStateList
 import org.lumen.app.data.local.TokenManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import kotlinx.coroutines.launch
 import org.lumen.app.R
@@ -85,10 +88,27 @@ class PostFragment : Fragment() {
         binding.valueComments.text = post.commentsCount.toString()
         binding.date.text = formatDate(post.createdAt.toString())
 
+        Glide.with(requireContext())
+            .load(post.user.profileImage)
+            .placeholder(R.drawable.ic_user_circle)
+            .into(binding.avatar)
+
+        binding.communityName.setOnClickListener {
+            if (post.community != null) {
+            val action = PostFragmentDirections.actionPostFragmentToFeedComunidadeFragment(post.community.id)
+            findNavController().navigate(action)}
+        }
+
         if(post.isLiked == true) {
             binding.iconLike.setImageResource(R.drawable.ic_heart_filled)
+            binding.iconLike.imageTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.card_checkin_text))
+
         } else {
             binding.iconLike.setImageResource(R.drawable.ic_heart)
+            binding.iconLike.imageTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.text_secondary))
+
         }
         binding.iconLike.setOnClickListener { handleLike() }
     }
@@ -134,9 +154,15 @@ class PostFragment : Fragment() {
                     if (post.isLiked == true) {
                         post.likesCount = post.likesCount
                         binding.iconLike.setImageResource(R.drawable.ic_heart_filled)
+                        binding.iconLike.imageTintList =
+                            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.card_checkin_text))
+
                     } else {
                         post.likesCount = post.likesCount
                         binding.iconLike.setImageResource(R.drawable.ic_heart)
+                        binding.iconLike.imageTintList =
+                            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.text_secondary))
+
                     }
 
                 } else {
