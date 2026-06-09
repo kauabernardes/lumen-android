@@ -96,7 +96,19 @@
     <string name="daily_text_input1">Escreva os tópicos principais...</string>
     <string name="daily_text_input2">Próximos passos...</string>
 
-    <string name="daily_btn_checkin">Fazer Check-in</string>
+    <string name="daily_btn_checkin">Fazer Check-in</string>[]
+
+
+    <string name="conquistas_title">Conquistas</string>
+    <string name="conquistas_item_1">Personalize seu perfil com foto e bio</string>
+    <string name="conquistas_item_2">Crie sua primeira tarefa ou meta de estudo</string>
+    <string name="conquistas_item_3">Configure seu cronograma de estudos pela primeira vez</string>
+    <string name="conquistas_item_4">Faça sua primeira postagem na comunidade</string>
+    <string name="conquistas_item_5">Adicione seu primeiro colega ou amigo no app</string>
+    <string name="conquistas_points_50">50 pontos</string>
+    <string name="conquistas_points_30">30 pontos</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
