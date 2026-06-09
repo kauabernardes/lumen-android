@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
+import org.lumen.app.R
 import org.lumen.app.adapter.CommunityVerticalAdapter
 import org.lumen.app.data.model.Community
 import org.lumen.app.data.remote.RetrofitClient
@@ -106,7 +108,27 @@ class ExplorarFragment : Fragment() {
     private fun initList(communities: List<Community>){
         val mutableCommunities = communities.toMutableList()
         val communityAdapter = CommunityVerticalAdapter(mutableCommunities, true) { communityClicked ->
+            if (communityClicked.isMember == false) {
+                viewLifecycleOwner.lifecycleScope.launch {
+                    try{
 
+                        val response = RetrofitClient.communityApi.joinCommunity(tokenManager.getBearer(), communityClicked.id)
+
+                        if (response.isSuccessful && response.body() != null){
+                            val body = response.body()!!
+                            showBottomSheet(message = body.message)
+
+                            val action = ExplorarFragmentDirections.actionExplorarFragmentToFeedComunidadeFragment(communityClicked.id)
+                            findNavController().navigate(action)
+
+                        }
+
+
+                    } catch (e: Exception) {
+                        showBottomSheet(message = getString(R.string.error_default))
+                    }
+                }
+            }
         }
 
         binding.comuRecycler.layoutManager = GridLayoutManager(requireContext(), 2)

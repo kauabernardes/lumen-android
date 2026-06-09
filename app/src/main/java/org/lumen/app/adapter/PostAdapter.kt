@@ -3,6 +3,7 @@ package org.lumen.app.adapter
 import android.content.res.ColorStateList
 import android.content.res.ColorStateList.valueOf
 import android.sax.Element
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -65,6 +66,9 @@ class PostAdapter(
         holder.binding.content.setOnClickListener { onLike(post, position, ClickElement.CONTENT)  }
         holder.binding.valueComments.setOnClickListener { onLike(post, position, ClickElement.COMMENT)  }
         holder.binding.iconComments.setOnClickListener { onLike(post, position, ClickElement.COMMENT)  }
+        holder.binding.avatar.setOnClickListener {
+            onLike(post, position, ClickElement.USER)
+        }
 
 
     }

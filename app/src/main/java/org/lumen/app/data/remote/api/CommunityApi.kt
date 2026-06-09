@@ -3,6 +3,7 @@ package org.lumen.app.data.remote.api
 import org.lumen.app.data.model.Community
 import org.lumen.app.data.model.post.Post
 import org.lumen.app.data.remote.model.CommunityInResponse
+import org.lumen.app.data.remote.model.MessageResponse
 import org.lumen.app.data.remote.model.PostsResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -38,5 +39,11 @@ interface CommunityApi {
         @Query("limit") limit: Int = 5,
     ) : Response<PostsResponse>
 
+
+    @POST("community/{communityId}/join")
+    suspend fun joinCommunity(
+        @Header("Authorization") token: String,
+        @Path("communityId") communityId: String
+    ) : Response<MessageResponse>
 
 }

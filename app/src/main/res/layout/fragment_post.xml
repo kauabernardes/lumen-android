@@ -8,6 +8,22 @@
     android:padding="16dp"
     android:background="@color/md_theme_background">
 
+    <ProgressBar
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:id="@+id/spinner_loading"
+
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+
+        android:indeterminateTint="@color/main_lumen"
+
+        />
+
     <androidx.constraintlayout.widget.ConstraintLayout
 
         app:layout_constraintTop_toTopOf="parent"
@@ -115,6 +131,24 @@
             />
 
         <TextView
+            android:id="@+id/answer_of"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/community_name"
+
+            android:textSize="16sp"
+
+            android:layout_marginTop="8dp"
+            android:textColor="@color/text_secondary"
+            android:textStyle="bold"
+            android:text="@string/default_empty"
+
+            />
+
+
+        <TextView
 
             android:id="@+id/content"
 
@@ -122,7 +156,7 @@
             android:layout_height="wrap_content"
 
             android:layout_marginTop="18dp"
-            app:layout_constraintTop_toBottomOf="@id/avatar"
+            app:layout_constraintTop_toBottomOf="@id/answer_of"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:textSize="16sp"
@@ -218,6 +252,24 @@
 
 
         android:text="@string/title_comments"/>
+
+    <TextView
+        android:id="@+id/empty_comments"
+
+        app:layout_constraintTop_toBottomOf="@id/title_comments"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"
+
+        android:textSize="16sp"
+        android:textColor="@color/text_secondary"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+
+        android:textAlignment="center"
+        android:text="@string/empty_comments"/>
 
 
     <androidx.recyclerview.widget.RecyclerView

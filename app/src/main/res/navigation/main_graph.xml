@@ -101,6 +101,10 @@
         <action
             android:id="@+id/action_profileFragment_to_feedComunidadeFragment"
             app:destination="@id/feedComunidadeFragment" />
+        <argument
+            android:name="userId"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/postFragment"
@@ -116,11 +120,18 @@
         <action
             android:id="@+id/action_postFragment_to_feedComunidadeFragment"
             app:destination="@id/feedComunidadeFragment" />
+        <action
+            android:id="@+id/action_postFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/explorarFragment"
         android:name="org.lumen.app.ui.comunidade.ExplorarFragment"
-        android:label="ExplorarFragment" />
+        android:label="ExplorarFragment" >
+        <action
+            android:id="@+id/action_explorarFragment_to_feedComunidadeFragment"
+            app:destination="@id/feedComunidadeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/criarNovoPost"
         android:name="org.lumen.app.CriarNovoPost"
@@ -129,4 +140,5 @@
             android:name="communityId"
             app:argType="string" />
     </fragment>
+    <action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment" />
 </navigation>

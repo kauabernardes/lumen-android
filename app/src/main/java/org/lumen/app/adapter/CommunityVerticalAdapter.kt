@@ -35,6 +35,7 @@ class CommunityVerticalAdapter (
 
         if (community.isMember == true){
             holder.binding.btnAccess.text = getString(holder.itemView.context, R.string.btn_comu_access)
+
         } else {
             holder.binding.btnAccess.text = getString(holder.itemView.context, R.string.btn_comu_join)
         }

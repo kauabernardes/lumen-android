@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -19,6 +20,8 @@ import kotlinx.coroutines.launch
 import org.lumen.app.R
 import org.lumen.app.adapter.CommunityVerticalAdapter
 import org.lumen.app.data.model.Community
+import org.lumen.app.data.model.User
+import org.lumen.app.data.remote.Constants.BASE_URL
 import org.lumen.app.data.remote.RetrofitClient
 import org.lumen.app.databinding.FragmentProfileBinding
 
@@ -34,7 +37,10 @@ class ProfileFragment : Fragment() {
     private var isLoading = false
     private var hasMorePages = true
 
+    private val args : ProfileFragmentArgs by navArgs()
+
     private val comunidadesSalvas = mutableListOf<Community>()
+
 
 
     override fun onCreateView(
@@ -50,6 +56,40 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
+        if (args.userId != null) {
+            viewLifecycleOwner.lifecycleScope.launch {
+                Log.e("click", args.userId!!)
+                try{
+                    val response = RetrofitClient.userApi.user(tokenManager.getBearer(), args.userId!!)
+
+                    if (response.isSuccessful && response.body() != null) {
+                        val user = response.body()!!
+                        Log.e("click", user.imgProfile!!)
+                        initUser(user)
+
+                    }
+
+                } catch (e: Exception) {
+
+                }
+            }
+        } else {
+            initSelf()
+        }
+
+
+
+        initListener()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun initSelf(){
         binding.name.text = tokenManager.getUsername()
         binding.username.text = "@${tokenManager.getUsername()}"
         Glide.with(this)
@@ -66,13 +106,16 @@ class ProfileFragment : Fragment() {
 
             carregarComunidades()
         }
-
-        initListener()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun initUser(user: User) {
+        binding.name.text = user.username
+        binding.username.text = "@${user.username}"
+        Glide.with(this)
+            .load("${BASE_URL}${user.imgProfile}")
+            .placeholder(R.drawable.ic_user_circle)
+            .into(binding.userIcon)
+
     }
 
     private fun initListener() {

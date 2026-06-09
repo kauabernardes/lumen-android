@@ -11,9 +11,11 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import org.lumen.app.databinding.ActivityMainBinding
+import org.lumen.app.ui.HomeFragmentDirections
 
 class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener {
 
@@ -48,7 +50,10 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 findNavController(R.id.nav_host_fragment).navigate(R.id.loginFragment)
             }
             R.id.nav_profile -> {
-                findNavController(R.id.nav_host_fragment).navigate(R.id.profileFragment)
+                val action = MainGraphDirections.actionGlobalProfileFragment(userId = null)
+                val navHostFragment = supportFragmentManager
+                    .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+                navHostFragment.navController.navigate(action)
             }
         }
 

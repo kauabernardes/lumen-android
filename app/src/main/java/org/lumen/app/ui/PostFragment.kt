@@ -3,11 +3,13 @@ package org.lumen.app.ui
 import android.content.res.ColorStateList
 import org.lumen.app.data.local.TokenManager
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -19,6 +21,7 @@ import org.lumen.app.R
 import org.lumen.app.adapter.PostAdapter
 import org.lumen.app.data.model.post.ClickElement
 import org.lumen.app.data.model.post.Post
+import org.lumen.app.data.remote.Constants.BASE_URL
 
 import org.lumen.app.data.remote.RetrofitClient
 import org.lumen.app.databinding.FragmentPostBinding
@@ -56,6 +59,12 @@ class PostFragment : Fragment() {
 
     private fun loadPost() {
 
+        binding.titleComments.isVisible = false
+        binding.emptyComments.isVisible = false
+        binding.post.isVisible = false
+        binding.recyclerComments.isVisible = false
+        binding.spinnerLoading.isVisible = true
+
         viewLifecycleOwner.lifecycleScope.launch {
             try {
 
@@ -68,7 +77,19 @@ class PostFragment : Fragment() {
                     renderParent(post)
                     renderComments(post.comments!!)
 
+
+
+                } else {
+                    showBottomSheet(message = response.errorMessage())
                 }
+
+
+                binding.titleComments.isVisible = true
+                binding.emptyComments.isVisible = true
+                binding.post.isVisible = true
+                binding.recyclerComments.isVisible = true
+                binding.spinnerLoading.isVisible = false
+
 
 
             }
@@ -88,8 +109,13 @@ class PostFragment : Fragment() {
         binding.valueComments.text = post.commentsCount.toString()
         binding.date.text = formatDate(post.createdAt.toString())
 
+        if (post.parent != null)
+        binding.answerOf.text = "Em resposta a @${post.parent?.user?.username}"
+
+        Log.e("click", post.user.profileImage)
+
         Glide.with(requireContext())
-            .load(post.user.profileImage)
+            .load("${BASE_URL}uploads/${post.user.profileImage}")
             .placeholder(R.drawable.ic_user_circle)
             .into(binding.avatar)
 
@@ -114,6 +140,13 @@ class PostFragment : Fragment() {
     }
 
     private fun renderComments(posts: MutableList<Post>) {
+
+        if (posts.isEmpty()) {
+            binding.emptyComments.isVisible = true
+        } else {
+            binding.emptyComments.isVisible = false
+        }
+
         lateinit var postsAdapter: PostAdapter
         postsAdapter = PostAdapter(posts) {
             postClicked, position, element ->
@@ -123,6 +156,10 @@ class PostFragment : Fragment() {
             }
             if (element == ClickElement.CONTENT || element == ClickElement.COMMENT) {
                 val action = PostFragmentDirections.actionPostFragmentSelf(postClicked.id)
+                findNavController().navigate(action)
+            }
+            if (element == ClickElement.USER) {
+                val action = PostFragmentDirections.actionPostFragmentToProfileFragment(postClicked.user.id)
                 findNavController().navigate(action)
             }
 
