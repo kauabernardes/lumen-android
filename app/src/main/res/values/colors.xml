@@ -51,4 +51,16 @@
 
     <color name="event_list_item_bg">#F4F9FF</color>
 
+    <color name="bg_app_pink">#F472B6</color>
+    <color name="bg_card_pink_light">#FCE7F3</color>
+    <color name="text_dark_purple">#4C1D95</color>
+    <color name="text_hint_purple_transparent">#804C1D95</color>
+    <color name="stroke_input_pink">#E1008E</color>
+    <color name="btn_background_dark">#1E1B4B</color>
+    <color name="text_button_white">#FFFFFF</color>
+    <color name="button_ripple_light">#40FFFFFF</color>
+
+
+
+
 </resources>

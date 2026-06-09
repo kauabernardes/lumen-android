@@ -141,37 +141,6 @@
                         android:orientation="horizontal"
                         android:layout_marginBottom="20dp">
 
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/chipConquista"
-                            android:layout_width="wrap_content"
-                            android:layout_height="36dp"
-                            android:layout_marginEnd="10dp"
-                            android:text="Conquista"
-                            android:textColor="@color/card_community_text"
-                            android:textSize="13sp"
-                            app:chipBackgroundColor="#FFFFFF"
-                            app:chipStrokeColor="#D0D9F0"
-                            app:chipStrokeWidth="1.5dp"
-                            app:chipCornerRadius="18dp"
-                            app:chipIcon="@drawable/ic_conquistapublicacao"
-                            app:chipIconTint="@color/card_community_text"
-                            app:chipIconSize="18dp"
-                            app:chipStartPadding="8dp"
-                            app:chipEndPadding="12dp" />
-
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/chipMarcarPessoas"
-                            android:layout_width="wrap_content"
-                            android:layout_height="36dp"
-                            android:text="Marcar pessoas"
-                            android:textColor="@color/card_community_text"
-                            android:textSize="13sp"
-                            app:chipBackgroundColor="#FFFFFF"
-                            app:chipStrokeColor="#D0D9F0"
-                            app:chipStrokeWidth="1.5dp"
-                            app:chipCornerRadius="18dp"
-                            app:chipStartPadding="8dp"
-                            app:chipEndPadding="12dp" />
 
                     </LinearLayout>
 

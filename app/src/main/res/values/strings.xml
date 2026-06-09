@@ -77,4 +77,26 @@
     <string name="title_minhas_comunidades">Minhas Comunidades</string>
 
 
+    <!-- Daily -->
+
+
+    <string name="daily_question_studied_yesterday">O que você estudou ontem?</string>
+    <string name="daily_question_goal_reached">Conseguiu atingir o que queria?</string>
+    <string name="daily_question_mood">Como está o seu humor?</string>
+    <string name="daily_question_study_today">O que você vai estudar hoje?</string>
+
+    <string name="daily_option_no">Não</string>
+    <string name="daily_option_yes">Sim</string>
+    <string name="daily_option_almost">Quase</string>
+
+    <string name="daily_mood_bad">Ruim</string>
+    <string name="daily_mood_ok">Ok</string>
+    <string name="daily_mood_good">Bem</string>
+
+    <string name="daily_text_input1">Escreva os tópicos principais...</string>
+    <string name="daily_text_input2">Próximos passos...</string>
+
+    <string name="daily_btn_checkin">Fazer Check-in</string>
+
+
 </resources>
