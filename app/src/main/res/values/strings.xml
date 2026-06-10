@@ -1,114 +1,103 @@
 <resources>
     <string name="app_name">Lumen</string>
+    <string name="error_default">Erro inesperado aconteceu</string>
+    <string name="or">ou</string>
+    <string name="default_empty"> </string>
+    <string name="default_zero">0</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="desc_avatar_usuario">Foto de perfil do usuário</string>
-    <string name="desc_ilustracao_comunidade">Ilustração de um grupo de pessoas da comunidade</string>
-
-    <string name="ola_usuario">Olá João</string>
-    <string name="pergunta_dia_estudos">Como foi seu dia de estudos hoje?</string>
-
-    <string name="community">Comunidades</string>
-    <string name="achievements">Conquistas</string>
-    <string name="check_in">Check-in</string>
-    <string name="sessao">Sessão</string>
-
-    <string name="recommendation">Recomendação</string>
-
-    <string name="exemplo_recomendacao_titulo">História - Revolução Francesa</string>
-    <string name="exemplo_recomendacao_subtitulo">Sua prova é em 3 dias. Dedique 2 horas hoje.</string>
-
-    <string name="tarefa">Tarefa</string>
-    <string name="session_title">Sessão de Tempo</string>
-    <string name="btn_session_study">Estudos</string>
-    <string name="btn_session_short_break">Curta</string>
-    <string name="btn_session_long_break">Longa</string>
-
-    <string name="title_bottom_sheet">Atenção!</string>
-    <string name="text_title_warning">Atenção!</string>
-    <string name="text_button_warning">Entendi</string>
-
-    <!-- Drawer -->
     <string name="nav_open">Abrir menu</string>
     <string name="nav_close">Fechar menu</string>
     <string name="nav_item_profile">Meu Perfil</string>
     <string name="nav_item_logout">Sair</string>
+    <string name="cd_back">Voltar</string>
+    <string name="cd_avatar">Foto do usuário</string>
 
+    <string name="title_bottom_sheet">Atenção!</string>
+    <string name="text_title_warning">Atenção!</string>
+    <string name="text_button_warning">Entendi</string>
+    <string name="alert_preencher_todos_campos">Preencha todos os campos!</string>
 
-    <!-- sessao de estudos -->
-    <string name="btn_session_toggle_pause">Pausar</string>
-    <string name="btn_session_toggle_resume">Play</string>
-    <string name="timer_default_value">00</string>
-    <string name="user_item_default">Usuario</string>
-    <string name="placeholder_inserir_codigo_sessao">Insira o código</string>
-    <string name="label_inserir_codigo_sessao">Entrar em uma sessão</string>
-    <string name="join">Entrar</string>
-    <string name="text_criar_sua_sessao">Criar Sessão</string>
-    <string name="or">ou</string>
-    <string name="ic_clock">Icone de Relógio</string>
-    <string name="sessio_id_default">Id da sessão</string>
-    <string name="timer_session_divisor">:</string>
-
-    <!-- Recuperarconta -->
     <string name="naotemconta">Não tem uma conta?</string>
-    <string name="ircriarconta"> Criar conta</string>
+    <string name="ircriarconta">Criar conta</string>
     <string name="insiraemail">E-mail:</string>
-
     <string name="placeholder_email">maria@gmail.com</string>
     <string name="placeholder_username"> </string>
     <string name="placeholder_senha">************</string>
-    <string name="alert_preencher_todos_campos">Preencha todos os campos!</string>
     <string name="alert_senhas_diferente">As senhas não conferem!</string>
-    <string name="error_default">Erro inesperado aconteceu</string>
     <string name="alert_inserir_senha">Insira a sua senha</string>
     <string name="alert_inserir_identificador">Insira o seu e-mail ou nome de usuário</string>
     <string name="alert_senha_curta">Senha muito curta. Minímo 8 caracteres.</string>
 
+    <string name="desc_avatar_usuario">Foto de perfil do usuário</string>
+    <string name="ola_usuario">Olá João</string>
+    <string name="pergunta_dia_estudos">Como foi seu dia de estudos hoje?</string>
+    <string name="community">Comunidades</string>
+    <string name="achievements">Conquistas</string>
+    <string name="check_in">Check-in</string>
+    <string name="sessao">Sessão</string>
+    <string name="tarefa">Tarefa</string>
+    <string name="recommendation">Recomendação</string>
+    <string name="exemplo_recomendacao_titulo">História - Revolução Francesa</string>
+    <string name="exemplo_recomendacao_subtitulo">Sua prova é em 3 dias. Dedique 2 horas hoje.</string>
+    <string name="user_item_default">Usuario</string>
     <string name="default_sub_username">@dog</string>
     <string name="default_username">dog</string>
-    <string name="default_empty"> </string>
+
+    <string name="session_title">Sessão de Tempo</string>
+    <string name="btn_session_study">Estudos</string>
+    <string name="btn_session_short_break">Curta</string>
+    <string name="btn_session_long_break">Longa</string>
+    <string name="btn_session_toggle_pause">Pausar</string>
+    <string name="btn_session_toggle_resume">Play</string>
+    <string name="timer_default_value">00</string>
+    <string name="timer_session_divisor">:</string>
+    <string name="placeholder_inserir_codigo_sessao">Insira o código</string>
+    <string name="label_inserir_codigo_sessao">Entrar em uma sessão</string>
+    <string name="join">Entrar</string>
+    <string name="text_criar_sua_sessao">Criar Sessão</string>
+    <string name="ic_clock">Icone de Relógio</string>
+    <string name="sessio_id_default">Id da sessão</string>
+
+    <string name="desc_ilustracao_comunidade">Ilustração de um grupo de pessoas da comunidade</string>
+    <string name="title_minhas_comunidades">Minhas Comunidades</string>
     <string name="default_created_by">Criado por: </string>
     <string name="default_at">Em </string>
-
     <string name="label_date_posted">Postada em</string>
-    <string name="default_zero">0</string>
     <string name="ic_comments">Icone de comentários</string>
     <string name="ic_like">Icone de curtir</string>
     <string name="title_comments">Comentários</string>
-    <string name="title_minhas_comunidades">Minhas Comunidades</string>
-
-
-    <!-- Daily -->
-
 
     <string name="daily_question_studied_yesterday">O que você estudou ontem?</string>
     <string name="daily_question_goal_reached">Conseguiu atingir o que queria?</string>
     <string name="daily_question_mood">Como está o seu humor?</string>
     <string name="daily_question_study_today">O que você vai estudar hoje?</string>
-
     <string name="daily_option_no">Não</string>
     <string name="daily_option_yes">Sim</string>
     <string name="daily_option_almost">Quase</string>
-
     <string name="daily_mood_bad">Ruim</string>
     <string name="daily_mood_ok">Ok</string>
     <string name="daily_mood_good">Bem</string>
-
     <string name="daily_text_input1">Escreva os tópicos principais...</string>
     <string name="daily_text_input2">Próximos passos...</string>
+    <string name="daily_btn_checkin">Fazer Check-in</string>
 
-    <string name="daily_btn_checkin">Fazer Check-in</string>[]
-
-
-    <string name="conquistas_title">Conquistas</string>
+    <string name="title_conquistas">Conquistas</string>
+    <string name="conquistas_points_50">50 pontos</string>
+    <string name="conquistas_points_30">30 pontos</string>
     <string name="conquistas_item_1">Personalize seu perfil com foto e bio</string>
     <string name="conquistas_item_2">Crie sua primeira tarefa ou meta de estudo</string>
     <string name="conquistas_item_3">Configure seu cronograma de estudos pela primeira vez</string>
     <string name="conquistas_item_4">Faça sua primeira postagem na comunidade</string>
     <string name="conquistas_item_5">Adicione seu primeiro colega ou amigo no app</string>
-    <string name="conquistas_points_50">50 pontos</string>
-    <string name="conquistas_points_30">30 pontos</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
+    <string name="conquista_1_titulo">Personalize seu perfil com foto e bio</string>
+    <string name="conquista_1_pontos">50 pontos</string>
+    <string name="conquista_2_titulo">Crie sua primeira tarefa ou meta de estudo</string>
+    <string name="conquista_2_pontos">30 pontos</string>
+    <string name="conquista_3_titulo">Configure seu cronograma de estudos pela primeira vez</string>
+    <string name="conquista_3_pontos">50 pontos</string>
+    <string name="conquista_4_titulo">Faça sua primeira postagem na comunidade</string>
+    <string name="conquista_4_pontos">50 pontos</string>
+    <string name="conquista_5_titulo">Adicione seu primeiro colega ou amigo no app</string>
+    <string name="conquista_5_pontos">50 pontos</string>
 </resources>
