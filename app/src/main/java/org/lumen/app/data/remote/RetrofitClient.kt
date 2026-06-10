@@ -4,6 +4,7 @@ import org.lumen.app.data.remote.api.AuthApi
 import org.lumen.app.data.remote.api.CommunityApi
 import org.lumen.app.data.remote.api.PostApi
 import org.lumen.app.data.remote.api.SessionApi
+import org.lumen.app.data.remote.api.UserApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -27,6 +28,11 @@ object RetrofitClient {
 
     val postApi: PostApi by lazy {
         retrofit.create(PostApi::class.java)
+    }
+
+    val userApi : UserApi by lazy {
+        retrofit.create(UserApi::class.java)
+
     }
 
 }
