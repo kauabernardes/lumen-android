@@ -63,4 +63,25 @@
 
 
 
+
+
+    <color name="conquistas_background">#F5D634</color>
+    <color name="conquistas_title_text">#1A1A2E</color>
+    <color name="conquistas_card_unlocked">#7B5EA7</color>
+    <color name="conquistas_card_locked">#9E9E9E</color>
+    <color name="conquistas_card_text">#FFFFFF</color>
+    <color name="conquistas_card_text_locked">#EEEEEE</color>
+    <color name="conquistas_star_unlocked">#F5D634</color>
+    <color name="conquistas_star_locked">#BDBDBD</color>
+
+
+    <color name="background_yellow">#F0C535</color>
+    <color name="card_purple">#8B5CF6</color>
+    <color name="card_gray">#B0B0B0</color>
+    <color name="text_dark">#1A1A1A</color>
+    <color name="star_yellow">#FFD700</color>
+
+
+
+
 </resources>
