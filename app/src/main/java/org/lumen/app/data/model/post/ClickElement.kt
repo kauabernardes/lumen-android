@@ -4,4 +4,5 @@ enum class ClickElement {
     LIKE,
     COMMENT,
     CONTENT,
+    USER,
 }

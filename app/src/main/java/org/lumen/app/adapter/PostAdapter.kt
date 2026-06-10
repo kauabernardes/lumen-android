@@ -3,6 +3,7 @@ package org.lumen.app.adapter
 import android.content.res.ColorStateList
 import android.content.res.ColorStateList.valueOf
 import android.sax.Element
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -19,6 +20,7 @@ import org.lumen.app.util.formatDate
 class PostAdapter(
     var postList: MutableList<Post>,
     private val onLike : (Post, position: Int, element: ClickElement) -> Unit,
+
 ) : RecyclerView.Adapter<PostAdapter.MyViewHolder>() {
 
 
@@ -39,7 +41,11 @@ class PostAdapter(
         holder.binding.valueComments.text = post.commentsCount.toString()
         Glide.with(holder.itemView.context)
             .load("${BASE_URL}uploads/${post.user.profileImage}")
+            .placeholder(R.drawable.ic_user_circle)
+            .centerCrop()
             .into(holder.binding.avatar)
+
+
 
         if (post.isLiked == true) {
             holder.binding.iconLike.setImageResource(R.drawable.ic_heart_filled)
@@ -60,6 +66,11 @@ class PostAdapter(
         holder.binding.content.setOnClickListener { onLike(post, position, ClickElement.CONTENT)  }
         holder.binding.valueComments.setOnClickListener { onLike(post, position, ClickElement.COMMENT)  }
         holder.binding.iconComments.setOnClickListener { onLike(post, position, ClickElement.COMMENT)  }
+        holder.binding.avatar.setOnClickListener {
+            onLike(post, position, ClickElement.USER)
+        }
+
+
     }
 
     fun addPosts(newPosts: List<Post>) {

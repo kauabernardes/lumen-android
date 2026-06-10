@@ -19,4 +19,7 @@ data class User(
 
     @SerializedName("email")
     val email: String?,
+
+    @SerializedName("imgProfile")
+    val imgProfile: String?,
 ) : Parcelable
