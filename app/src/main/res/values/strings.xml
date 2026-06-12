@@ -100,4 +100,9 @@
     <string name="conquista_4_pontos">50 pontos</string>
     <string name="conquista_5_titulo">Adicione seu primeiro colega ou amigo no app</string>
     <string name="conquista_5_pontos">50 pontos</string>
+
+    <string name="btn_comu_access">Acessar</string>
+    <string name="btn_comu_join">Participar</string>
+
+    <string name="empty_comments">Nenhum comentário ainda.</string>
 </resources>
