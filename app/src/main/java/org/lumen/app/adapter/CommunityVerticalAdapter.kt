@@ -33,11 +33,12 @@ class CommunityVerticalAdapter (
           onItemClick(community)
       }
 
-        if (community.isMember == true){
-            holder.binding.btnAccess.text = getString(holder.itemView.context, R.string.btn_comu_access)
+        val context = holder.itemView.context
 
+        if (community.isMember == true) {
+            holder.binding.btnAccess.text = context.getString(R.string.btn_comu_access)
         } else {
-            holder.binding.btnAccess.text = getString(holder.itemView.context, R.string.btn_comu_join)
+            holder.binding.btnAccess.text = context.getString(R.string.btn_comu_join)
         }
         holder.binding.btnAccess.text
 

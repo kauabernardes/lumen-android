@@ -11,11 +11,10 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import org.lumen.app.databinding.ActivityMainBinding
-import org.lumen.app.ui.HomeFragmentDirections
+import org.lumen.app.ui.AgendaFragment
 
 class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener {
 
@@ -25,8 +24,6 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     private lateinit var tokenManager : TokenManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
         super.onCreate(savedInstanceState)
 
         tokenManager = TokenManager(this)
@@ -38,10 +35,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
         initNav()
         initToolbar()
-
-
     }
-
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
@@ -58,8 +52,6 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         }
 
         binding.drawerLayout.closeDrawer(GravityCompat.END)
-
-
         return true
     }
 
@@ -71,13 +63,36 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             this.onBackPressedDispatcher.onBackPressed()
         }
 
-
-
         binding.avatar.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.END)
         }
 
+        // ---- SEUS CLIQUES DA AGENDA CORRIGIDOS VIA NAVCONTROLLER ----
 
+        // 1. Clique no ícone de Agenda (Calendário) usando o Grafo de Navegação
+        binding.navIcAgenda.setOnClickListener {
+
+            supportFragmentManager.beginTransaction()
+
+                .replace(R.id.nav_host_fragment, AgendaFragment())
+
+                .addToBackStack(null) // Permite voltar ao painel anterior ao usar o botão "voltar" nativo
+
+                .commit()
+
+        }
+
+        // 2. Clique no ícone de Home (Casinha) para voltar com segurança
+        binding.navIcHome.setOnClickListener {
+            val navHostFragment = supportFragmentManager
+                .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+            val navController = navHostFragment.navController
+
+            // Volta para a Home limpando qualquer tela que estava na frente dela
+            navController.popBackStack(R.id.homeFragment, false)
+        }
+
+        // --------------------------------------------
 
         binding.navigationDrawer.setNavigationItemSelectedListener(this)
     }
@@ -94,7 +109,6 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             val cardNav = binding.cardNav
             val avatar = binding.avatar
 
-
             toolbar.setNavigationIcon(R.drawable.ic_chevron_left)
             appBar.setBackgroundResource(R.color.md_theme_background)
             appBar.isVisible = true
@@ -106,16 +120,13 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 .placeholder(R.drawable.ic_user_circle)
                 .into(avatar)
 
-
-
             when (destination.id) {
                 R.id.splashFragment -> {
                     appBar.isVisible = false
                 }
                 R.id.homeFragment -> {
-                   toolbar.navigationIcon = null
+                    toolbar.navigationIcon = null
                     cardNav.isVisible = true
-
                 }
                 R.id.loginFragment -> {
                     appBar.isVisible = false
@@ -128,13 +139,8 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 }
                 R.id.profileFragment -> {
                     appBar.isVisible = false
-
                 }
-
-
             }
-
-
 
             binding.toolbar.title = ""
         }
