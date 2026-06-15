@@ -11,7 +11,7 @@
         android:id="@+id/imgBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/cd_back"
         android:scaleType="centerCrop"
         android:src="@drawable/bg_conquistas"
         app:layout_constraintBottom_toBottomOf="parent"

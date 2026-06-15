@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -54,7 +55,7 @@
                                 android:layout_height="24dp"
                                 android:layout_gravity="center"
                                 app:srcCompat="@drawable/ic_editar"
-                                android:contentDescription="Editar"
+                                android:contentDescription="@string/cd_icone_new_post"
                                 app:tint="#FFFFFF" />
 
                         </com.google.android.material.card.MaterialCardView>
@@ -69,7 +70,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Nova Publicação"
+                                android:text="@string/new_post"
                                 android:textColor="#1A1A2E"
                                 android:textSize="17sp"
                                 android:textStyle="bold"
@@ -78,7 +79,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Compartilhe algo com a sua comunidade"
+                                android:text="@string/subtitle_new_post"
                                 android:textColor="#8A94A6"
                                 android:textSize="13sp"
                                 android:layout_marginTop="2dp" />
@@ -96,7 +97,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Descrição"
+                        android:text="@string/description_label"
                         android:textColor="#1A1A2E"
                         android:textSize="15sp"
                         android:textStyle="bold"
@@ -122,7 +123,7 @@
                             android:layout_height="140dp"
                             android:background="@null"
                             android:gravity="top|start"
-                            android:hint="No que você está pensando? Compartilhe ideias, dúvidas ou conquistas!"
+                            android:hint="@string/placeholder_desc_new_post"
                             android:inputType="textMultiLine|textCapSentences"
                             android:maxLines="6"
                             android:paddingStart="14dp"
@@ -135,20 +136,13 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="20dp">
 
-
-                    </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnPublicar"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
-                        android:text="Publicar agora"
+                        android:text="@string/post_now"
                         android:textColor="#FFFFFF"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -187,20 +181,21 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:layout_marginBottom="12dp">
+                        android:layout_marginBottom="12dp"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             app:srcCompat="@drawable/ic_comunidades"
-                            android:contentDescription="Comunidades"
+                            android:contentDescription="@string/communities"
                             app:tint="@color/md_theme_primary"
                             android:layout_marginEnd="8dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="SUAS COMUNIDADES"
+                            android:text="@string/suas_comunidades"
                             android:textColor="@color/md_theme_primary"
                             android:textSize="11sp"
                             android:textStyle="bold"
@@ -225,7 +220,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="44dp"
                             android:background="@null"
-                            android:hint="Buscar comunidade..."
+                            android:hint="@string/find_communities"
                             android:inputType="text"
                             android:textColorHint="#B0B8CC"
                             android:textColor="#1A1A2E"
@@ -257,7 +252,7 @@
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         app:srcCompat="@drawable/ic_lampada"
-                        android:contentDescription="Dica"
+                        android:contentDescription="@string/hint"
                         app:tint="#FFFFFF"
                         android:layout_marginEnd="12dp" />
 
@@ -270,7 +265,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Dica de publicação"
+                            android:text="@string/hint_post"
                             android:textColor="#FFFFFF"
                             android:textSize="14sp"
                             android:textStyle="bold"
@@ -279,7 +274,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Faz algum tipo de cursinho? Compartilhe sua experiência com a comunidade!"
+                            android:text="@string/description_hint_post"
                             android:textColor="#E6F2FF"
                             android:textSize="13sp"
                             android:lineSpacingMultiplier="1.3" />

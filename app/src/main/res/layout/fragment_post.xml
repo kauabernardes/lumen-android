@@ -48,6 +48,7 @@
             android:background="@color/md_theme_foreground"
             android:src="@drawable/dog"
             android:scaleType="centerCrop"
+            android:contentDescription="@string/user_photo"
             />
 
         <TextView

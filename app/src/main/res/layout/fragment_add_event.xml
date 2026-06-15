@@ -15,75 +15,101 @@
             android:id="@+id/txtNewEventTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Novo evento"
-            android:textColor="#555555"
-            android:textSize="22sp"
-            android:textStyle="bold"
             android:layout_marginBottom="24dp"
             android:drawableStart="@drawable/ic_editar"
             android:drawablePadding="8dp"
             android:gravity="center_vertical"
+            android:text="@string/title_new_event"
+            android:textColor="#555555"
+            android:textSize="22sp"
+            android:textStyle="bold"
             app:drawableTint="#555555" />
 
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Título" android:textColor="#808080"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            android:textColor="#808080" />
+
         <EditText
             android:id="@+id/etTitle"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:hint="Ex: Prova de História"
+            android:layout_marginBottom="16dp"
             android:background="@android:drawable/editbox_background_normal"
-            android:padding="10dp"
-            android:layout_marginBottom="16dp"/>
+            android:hint="@string/ex_title_event"
+            android:padding="10dp" />
 
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Descrição" android:textColor="#808080"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/description_label"
+            android:textColor="#808080" />
+
         <EditText
             android:id="@+id/etDescription"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:hint="Ex: Capítulos 1 ao 5"
+            android:layout_marginBottom="16dp"
             android:background="@android:drawable/editbox_background_normal"
-            android:padding="10dp"
-            android:layout_marginBottom="16dp"/>
+            android:hint="@string/ex_desc_event"
+            android:padding="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
             android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_marginBottom="32dp">
+            android:weightSum="2">
 
-            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="8dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Data"
-                    android:textColor="#808080"/>
+                    android:textColor="#808080" />
 
                 <EditText
                     android:id="@+id/etDate"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:hint="dd/mm/aaaa"
-                    android:focusable="false"
+                    android:background="@android:drawable/editbox_background_normal"
                     android:clickable="true"
                     android:cursorVisible="false"
-                    android:background="@android:drawable/editbox_background_normal"
-                    android:padding="10dp"/>
+                    android:focusable="true"
+                    android:hint="@string/hint_date"
+                    android:padding="10dp" />
             </LinearLayout>
 
-            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="8dp">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hora" android:textColor="#808080"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hour_label"
+                    android:textColor="#808080" />
 
                 <EditText
                     android:id="@+id/etTime"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:hint="--:--"
-                    android:focusable="false"
+                    android:background="@android:drawable/editbox_background_normal"
                     android:clickable="true"
                     android:cursorVisible="false"
-                    android:background="@android:drawable/editbox_background_normal"
-                    android:padding="10dp"/>
+                    android:focusable="true"
+                    android:hint="@string/hint_hour"
+                    android:padding="10dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -97,21 +123,21 @@
                 android:id="@+id/btnCancel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:text="Cancelar"
-                android:textColor="#555555"
                 android:backgroundTint="#EFEFEF"
-                android:layout_marginEnd="8dp"/>
+                android:text="@string/cancelar"
+                android:textColor="#555555" />
 
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:text="Salvar"
-                android:textColor="#FFFFFF"
                 android:backgroundTint="#5F93FF"
-                android:layout_marginStart="8dp"/>
+                android:text="@string/save"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
     </LinearLayout>
 
@@ -120,6 +146,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="gone"
-        android:indeterminateTint="@color/main_lumen" />
+        android:indeterminateTint="@color/main_lumen"
+        android:visibility="gone" />
 </FrameLayout>

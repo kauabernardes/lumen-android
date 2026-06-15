@@ -96,11 +96,11 @@ class HomeFragment : Fragment() {
                     binding.recommendationTitle.text = data.title
                     binding.recommendationSubtitle.text = data.subtitle
                 } else {
-                    showBottomSheet(message = response.errorMessage())
+                    binding.recommendationSubtitle.text = getString(R.string.cant_recommend)
                 }
                 binding.progressBar.isVisible = false
             } catch (e: Exception) {
-                showBottomSheet(message = e.message!!)
+                binding.recommendationSubtitle.text = getString(R.string.cant_recommend)
                 binding.progressBar.isVisible = false
             }
         }
