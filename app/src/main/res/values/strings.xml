@@ -105,4 +105,11 @@
     <string name="btn_comu_join">Participar</string>
 
     <string name="empty_comments">Nenhum comentário ainda.</string>
+    <string name="fill_event_title">Insira um título para o evento</string>
+    <string name="fill_event_date">Insira uma data para o evento</string>
+    <string name="fill_event_time">Insira a hora do evento</string>
+    <string name="title_explore">Explorar</string>
+    <string name="title_my">Minhas</string>
+    <string name="desc_explore_comun">Integração de conhecimentos</string>
+    <string name="empty_community">Nenhuma comunidade encontrada</string>
 </resources>

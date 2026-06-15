@@ -1,89 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#F4F7FC"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:background="#F4F7FC">
 
-    <TextView
-        android:id="@+id/txtNewEventTitle"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/txtNewEventTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Novo evento"
+            android:textColor="#555555"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp"
+            android:drawableStart="@drawable/ic_editar"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            app:drawableTint="#555555" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Título" android:textColor="#808080"/>
+        <EditText
+            android:id="@+id/etTitle"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Ex: Prova de História"
+            android:background="@android:drawable/editbox_background_normal"
+            android:padding="10dp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Descrição" android:textColor="#808080"/>
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Ex: Capítulos 1 ao 5"
+            android:background="@android:drawable/editbox_background_normal"
+            android:padding="10dp"
+            android:layout_marginBottom="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginBottom="32dp">
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Data"
+                    android:textColor="#808080"/>
+
+                <EditText
+                    android:id="@+id/etDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="dd/mm/aaaa"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:cursorVisible="false"
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:padding="10dp"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="8dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hora" android:textColor="#808080"/>
+
+                <EditText
+                    android:id="@+id/etTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="--:--"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:cursorVisible="false"
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:padding="10dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancelar"
+                android:textColor="#555555"
+                android:backgroundTint="#EFEFEF"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Salvar"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#5F93FF"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Novo evento"
-        android:textColor="#555555"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="24dp"
-
-        android:drawableStart="@drawable/ic_editar"
-        android:drawablePadding="8dp"
-        android:gravity="center_vertical"
-        app:drawableTint="#555555" />
-
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Título" android:textColor="#808080"/>
-    <EditText
-        android:id="@+id/etTitle"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="Ex: Prova de História"
-        android:background="@android:drawable/editbox_background_normal"
-        android:padding="10dp"
-        android:layout_marginBottom="16dp"/>
-
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Descrição" android:textColor="#808080"/>
-    <EditText
-        android:id="@+id/etDescription"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="Ex: Capítulos 1 ao 5"
-        android:background="@android:drawable/editbox_background_normal"
-        android:padding="10dp"
-        android:layout_marginBottom="16dp"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:layout_marginBottom="32dp">
-
-        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="8dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Data" android:textColor="#808080"/>
-            <EditText android:id="@+id/etDate" android:layout_width="match_parent" android:layout_height="48dp" android:hint="dd/mm/aaaa" android:background="@android:drawable/editbox_background_normal" android:padding="10dp"/>
-        </LinearLayout>
-
-        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="8dp">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hora" android:textColor="#808080"/>
-            <EditText android:id="@+id/etTime" android:layout_width="match_parent" android:layout_height="48dp" android:hint="--:--" android:background="@android:drawable/editbox_background_normal" android:padding="10dp"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Cancelar"
-            android:textColor="#555555"
-            android:backgroundTint="#EFEFEF"
-            android:layout_marginEnd="8dp"/>
-
-        <Button
-            android:id="@+id/btnSave"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Salvar"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#5F93FF"
-            android:layout_marginStart="8dp"/>
-    </LinearLayout>
-</LinearLayout>
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:indeterminateTint="@color/main_lumen" />
+</FrameLayout>

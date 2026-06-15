@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_yellow">
@@ -24,7 +25,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-
         android:text="@string/title_conquistas"
         android:textColor="@color/text_dark"
         android:textSize="32sp"
@@ -33,296 +33,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
-        android:id="@+id/scrollConquistas"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerConquistas"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="16dp"
-        android:scrollbars="none"
+        android:clipToPadding="false"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="24dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingHorizontal="16dp"
-            android:paddingBottom="24dp">
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardConquista1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardBackgroundColor="@color/card_purple"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="5dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="16dp">
-
-                    <TextView
-                        android:id="@+id/tvConquista1Titulo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/conquista_1_titulo"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/icStar1"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/ic_star_cheia"
-                        app:tint="@color/star_yellow"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvConquista1Titulo" />
-
-                    <TextView
-                        android:id="@+id/tvConquista1Pontos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:text="@string/conquista_1_pontos"
-                        android:textColor="@color/white"
-                        android:textSize="13sp"
-                        app:layout_constraintBottom_toBottomOf="@id/icStar1"
-                        app:layout_constraintStart_toEndOf="@id/icStar1"
-                        app:layout_constraintTop_toTopOf="@id/icStar1" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardConquista2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardBackgroundColor="@color/card_purple"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="5dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="20dp"
-                    android:paddingVertical="20dp">
-
-                    <TextView
-                        android:id="@+id/tvConquista2Titulo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/conquista_2_titulo"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/icStar2"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/ic_star_cheia"
-                        app:tint="@color/star_yellow"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvConquista2Titulo" />
-
-                    <TextView
-                        android:id="@+id/tvConquista2Pontos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:text="@string/conquista_2_pontos"
-                        android:textColor="@color/white"
-                        android:textSize="13sp"
-                        app:layout_constraintBottom_toBottomOf="@id/icStar2"
-                        app:layout_constraintStart_toEndOf="@id/icStar2"
-                        app:layout_constraintTop_toTopOf="@id/icStar2" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardConquista3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardBackgroundColor="@color/card_purple"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="5dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="20dp"
-                    android:paddingVertical="20dp">
-
-                    <TextView
-                        android:id="@+id/tvConquista3Titulo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/conquista_3_titulo"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/icStar3"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/ic_star_cheia"
-                        app:tint="@color/star_yellow"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvConquista3Titulo" />
-
-                    <TextView
-                        android:id="@+id/tvConquista3Pontos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:text="@string/conquista_3_pontos"
-                        android:textColor="@color/white"
-                        android:textSize="13sp"
-                        app:layout_constraintBottom_toBottomOf="@id/icStar3"
-                        app:layout_constraintStart_toEndOf="@id/icStar3"
-                        app:layout_constraintTop_toTopOf="@id/icStar3" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardConquista4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardBackgroundColor="@color/card_gray"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="5dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="20dp"
-                    android:paddingVertical="20dp">
-
-                    <TextView
-                        android:id="@+id/tvConquista4Titulo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/conquista_4_titulo"
-                        android:textColor="@color/text_dark"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/icStar4"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/ic_star_filled"
-                        app:tint="@color/text_dark"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvConquista4Titulo" />
-
-                    <TextView
-                        android:id="@+id/tvConquista4Pontos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:text="@string/conquista_4_pontos"
-                        android:textColor="@color/text_dark"
-                        android:textSize="13sp"
-                        app:layout_constraintBottom_toBottomOf="@id/icStar4"
-                        app:layout_constraintStart_toEndOf="@id/icStar4"
-                        app:layout_constraintTop_toTopOf="@id/icStar4" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardConquista5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardBackgroundColor="@color/card_gray"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="5dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="20dp"
-                    android:paddingVertical="20dp">
-
-                    <TextView
-                        android:id="@+id/tvConquista5Titulo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/conquista_5_titulo"
-                        android:textColor="@color/text_dark"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/icStar5"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/ic_star_filled"
-                        app:tint="@color/text_dark"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvConquista5Titulo" />
-
-                    <TextView
-                        android:id="@+id/tvConquista5Pontos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:text="@string/conquista_5_pontos"
-                        android:textColor="@color/text_dark"
-                        android:textSize="13sp"
-                        app:layout_constraintBottom_toBottomOf="@id/icStar5"
-                        app:layout_constraintStart_toEndOf="@id/icStar5"
-                        app:layout_constraintTop_toTopOf="@id/icStar5" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-    </ScrollView>
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:listitem="@layout/reward_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

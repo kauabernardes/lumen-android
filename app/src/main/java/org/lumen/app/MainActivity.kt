@@ -9,6 +9,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.bumptech.glide.Glide
@@ -67,32 +68,33 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             binding.drawerLayout.openDrawer(GravityCompat.END)
         }
 
-        // ---- SEUS CLIQUES DA AGENDA CORRIGIDOS VIA NAVCONTROLLER ----
+        val navOptions = NavOptions.Builder()
+            .setLaunchSingleTop(true)
+            .setRestoreState(true)
+            .setPopUpTo(R.id.homeFragment, inclusive = false, saveState = true)
+            .build()
 
-        // 1. Clique no ícone de Agenda (Calendário) usando o Grafo de Navegação
         binding.navIcAgenda.setOnClickListener {
-
-            supportFragmentManager.beginTransaction()
-
-                .replace(R.id.nav_host_fragment, AgendaFragment())
-
-                .addToBackStack(null) // Permite voltar ao painel anterior ao usar o botão "voltar" nativo
-
-                .commit()
-
+            val navController = findNavController(R.id.nav_host_fragment)
+            if (navController.currentDestination?.id != R.id.agendaFragment) {
+                navController.navigate(R.id.agendaFragment, null, navOptions)
+            }
         }
 
-        // 2. Clique no ícone de Home (Casinha) para voltar com segurança
         binding.navIcHome.setOnClickListener {
-            val navHostFragment = supportFragmentManager
-                .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-            val navController = navHostFragment.navController
-
-            // Volta para a Home limpando qualquer tela que estava na frente dela
-            navController.popBackStack(R.id.homeFragment, false)
+            val navController = findNavController(R.id.nav_host_fragment)
+            if (navController.currentDestination?.id != R.id.homeFragment) {
+                navController.navigate(
+                    R.id.homeFragment,
+                    null,
+                    NavOptions.Builder()
+                        .setLaunchSingleTop(true)
+                        .setPopUpTo(R.id.homeFragment, inclusive = false)
+                        .build()
+                )
+            }
         }
 
-        // --------------------------------------------
 
         binding.navigationDrawer.setNavigationItemSelectedListener(this)
     }
@@ -127,6 +129,9 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 R.id.homeFragment -> {
                     toolbar.navigationIcon = null
                     cardNav.isVisible = true
+                    binding.navIcAgenda.setBackgroundResource(R.color.md_theme_foreground)
+                    binding.navIcHome.setBackgroundResource(
+                        R.color.text_secondary)
                 }
                 R.id.loginFragment -> {
                     appBar.isVisible = false
@@ -139,6 +144,19 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
                 }
                 R.id.profileFragment -> {
                     appBar.isVisible = false
+                }
+                R.id.dailyFragment -> {
+                    appBar.setBackgroundResource(R.color.bg_app_pink)
+
+                }
+                R.id.agendaFragment -> {
+                    toolbar.navigationIcon = null
+                    cardNav.isVisible = true
+                        binding.navIcAgenda.setBackgroundResource(R.color.text_secondary)
+                    binding.navIcHome.setBackgroundResource(R.color.md_theme_foreground)
+                }
+                R.id.conquistasFragment -> {
+                    appBar.setBackgroundResource(R.color.background_yellow)
                 }
             }
 

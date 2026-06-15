@@ -1,8 +1,9 @@
 package org.lumen.app.data.model
 
 data class Event(
+    val id: String,
     val title: String,
-    val date: String,
-    val time: String,
-    val description: String
+    val description: String,
+    val createdAt: String,
+    val eventDate: String,
 )

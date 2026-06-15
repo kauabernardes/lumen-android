@@ -210,7 +210,9 @@
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginTop="26dp"
-        android:background="@drawable/bg_container"
+        android:background="@drawable/bg_rounded"
+        android:backgroundTint="@color/recommendation_bg"
+
         app:layout_constraintTop_toBottomOf="@id/card_achievements"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -245,7 +247,7 @@
         android:layout_marginTop="12dp"
         android:textSize="18sp"
         android:textColor="@color/text_primary"
-        android:text="História - Revolução Francesa"
+        android:text="@string/default_empty"
         app:layout_constraintTop_toBottomOf="@id/recommendation_badge"
         app:layout_constraintStart_toStartOf="@id/recommendation_view"
         app:layout_constraintEnd_toEndOf="@id/recommendation_view" />
@@ -258,9 +260,20 @@
         android:layout_marginTop="4dp"
         android:textSize="15sp"
         android:textColor="@color/text_secondary"
-        android:text="Sua prova é em 3 dias. Dedique 2 horas hoje."
+        android:text="@string/default_empty"
         app:layout_constraintTop_toBottomOf="@+id/recommendation_title"
         app:layout_constraintStart_toStartOf="@id/recommendation_view"
         app:layout_constraintEnd_toEndOf="@id/recommendation_view" />
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+
+        app:layout_constraintStart_toStartOf="@id/recommendation_view"
+        app:layout_constraintEnd_toEndOf="@id/recommendation_view"
+        app:layout_constraintTop_toTopOf="@id/recommendation_view"
+        app:layout_constraintBottom_toBottomOf="@id/recommendation_view"
+        android:indeterminateTint="@color/main_lumen"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

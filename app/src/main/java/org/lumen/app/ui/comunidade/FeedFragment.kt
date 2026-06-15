@@ -82,11 +82,12 @@ class FeedFragment : Fragment() {
                     binding.tvDescricaoComunidade.text = community.description
                     binding.tvCriadoPor.text = buildString {
                         append(getString(R.string.default_created_by))
-                        append(community.author.username)
+                        append(" ${community.author.username}")
                     }
                     binding.tvDataCriacao.text = buildString {
                         append(getString(R.string.default_at))
-                        append(formatDate(community.createdAt.toString()))
+
+                        append(" ${formatDate(community.createdAt.toString())}")
                     }
                 } else {
                     showBottomSheet(message = response.errorMessage())
