@@ -112,4 +112,17 @@
     <string name="title_my">Minhas</string>
     <string name="desc_explore_comun">Integração de conhecimentos</string>
     <string name="empty_community">Nenhuma comunidade encontrada</string>
+    <string name="ac_bg_waves">Ondas decorativas de plano de fundo</string>
+    <string name="register">Cadastrar</string>
+    <string name="already_registered">Já tem uma conta?</string>
+    <string name="password_hint">************</string>
+    <string name="confrm_password">Confirmar Senha:</string>
+    <string name="recover_password">Recuperar senha</string>
+    <string name="forget_password">Esqueceu sua senha?</string>
+    <string name="password_label">Senha:</string>
+    <string name="identifier_label">E-mail ou nome de usuário:</string>
+    <string name="email_placeholder">maria@gmail.com</string>
+    <string name="create_account">Criar conta</string>
+    <string name="dont_have_account">Não tem uma conta?</string>
+    <string name="cd_bg">Plano de fundo</string>
 </resources>
