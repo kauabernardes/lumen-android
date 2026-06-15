@@ -41,7 +41,7 @@
     <string name="exemplo_recomendacao_titulo">História - Revolução Francesa</string>
     <string name="exemplo_recomendacao_subtitulo">Sua prova é em 3 dias. Dedique 2 horas hoje.</string>
     <string name="user_item_default">Usuario</string>
-    <string name="default_sub_username">@dog</string>
+    <string name="default_sub_username">\@dog</string>
     <string name="default_username">dog</string>
 
     <string name="session_title">Sessão de Tempo</string>
