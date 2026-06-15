@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.lumen.app.R
 import org.lumen.app.data.model.Event
+import org.lumen.app.util.formatDate
 
 class EventAdapter(
     private val events: MutableList<Event>,
@@ -28,7 +29,7 @@ class EventAdapter(
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         val event = events[position]
 
-        val headerText = if (event.time.isNotEmpty()) "${event.title} - ${event.date} às ${event.time}" else "${event.title} - ${event.date}"
+        val headerText = "${event.title} - ${formatDate(event.eventDate)}"
         holder.txtHeader.text = headerText
         holder.txtDesc.text = event.description
 

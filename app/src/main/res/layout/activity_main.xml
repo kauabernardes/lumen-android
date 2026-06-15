@@ -53,6 +53,7 @@
 
                              <ImageView
                                  android:id="@+id/nav_ic_home"
+                                 android:contentDescription="TODO"
                                  app:layout_constraintEnd_toStartOf="@id/nav_ic_agenda"
                                  app:layout_constraintStart_toStartOf="parent"
                                  app:layout_constraintTop_toTopOf="parent"
@@ -69,6 +70,7 @@
 
                          <ImageView
                              android:id="@+id/nav_ic_agenda"
+                             android:contentDescription="TODO"
                              app:layout_constraintEnd_toEndOf="parent"
                              app:layout_constraintStart_toEndOf="@id/nav_ic_home"
                              app:layout_constraintTop_toTopOf="parent"

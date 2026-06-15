@@ -60,6 +60,24 @@ class TokenManager(context: Context) {
         return username
     }
 
+    fun getSub() : String {
+
+        val token = getToken()
+        var sub = ""
+
+        try {
+            if (!token.isNullOrEmpty()) {
+                val decodedJWT = JWT.decode(token)
+                sub = decodedJWT.getClaim("sub").asString() ?: "Usuário"
+            } else {
+                sub = "Usuário"
+            }
+        } catch (e: Exception) {
+            sub = "Usuário"
+        }
+        return sub
+    }
+
     fun getProfileImage() : String? {
         val token = getToken()
         var profileImg: String? = null

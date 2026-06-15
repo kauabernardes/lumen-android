@@ -41,7 +41,7 @@
     <string name="exemplo_recomendacao_titulo">História - Revolução Francesa</string>
     <string name="exemplo_recomendacao_subtitulo">Sua prova é em 3 dias. Dedique 2 horas hoje.</string>
     <string name="user_item_default">Usuario</string>
-    <string name="default_sub_username">@dog</string>
+    <string name="default_sub_username">\@dog</string>
     <string name="default_username">dog</string>
 
     <string name="session_title">Sessão de Tempo</string>
@@ -105,4 +105,24 @@
     <string name="btn_comu_join">Participar</string>
 
     <string name="empty_comments">Nenhum comentário ainda.</string>
+    <string name="fill_event_title">Insira um título para o evento</string>
+    <string name="fill_event_date">Insira uma data para o evento</string>
+    <string name="fill_event_time">Insira a hora do evento</string>
+    <string name="title_explore">Explorar</string>
+    <string name="title_my">Minhas</string>
+    <string name="desc_explore_comun">Integração de conhecimentos</string>
+    <string name="empty_community">Nenhuma comunidade encontrada</string>
+    <string name="ac_bg_waves">Ondas decorativas de plano de fundo</string>
+    <string name="register">Cadastrar</string>
+    <string name="already_registered">Já tem uma conta?</string>
+    <string name="password_hint">************</string>
+    <string name="confrm_password">Confirmar Senha:</string>
+    <string name="recover_password">Recuperar senha</string>
+    <string name="forget_password">Esqueceu sua senha?</string>
+    <string name="password_label">Senha:</string>
+    <string name="identifier_label">E-mail ou nome de usuário:</string>
+    <string name="email_placeholder">maria@gmail.com</string>
+    <string name="create_account">Criar conta</string>
+    <string name="dont_have_account">Não tem uma conta?</string>
+    <string name="cd_bg">Plano de fundo</string>
 </resources>

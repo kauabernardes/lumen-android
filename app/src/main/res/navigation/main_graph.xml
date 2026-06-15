@@ -30,6 +30,15 @@
         <action
             android:id="@+id/action_homeFragment_to_explorarFragment"
             app:destination="@id/explorarFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_agendaFragment"
+            app:destination="@id/agendaFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_dailyFragment"
+            app:destination="@id/dailyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_conquistasFragment"
+            app:destination="@id/conquistasFragment" />
 
 
     </fragment>
@@ -141,4 +150,24 @@
             app:argType="string" />
     </fragment>
     <action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment" />
+    <fragment
+        android:id="@+id/agendaFragment"
+        android:name="org.lumen.app.ui.AgendaFragment"
+        android:label="AgendaFragment" >
+        <action
+            android:id="@+id/action_agendaFragment_to_addEventFragment"
+            app:destination="@id/addEventFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEventFragment"
+        android:name="org.lumen.app.ui.AddEventFragment"
+        android:label="AddEventFragment" />
+    <fragment
+        android:id="@+id/dailyFragment"
+        android:name="org.lumen.app.ui.DailyFragment"
+        android:label="DailyFragment" />
+    <fragment
+        android:id="@+id/conquistasFragment"
+        android:name="org.lumen.app.ui.ConquistasFragment"
+        android:label="ConquistasFragment" />
 </navigation>

@@ -1,11 +1,9 @@
 package org.lumen.app.ui
 
-import org.lumen.app.data.local.TokenManager
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +12,7 @@ import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
@@ -24,6 +23,7 @@ import kotlinx.coroutines.launch
 import org.json.JSONObject
 import org.lumen.app.R
 import org.lumen.app.adapter.UserAdapter
+import org.lumen.app.data.local.TokenManager
 import org.lumen.app.data.model.User
 import org.lumen.app.data.remote.Constants
 import org.lumen.app.data.remote.RetrofitClient
@@ -35,10 +35,8 @@ import org.lumen.app.data.remote.model.PomodoroStatus
 import org.lumen.app.databinding.FragmentSessionBinding
 import org.lumen.app.util.showBottomSheet
 
-
 class SessionFragment : Fragment() {
-
-    private var _binding : FragmentSessionBinding? = null
+    private var _binding: FragmentSessionBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var tokenManager: TokenManager
@@ -50,12 +48,12 @@ class SessionFragment : Fragment() {
     private var mSocket: Socket? = null
     private var currentSessionId: String? = null
 
-    private lateinit var clipboardManager : ClipboardManager
+    private lateinit var clipboardManager: ClipboardManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentSessionBinding.inflate(inflater, container, false)
         tokenManager = TokenManager(requireContext())
@@ -63,21 +61,21 @@ class SessionFragment : Fragment() {
         return binding.root
     }
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         token = tokenManager.getToken() ?: ""
         bearer = tokenManager.getBearer() ?: ""
 
-
         initListener()
 
         initBtns()
-
     }
 
-    private fun initListener(){
+    private fun initListener() {
         binding.btnToggle.setOnClickListener {
             alternarCronometro()
         }
@@ -90,8 +88,6 @@ class SessionFragment : Fragment() {
         binding.btnStudy.setOnClickListener {
             forceStudy()
         }
-
-
     }
 
     private fun initBtns() {
@@ -111,7 +107,6 @@ class SessionFragment : Fragment() {
         }
 
         btnCreate.setOnClickListener {
-
             conectarSocket(null)
         }
 
@@ -123,7 +118,6 @@ class SessionFragment : Fragment() {
                 clipboardManager.setPrimaryClip(clipData)
                 showBottomSheet(message = "ID da sessão copiado!")
             }
-
         }
     }
 
@@ -135,18 +129,15 @@ class SessionFragment : Fragment() {
             return
         }
 
-        Log.i("SESSION_REST", "Tentando enviar comando toggle ${sessionId}")
+        Log.i("SESSION_REST", "Tentando enviar comando toggle $sessionId")
 
         viewLifecycleOwner.lifecycleScope.launch {
             try {
-
                 val response = RetrofitClient.sessionApi.toggleTimer(sessionId, bearer)
 
                 if (response.isSuccessful) {
-
                     Log.i("SESSION_REST", "Comando toggle enviado com sucesso!")
                 } else {
-
                     showBottomSheet(message = "Erro: Apenas o anfitrião pode pausar/iniciar.")
                 }
             } catch (e: Exception) {
@@ -157,7 +148,6 @@ class SessionFragment : Fragment() {
     }
 
     private fun forceBreak(type: PomodoroBreak) {
-
         val sessionId = currentSessionId
 
         if (sessionId == null) {
@@ -168,7 +158,6 @@ class SessionFragment : Fragment() {
         val payload = ForceBreakRequest(type)
 
         viewLifecycleOwner.lifecycleScope.launch {
-
             try {
                 val response = RetrofitClient.sessionApi.forceBreak(sessionId, payload, bearer)
 
@@ -184,7 +173,7 @@ class SessionFragment : Fragment() {
         }
     }
 
-    private fun forceStudy(){
+    private fun forceStudy() {
         val sessionId = currentSessionId
 
         if (sessionId == null) {
@@ -208,17 +197,15 @@ class SessionFragment : Fragment() {
         }
     }
 
-
     private fun conectarSocket(sessionId: String? = null) {
-        try{
+        try {
             val options = IO.Options()
             mSocket = IO.socket(Constants.BASE_URL + "session", options)
 
             initSocketListener(sessionId)
 
             mSocket?.connect()
-
-        } catch(e: Exception) {
+        } catch (e: Exception) {
             Log.e("SESSION_SOCKET", "Erro na URL do Socket", e)
         }
     }
@@ -232,57 +219,56 @@ class SessionFragment : Fragment() {
             payload.put("sessionId", sessionId)
         }
 
-        mSocket?.emit("join_session", payload, Ack { args ->
-            val response = args[0] as JSONObject
+        mSocket?.emit(
+            "join_session",
+            payload,
+            Ack { args ->
+                val response = args[0] as JSONObject
 
-            Log.i("SESSION_DEBUG", "Resposta do Join: $response")
+                Log.i("SESSION_DEBUG", "Resposta do Join: $response")
 
-            activity?.runOnUiThread {
-                if (response.has("success") && response.getBoolean("success")) {
-                    binding.cardTimer.isVisible = true
-                    binding.cardInit.isGone = true
+                activity?.runOnUiThread {
+                    if (response.has("success") && response.getBoolean("success")) {
+                        binding.cardTimer.isVisible = true
+                        binding.cardInit.isGone = true
 
-                    binding.btnToggle.isEnabled = true
+                        binding.btnToggle.isEnabled = true
 
-                    currentSessionId = response.getString("sessionId")
-                    binding.sessionId.text = currentSessionId
+                        currentSessionId = response.getString("sessionId")
+                        binding.sessionId.text = currentSessionId
 
-                    if (response.has("pomodoro")) {
-                        val pomodoroJson = response.getJSONObject("pomodoro").toString()
+                        if (response.has("pomodoro")) {
+                            val pomodoroJson = response.getJSONObject("pomodoro").toString()
 
-                        Log.i("SESSION_DEBUG", "JSON Pomodoro: $pomodoroJson")
+                            Log.i("SESSION_DEBUG", "JSON Pomodoro: $pomodoroJson")
 
-                        try {
-                            val pomodoro = Gson().fromJson(pomodoroJson, PomodoroState::class.java)
-                            Log.i("SESSION_DEBUG", "TimeLeft convertido: ${pomodoro.timeLeft}")
+                            try {
+                                val pomodoro = Gson().fromJson(pomodoroJson, PomodoroState::class.java)
+                                Log.i("SESSION_DEBUG", "TimeLeft convertido: ${pomodoro.timeLeft}")
 
-                            timerState(pomodoro.timeLeft, pomodoro.phase)
-                        } catch (e: Exception) {
-                            Log.e("SESSION_DEBUG", "Erro ao converter o Gson", e)
+                                timerState(pomodoro.timeLeft, pomodoro.phase)
+                            } catch (e: Exception) {
+                                Log.e("SESSION_DEBUG", "Erro ao converter o Gson", e)
+                            }
                         }
-                    }
 
-
-                    currentSessionId?.let { id ->
-                        initialUserList(id)
+                        currentSessionId?.let { id ->
+                            initialUserList(id)
+                        }
+                    } else {
+                        binding.cardTimer.isVisible = true
+                        binding.cardInit.isGone = true
+                        showBottomSheet(message = "Erro ao entrar na sessão.")
                     }
-                } else {
-                    binding.cardTimer.isVisible = true
-                    binding.cardInit.isGone = true
-                    showBottomSheet(message = "Erro ao entrar na sessão.")
                 }
-            }
-
-
-        })
+            },
+        )
     }
 
     private fun initSocketListener(sessionId: String? = null) {
-
         mSocket?.off(Socket.EVENT_CONNECT)
         mSocket?.off("timer_state")
         mSocket?.off("participants_updated")
-
 
         mSocket?.on(Socket.EVENT_CONNECT) {
             Log.i("SESSION_SOCKET", "Conectado ao servidor Socket!")
@@ -291,11 +277,10 @@ class SessionFragment : Fragment() {
 
         mSocket?.on("timer_state") { args ->
             if (args.isNotEmpty()) {
-               val jsonString = args[0].toString()
+                val jsonString = args[0].toString()
                 val pomodoro = Gson().fromJson(jsonString, PomodoroState::class.java)
 
                 activity?.runOnUiThread {
-
                     timerState(pomodoro.timeLeft, pomodoro.phase, pomodoro.status)
                 }
             }
@@ -319,9 +304,9 @@ class SessionFragment : Fragment() {
     private fun timerState(
         timeLeft: Int,
         phase: PomodoroPhase = PomodoroPhase.BREAK,
-        status: PomodoroStatus = PomodoroStatus.PAUSED
+        status: PomodoroStatus = PomodoroStatus.PAUSED,
     ) {
-      val minutes = timeLeft / 60
+        val minutes = timeLeft / 60
         val seconds = timeLeft % 60
 
         Log.i("SESSION_REST", minutes.toString())
@@ -342,15 +327,14 @@ class SessionFragment : Fragment() {
             binding.btnLongBreak.isEnabled = true
         }
 
-
         if (status == PomodoroStatus.RUNNING) {
             binding.btnToggle.text = getString(R.string.btn_session_toggle_pause)
-            binding.btnToggle.icon = getDrawable(requireContext(),R.drawable.ic_pause)
+            binding.btnToggle.icon = getDrawable(requireContext(), R.drawable.ic_pause)
         } else {
             binding.btnToggle.text = getString(R.string.btn_session_toggle_resume)
-            binding.btnToggle.icon = getDrawable(requireContext(),R.drawable.ic_play)
-            }
+            binding.btnToggle.icon = getDrawable(requireContext(), R.drawable.ic_play)
         }
+    }
 
     private fun initialUserList(sessionId: String) {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -368,14 +352,12 @@ class SessionFragment : Fragment() {
         }
     }
 
-
     private fun setUserList(userList: List<User>) {
         userAdapter = UserAdapter(userList)
         binding.userList.layoutManager = LinearLayoutManager(requireContext())
         binding.userList.setHasFixedSize(false)
         binding.userList.adapter = userAdapter
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

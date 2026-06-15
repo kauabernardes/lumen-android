@@ -161,6 +161,7 @@
 
 
             <ImageView
+                android:contentDescription="TODO"
                 app:layout_constraintTop_toTopOf="@id/session_id"
                 app:layout_constraintBottom_toBottomOf="@id/session_id"
                 app:layout_constraintEnd_toEndOf="parent"
