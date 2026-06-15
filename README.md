@@ -35,9 +35,9 @@ Toda a persistência e lógica de negócios real ocorre em uma API centralizada.
 ## 🎨 UI/UX e Padrões de Código
 
 A interface foi cuidadosamente projetada para ser amigável e acessível, respeitando as exigências visuais:
-* **Gestalt e Acessibilidade:** Interface amigável com identidade visual adequada, navegabilidade e botões grandes (mínimo 44px), respeitando princípios de Gestalt e a lei de Fitts[cite: 1].
+* **Gestalt e Acessibilidade:** Interface amigável com identidade visual adequada, navegabilidade e botões grandes (mínimo 44px), respeitando princípios de Gestalt e a lei de Fitts.
 * **Boas Práticas Kotlin:** O código evita funções muito longas, utiliza responsabilidade única, prefere `val` em vez de `var` e evita o operador `!!` (not-null assertion) sempre que possível. Uso de pelo menos 1 função de extensão e 1 RecyclerView. Todas as strings literais foram extraídas para o arquivo `strings.xml`.
-* **Clean Code:** Código fonte indentado e comentado apenas no que não for óbvio[cite: 1].
+* **Clean Code:** Código fonte indentado e comentado apenas no que não for óbvio.
 
 ---
 
