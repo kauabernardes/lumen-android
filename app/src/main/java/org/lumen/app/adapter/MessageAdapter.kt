@@ -15,7 +15,7 @@ import org.lumen.app.util.formatDate
 
 class MessageAdapter(
     private val currentUserId: String,
-    var messageList: MutableList<SessionMessage>,
+    var messageList: List<SessionMessage>,
     private val onMessageClick: (SessionMessage, position: Int) -> Unit = { _, _ -> }
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -73,12 +73,6 @@ class MessageAdapter(
                 holder.binding.root.setOnClickListener { onMessageClick(message, position) }
             }
         }
-    }
-
-    fun addMessages(newMessages: List<SessionMessage>) {
-        val startPosition = messageList.size
-        messageList.addAll(newMessages)
-        notifyItemRangeInserted(startPosition, newMessages.size)
     }
 
     override fun getItemCount(): Int = messageList.size

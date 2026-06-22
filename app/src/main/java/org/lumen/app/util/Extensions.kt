@@ -106,20 +106,14 @@ fun Fragment.showChatBottomSheet(
     val bottomSheet = bottomSheetDialog.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
 
     bottomSheet?.let {
-        // 1. Força a altura do container interno para match_parent
         val layoutParams = it.layoutParams
         layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
         it.layoutParams = layoutParams
 
-        // 2. Configura o comportamento para abrir totalmente expandido
         val behavior = BottomSheetBehavior.from(it)
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
-
-        // (Opcional) Impede que ele pare no meio do caminho ao fechar arrastando
         behavior.skipCollapsed = true
     }
-    // ---------------------------------------------------
-
     bottomSheetDialog.show()
 }
 
