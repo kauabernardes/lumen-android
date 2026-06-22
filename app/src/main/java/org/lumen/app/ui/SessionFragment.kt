@@ -34,6 +34,7 @@ import org.lumen.app.data.remote.model.PomodoroState
 import org.lumen.app.data.remote.model.PomodoroStatus
 import org.lumen.app.databinding.FragmentSessionBinding
 import org.lumen.app.util.showBottomSheet
+import org.lumen.app.util.showChatBottomSheet
 
 class SessionFragment : Fragment() {
     private var _binding: FragmentSessionBinding? = null
@@ -87,6 +88,9 @@ class SessionFragment : Fragment() {
         }
         binding.btnStudy.setOnClickListener {
             forceStudy()
+        }
+        binding.btnOpenChat.setOnClickListener {
+            showChatBottomSheet {  }
         }
     }
 

@@ -1,9 +1,12 @@
 package org.lumen.app.util
 
+import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.coroutines.launch
 import org.json.JSONObject
@@ -12,6 +15,7 @@ import org.lumen.app.R
 import org.lumen.app.data.model.post.Post
 import org.lumen.app.data.remote.RetrofitClient
 import org.lumen.app.databinding.BottomSheetBinding
+import org.lumen.app.databinding.ChatBottomSheetBinding
 import retrofit2.Response
 
 
@@ -84,6 +88,38 @@ fun Fragment.showBottomSheet(
     }
 
     bottomSheetDialog.setContentView(binding.root)
+    bottomSheetDialog.show()
+}
+fun Fragment.showChatBottomSheet(
+    setupAdapter: (RecyclerView) -> Unit
+) {
+    val bottomSheetDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
+    val binding = ChatBottomSheetBinding.inflate(layoutInflater, null, false)
+
+    binding.icClose.setOnClickListener {
+        bottomSheetDialog.dismiss()
+    }
+    setupAdapter(binding.recyclerViewBottomSheet)
+
+    bottomSheetDialog.setContentView(binding.root)
+
+    val bottomSheet = bottomSheetDialog.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
+
+    bottomSheet?.let {
+        // 1. Força a altura do container interno para match_parent
+        val layoutParams = it.layoutParams
+        layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
+        it.layoutParams = layoutParams
+
+        // 2. Configura o comportamento para abrir totalmente expandido
+        val behavior = BottomSheetBehavior.from(it)
+        behavior.state = BottomSheetBehavior.STATE_EXPANDED
+
+        // (Opcional) Impede que ele pare no meio do caminho ao fechar arrastando
+        behavior.skipCollapsed = true
+    }
+    // ---------------------------------------------------
+
     bottomSheetDialog.show()
 }
 

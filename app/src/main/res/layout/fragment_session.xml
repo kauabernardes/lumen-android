@@ -72,13 +72,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/icon_session_title"
         android:layout_marginTop="16dp"
-        android:visibility="gone"
+        android:visibility="visible"
         >
+
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp">
+
+
 
             <LinearLayout
                 app:layout_constraintStart_toStartOf="parent"
@@ -249,6 +253,23 @@
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
 
+            <ImageView
+                android:contentDescription="@string/title_luminha"
+                app:layout_constraintTop_toTopOf="@id/session_id"
+                app:layout_constraintBottom_toBottomOf="@id/session_id"
+               app:layout_constraintStart_toStartOf="parent"
+
+
+                android:id="@+id/btn_open_chat"
+                app:layout_constraintStart_toEndOf="@id/session_id"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="8dp"
+                android:padding="0dp"
+                app:tint="@color/session_high"
+                android:src="@drawable/ic_luminha"/>
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -265,6 +286,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/session_title"
         android:layout_marginTop="16dp"
+        android:visibility="gone"
 
         >
         <androidx.constraintlayout.widget.ConstraintLayout
