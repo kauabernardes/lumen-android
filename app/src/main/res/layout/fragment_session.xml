@@ -72,7 +72,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/icon_session_title"
         android:layout_marginTop="16dp"
-        android:visibility="visible"
+        android:visibility="gone"
         >
 
 
@@ -286,7 +286,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/session_title"
         android:layout_marginTop="16dp"
-        android:visibility="gone"
+        android:visibility="visible"
 
         >
         <androidx.constraintlayout.widget.ConstraintLayout

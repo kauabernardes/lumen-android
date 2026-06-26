@@ -1,10 +1,12 @@
 package org.lumen.app.util
 
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -12,6 +14,7 @@ import kotlinx.coroutines.launch
 import org.json.JSONObject
 import org.lumen.app.MainActivity
 import org.lumen.app.R
+import org.lumen.app.adapter.MessageAdapter
 import org.lumen.app.data.model.post.Post
 import org.lumen.app.data.remote.RetrofitClient
 import org.lumen.app.databinding.BottomSheetBinding
@@ -91,20 +94,56 @@ fun Fragment.showBottomSheet(
     bottomSheetDialog.show()
 }
 fun Fragment.showChatBottomSheet(
-    setupAdapter: (RecyclerView) -> Unit
+    adapter: MessageAdapter,
+    onSendMessage: (String) -> Unit
 ) {
+
+
     val bottomSheetDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
     val binding = ChatBottomSheetBinding.inflate(layoutInflater, null, false)
+    bottomSheetDialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 
     binding.icClose.setOnClickListener {
         bottomSheetDialog.dismiss()
     }
-    setupAdapter(binding.recyclerViewBottomSheet)
+
+
+
+    val layoutManager = LinearLayoutManager(requireContext())
+    binding.recyclerViewBottomSheet.adapter = adapter
+    layoutManager.stackFromEnd = true
+    binding.recyclerViewBottomSheet.layoutManager = layoutManager
+
+    val scrollObserver = object : RecyclerView.AdapterDataObserver() {
+        override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+            super.onItemRangeInserted(positionStart, itemCount)
+            binding.recyclerViewBottomSheet.scrollToPosition(adapter.itemCount - 1)
+        }
+    }
+
+    adapter.registerAdapterDataObserver(scrollObserver)
+
+    bottomSheetDialog.setOnDismissListener {
+        adapter.unregisterAdapterDataObserver(scrollObserver)
+    }
+
+    if (adapter.itemCount > 0) {
+        binding.recyclerViewBottomSheet.scrollToPosition(adapter.itemCount - 1)
+    }
+
+    binding.buttonSend.setOnClickListener {
+        val text = binding.editTextMessage.text.toString().trim()
+        if (text.isNotEmpty()) {
+            onSendMessage(text)
+            binding.editTextMessage.text?.clear()
+        }
+    }
+
+
 
     bottomSheetDialog.setContentView(binding.root)
 
     val bottomSheet = bottomSheetDialog.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
-
     bottomSheet?.let {
         val layoutParams = it.layoutParams
         layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
@@ -114,6 +153,7 @@ fun Fragment.showChatBottomSheet(
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
         behavior.skipCollapsed = true
     }
+
     bottomSheetDialog.show()
 }
 

@@ -19,11 +19,14 @@ import com.google.gson.Gson
 import io.socket.client.Ack
 import io.socket.client.IO
 import io.socket.client.Socket
+import io.socket.emitter.Emitter
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import org.lumen.app.R
+import org.lumen.app.adapter.MessageAdapter
 import org.lumen.app.adapter.UserAdapter
 import org.lumen.app.data.local.TokenManager
+import org.lumen.app.data.model.SessionMessage
 import org.lumen.app.data.model.User
 import org.lumen.app.data.remote.Constants
 import org.lumen.app.data.remote.RetrofitClient
@@ -49,6 +52,9 @@ class SessionFragment : Fragment() {
     private var mSocket: Socket? = null
     private var currentSessionId: String? = null
 
+    private val messageList = mutableListOf<SessionMessage>()
+    private lateinit var messageAdapter: MessageAdapter
+
     private lateinit var clipboardManager: ClipboardManager
 
     override fun onCreateView(
@@ -71,6 +77,8 @@ class SessionFragment : Fragment() {
         token = tokenManager.getToken() ?: ""
         bearer = tokenManager.getBearer() ?: ""
 
+
+        messageAdapter = MessageAdapter(tokenManager.getSub(), messageList)
         initListener()
 
         initBtns()
@@ -89,10 +97,10 @@ class SessionFragment : Fragment() {
         binding.btnStudy.setOnClickListener {
             forceStudy()
         }
-        binding.btnOpenChat.setOnClickListener {
-            showChatBottomSheet {  }
-        }
+
     }
+
+
 
     private fun initBtns() {
         val btnJoin = binding.btnJoin
@@ -122,6 +130,10 @@ class SessionFragment : Fragment() {
                 clipboardManager.setPrimaryClip(clipData)
                 showBottomSheet(message = "ID da sessão copiado!")
             }
+        }
+
+        binding.btnOpenChat.setOnClickListener {
+            showChatBottomSheet (messageAdapter) { textToSend -> sendMessage(textToSend) }
         }
     }
 
@@ -273,6 +285,7 @@ class SessionFragment : Fragment() {
         mSocket?.off(Socket.EVENT_CONNECT)
         mSocket?.off("timer_state")
         mSocket?.off("participants_updated")
+        mSocket?.off("receive_message", onNewMessage)
 
         mSocket?.on(Socket.EVENT_CONNECT) {
             Log.i("SESSION_SOCKET", "Conectado ao servidor Socket!")
@@ -302,6 +315,36 @@ class SessionFragment : Fragment() {
                     setUserList(participants.toList())
                 }
             }
+        }
+
+        mSocket?.on("receive_message", onNewMessage)
+
+        // Escutar status da IA gerando questão
+        mSocket?.on("ai_generating") {
+            // Aqui você pode mostrar um indicador de "Luminha está digitando..."
+        }
+        mSocket?.on("ai_generated") {
+            // Ocultar o indicador de digitação
+        }
+
+
+    }
+
+    private fun sendMessage(text: String) {
+        val payload = JSONObject().apply {
+            put("text", text)
+        }
+        // Emite o evento exatamente como o @SubscribeMessage('send_message') do Nest espera
+        mSocket?.emit("send_message", payload)
+    }
+
+    private val onNewMessage = Emitter.Listener { args ->
+        activity?.runOnUiThread {
+            val data = args[0] as JSONObject
+            val message = Gson().fromJson(data.toString(), SessionMessage::class.java)
+
+            messageList.add(message)
+            messageAdapter.notifyItemInserted(messageList.size - 1)
         }
     }
 
