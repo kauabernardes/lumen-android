@@ -20,17 +20,17 @@
     <color name="text_light">#F0F0F0</color>
 
     <color name="card_community_bg">#64B9F6</color>
-    <color name="card_community_text">#276998</color>
+    <color name="card_community_text">#1D5278</color>
     <color name="card_community_icon">#8BCBF9</color>
 
     <color name="card_achievements_bg">#FFCE48</color>
-    <color name="card_achievements_text">#D29614</color>
+    <color name="card_achievements_text">#946B14</color>
     <color name="card_achievements_icon">#DDAC44</color>
     <color name="card_achievements_icon_bg">#FFDF99</color>
 
 
     <color name="card_checkin_bg">#FF9DF8</color>
-    <color name="card_checkin_text">#EB6EC6</color>
+    <color name="card_checkin_text">#992F7A</color>
     <color name="card_checkin_icon">#CD7AC7</color>
     <color name="card_checkin_icon_bg">#FEBFFF</color>
     <color name="card_checkin_background">#f9c0d8</color>
@@ -44,7 +44,7 @@
 
 
     <color name="card_session_bg">#A6D7A0</color>
-    <color name="card_session_text">#758C72</color>
+    <color name="card_session_text">#4E684B</color>
     <color name="card_session_icon">#98B495</color>
     <color name="card_session_icon_bg">#D2EBCF</color>
 
@@ -77,7 +77,8 @@
 
     <color name="background_yellow">#F0C535</color>
     <color name="card_purple">#8B5CF6</color>
-    <color name="card_gray">#B0B0B0</color>
+    <color name="card_gray">#686868</color>
+    <color name="fore_gray">#434343</color>
     <color name="text_dark">#1A1A1A</color>
     <color name="star_yellow">#FFD700</color>
 

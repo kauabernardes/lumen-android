@@ -160,4 +160,5 @@
     <string name="close">Fechar</string>
     <string name="digit_a_message">Digite uma mensagem...</string>
     <string name="send">send</string>
+    <string name="open_chat">Abrir chat</string>
 </resources>
