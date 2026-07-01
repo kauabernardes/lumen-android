@@ -31,19 +31,36 @@ class ConquistaAdapter(
         holder.binding.tvTitulo.text = conquista.title
         holder.binding.tvDificuldade.text = conquista.difficulty
 
-        holder.binding.cardContainer.setCardBackgroundColor(
-            ContextCompat.getColor(context, R.color.card_purple),
-        )
-        holder.binding.tvTitulo.setTextColor(
-            ContextCompat.getColor(context, R.color.white),
-        )
-        holder.binding.tvDificuldade.setTextColor(
-            ContextCompat.getColor(context, R.color.white),
-        )
+        if (conquista.isCorrect){
 
-        holder.binding.icStar.setImageResource(R.drawable.ic_star_cheia)
-        holder.binding.icStar.imageTintList =
-            ColorStateList.valueOf(ContextCompat.getColor(context, R.color.star_yellow))
+            holder.binding.cardContainer.setCardBackgroundColor(
+                ContextCompat.getColor(context, R.color.card_purple),
+            )
+            holder.binding.tvTitulo.setTextColor(
+                ContextCompat.getColor(context, R.color.white),
+            )
+            holder.binding.tvDificuldade.setTextColor(
+                ContextCompat.getColor(context, R.color.white),
+            )
+
+            holder.binding.icStar.setImageResource(R.drawable.ic_star_cheia)
+            holder.binding.icStar.imageTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(context, R.color.star_yellow))
+        } else {
+            holder.binding.cardContainer.setCardBackgroundColor(
+                ContextCompat.getColor(context, R.color.card_gray),
+            )
+            holder.binding.tvTitulo.setTextColor(
+                ContextCompat.getColor(context, R.color.white),
+            )
+            holder.binding.tvDificuldade.setTextColor(
+                ContextCompat.getColor(context, R.color.white),
+            )
+
+            holder.binding.icStar.setImageResource(R.drawable.ic_star)
+            holder.binding.icStar.imageTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(context, R.color.fore_gray))
+        }
     }
 
     fun addConquistas(newConquistas: List<Reward>) {

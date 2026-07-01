@@ -75,10 +75,14 @@
         android:visibility="gone"
         >
 
+
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp">
+
+
 
             <LinearLayout
                 app:layout_constraintStart_toStartOf="parent"
@@ -249,6 +253,9 @@
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
 
+
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -265,6 +272,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/session_title"
         android:layout_marginTop="16dp"
+        android:visibility="visible"
 
         >
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -388,6 +396,25 @@
         tools:listitem="@layout/user_item"
 
         tools:itemCount="3"
+
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:contentDescription="@string/open_chat"
+        android:backgroundTint="@color/session_high"
+
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_luminha"
+
+        app:tint="@color/white"
+        app:fabSize="normal"
+        android:layout_margin="12dp"
+        android:id="@+id/btn_open_chat"
 
         />
 
